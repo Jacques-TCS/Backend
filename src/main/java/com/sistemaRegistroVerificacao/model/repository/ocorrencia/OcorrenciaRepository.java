@@ -1,5 +1,9 @@
 package com.sistemaRegistroVerificacao.model.repository.ocorrencia;
 
-public class OcorrenciaRepository {
-    
+import com.sistemaRegistroVerificacao.model.entity.ocorrencia.Ocorrencia;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+public interface OcorrenciaRepository extends JpaRepository<Ocorrencia, Long>, JpaSpecificationExecutor<Ocorrencia> {
 }
+
