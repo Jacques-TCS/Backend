@@ -1,5 +1,5 @@
 package com.sistemaRegistroVerificacao.model.repository.usuario;
 
-public class Usuario {
+public class UsuarioRepository {
     
 }
