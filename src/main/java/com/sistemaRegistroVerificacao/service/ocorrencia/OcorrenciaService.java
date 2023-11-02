@@ -2,6 +2,8 @@ package com.sistemaRegistroVerificacao.service.ocorrencia;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.sistemaRegistroVerificacao.model.entity.ocorrencia.Ocorrencia;
 import com.sistemaRegistroVerificacao.seletor.ocorrencia.OcorrenciaSeletor;
 
@@ -19,6 +21,7 @@ public class OcorrenciaService {
         return null;
     }
 
+    @Transactional
     public List<Ocorrencia> listarTodas() {
         return null;
     }

@@ -2,32 +2,44 @@ package com.sistemaRegistroVerificacao.service.nivelAcesso;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.sistemaRegistroVerificacao.model.entity.nivelAcesso.NivelAcesso;
+import com.sistemaRegistroVerificacao.model.repository.nivelAcesso.NivelAcessoRepository;
 import com.sistemaRegistroVerificacao.seletor.nivelAcesso.NivelAcessoSeletor;
+import com.sistemaRegistroVerificacao.specification.nivelAcesso.NivelAcessoSpecification;
 
 public class NivelAcessoService {
 
-    public NivelAcesso inserir(NivelAcesso novonivelAcesso) {
-        return null;
+    @Autowired
+    private NivelAcessoRepository nivelAcessoRepository;
+
+    public NivelAcesso inserir(NivelAcesso novoNivelAcesso) {
+        return nivelAcessoRepository.save(novoNivelAcesso);
     }
 
     public NivelAcesso atualizar(NivelAcesso nivelAcessoParaAtualizar) {
-        return null;
+        return nivelAcessoRepository.save(nivelAcessoParaAtualizar);
     }
 
     public NivelAcesso consultarPorId(Integer id) {
-        return null;
+        return nivelAcessoRepository.findById(id).get();
     }
 
+    @Transactional
     public List<NivelAcesso> listarTodos() {
-        return null;
+        return nivelAcessoRepository.findAll();
     }
 
     public List<NivelAcesso> listarComSeletor(NivelAcessoSeletor seletor) {
-        return null;
+        Specification<NivelAcesso> specification = NivelAcessoSpecification.comFiltros(seletor);
+        return nivelAcessoRepository.findAll(specification);
     }
 
     public boolean excluir(Integer id) {
-        return false;
+        nivelAcessoRepository.deleteById(id);
+        return true;
     }
 }
