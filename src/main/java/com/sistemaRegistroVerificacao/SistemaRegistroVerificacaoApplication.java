@@ -1,4 +1,4 @@
-package com.SistemaRegistroVerificacao.springBoot;
+package com.sistemaregistroverificacao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
