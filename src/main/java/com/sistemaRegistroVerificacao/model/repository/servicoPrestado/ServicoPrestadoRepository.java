@@ -4,5 +4,5 @@ import com.sistemaRegistroVerificacao.model.entity.servicoPrestado.ServicoPresta
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface ServicoPrestadoRepository extends JpaRepository<ServicoPrestado, Long>, JpaSpecificationExecutor<ServicoPrestado> {
+public interface ServicoPrestadoRepository extends JpaRepository<ServicoPrestado, Integer>, JpaSpecificationExecutor<ServicoPrestado> {
 }

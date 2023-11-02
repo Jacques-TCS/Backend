@@ -7,28 +7,27 @@ import com.sistemaRegistroVerificacao.seletor.atividade.AtividadeSeletor;
 
 public class AtividadeService {
 
-    // public Atividade inserir(Atividade novaAtividade) {
-    //     return null;
-    // }
+    public Atividade inserir(Atividade novaAtividade) {
+        return null;
+    }
 
-    // public Atividade atualizar(Atividade atividadeParaAtualizar) {
-    //     return null;
-    // }
+    public Atividade atualizar(Atividade atividadeParaAtualizar) {
+        return null;
+    }
 
-    // public Atividade consultarPorId(Integer id) {
-    //     return null;
-    // }
+    public Atividade consultarPorId(Integer id) {
+        return null;
+    }
 
-    // public List<Atividade> listarTodas() {
-    //     return null;
-    // }
+    public List<Atividade> listarTodas() {
+        return null;
+    }
 
-    // public List<Atividade> listarComSeletor(AtividadeSeletor seletor) {
-    //     return null;
-    // }
+    public List<Atividade> listarComSeletor(AtividadeSeletor seletor) {
+        return null;
+    }
 
-    // public boolean excluir(Integer id) {
-    //     return false;
-    // }
-
+    public boolean excluir(Integer id) {
+        return false;
+    }
 }

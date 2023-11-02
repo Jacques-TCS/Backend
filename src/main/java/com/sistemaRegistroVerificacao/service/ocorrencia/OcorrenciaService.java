@@ -7,28 +7,27 @@ import com.sistemaRegistroVerificacao.seletor.ocorrencia.OcorrenciaSeletor;
 
 public class OcorrenciaService {
 
-    // public Ocorrencia inserir(Ocorrencia novaOcorrencia) {
-    //     return null;
-    // }
+    public Ocorrencia inserir(Ocorrencia novaOcorrencia) {
+        return null;
+    }
 
-    // public Ocorrencia atualizar(Ocorrencia ocorrenciaParaAtualizar) {
-    //     return null;
-    // }
+    public Ocorrencia atualizar(Ocorrencia ocorrenciaParaAtualizar) {
+        return null;
+    }
 
-    // public Ocorrencia consultarPorId(Integer id) {
-    //     return null;
-    // }
+    public Ocorrencia consultarPorId(Integer id) {
+        return null;
+    }
 
-    // public List<Ocorrencia> listarTodas() {
-    //     return null;
-    // }
+    public List<Ocorrencia> listarTodas() {
+        return null;
+    }
 
-    // public List<Ocorrencia> listarComSeletor(OcorrenciaSeletor seletor) {
-    //     return null;
-    // }
+    public List<Ocorrencia> listarComSeletor(OcorrenciaSeletor seletor) {
+        return null;
+    }
 
-    // public boolean excluir(Integer id) {
-    //     return false;
-    // }
-    
+    public boolean excluir(Integer id) {
+        return false;
+    }
 }
