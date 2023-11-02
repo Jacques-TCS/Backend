@@ -1,4 +1,4 @@
-package com.sistemaRegistroVerificacao.model.entity.afastamento;
+package com.sistemaRegistroVerificacao.model.repository.afastamento;
 
 public class Afastamento {
     
