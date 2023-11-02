@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sistemaRegistroVerificacao.model.entity.atividade.Atividade;
-import com.sistemaRegistroVerificacao.model.entity.cargo.Cargo;
 import com.sistemaRegistroVerificacao.model.entity.ocorrencia.Ocorrencia;
 import com.sistemaRegistroVerificacao.model.entity.sala.Sala;
 import com.sistemaRegistroVerificacao.model.entity.usuario.Usuario;

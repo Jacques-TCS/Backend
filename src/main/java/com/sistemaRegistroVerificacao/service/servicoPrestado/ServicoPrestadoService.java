@@ -7,28 +7,27 @@ import com.sistemaRegistroVerificacao.seletor.servicoPrestado.ServicoPrestadoSel
 
 public class ServicoPrestadoService {
 
-    // public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) {
-    //     return null;
-    // }
+    public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) {
+        return null;
+    }
 
-    // public ServicoPrestado atualizar(ServicoPrestado servicoPrestadoParaAtualizar) {
-    //     return null;
-    // }
+    public ServicoPrestado atualizar(ServicoPrestado servicoPrestadoParaAtualizar) {
+        return null;
+    }
 
-    // public ServicoPrestado consultarPorId(Integer id) {
-    //     return null;
-    // }
+    public ServicoPrestado consultarPorId(Integer id) {
+        return null;
+    }
 
-    // public List<ServicoPrestado> listarTodos() {
-    //     return null;
-    // }
+    public List<ServicoPrestado> listarTodos() {
+        return null;
+    }
 
-    // public List<ServicoPrestado> listarComSeletor(ServicoPrestadoSeletor seletor) {
-    //     return null;
-    // }
+    public List<ServicoPrestado> listarComSeletor(ServicoPrestadoSeletor seletor) {
+        return null;
+    }
 
-    // public boolean excluir(Integer id) {
-    //     return false;
-    // }
-    
+    public boolean excluir(Integer id) {
+        return false;
+    }
 }

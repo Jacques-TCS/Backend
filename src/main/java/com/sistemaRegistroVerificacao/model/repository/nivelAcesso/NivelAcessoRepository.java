@@ -4,5 +4,5 @@ import com.sistemaRegistroVerificacao.model.entity.nivelAcesso.NivelAcesso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface NivelAcessoRepository extends JpaRepository<NivelAcesso, Long>, JpaSpecificationExecutor<NivelAcesso> {
+public interface NivelAcessoRepository extends JpaRepository<NivelAcesso, Integer>, JpaSpecificationExecutor<NivelAcesso> {
 }

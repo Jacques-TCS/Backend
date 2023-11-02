@@ -16,34 +16,33 @@ import com.sistemaRegistroVerificacao.specification.afastamento.AfastamentoSpeci
 @Service
 public class AfastamentoService {
 
-    // @Autowired
-    // private AfastamentoRepository afastamentoRepository;
+    @Autowired
+    private AfastamentoRepository afastamentoRepository;
 
-    // public Afastamento inserir(Afastamento novoAfastamento) {
-    //     return afastamentoRepository.save(novoAfastamento);
-    // }
+    public Afastamento inserir(Afastamento novoAfastamento) {
+        return afastamentoRepository.save(novoAfastamento);
+    }
 
-    // public Afastamento atualizar(Afastamento afastamentoParaAtualizar) {
-    //     return afastamentoRepository.save(afastamentoParaAtualizar);
-    // }
+    public Afastamento atualizar(Afastamento afastamentoParaAtualizar) {
+        return afastamentoRepository.save(afastamentoParaAtualizar);
+    }
 
-    // public Afastamento consultarPorId(Integer id) {
-    //     return afastamentoRepository.findById(id).get();
-    // }
+    public Afastamento consultarPorId(Integer id) {
+        return afastamentoRepository.findById(id).get();
+    }
 
-    // @Transactional
-    // public List<Afastamento> listarTodos() {
-    //     return afastamentoRepository.findAll();
-    // }
+    @Transactional
+    public List<Afastamento> listarTodos() {
+        return afastamentoRepository.findAll();
+    }
 
-    // public List<Afastamento> listarComSeletor(AfastamentoSeletor seletor) {
-    //     Specification<Afastamento> specification = AfastamentoSpecification.comFiltros(seletor);
-    //     return afastamentoRepository.findAll(specification);
-    // }
+    public List<Afastamento> listarComSeletor(AfastamentoSeletor seletor) {
+        Specification<Afastamento> specification = AfastamentoSpecification.comFiltros(seletor);
+        return afastamentoRepository.findAll(specification);
+    }
 
-    // public boolean excluir(Integer id) {
-    //     afastamentoRepository.deleteById(id);
-    //     return true;
-    // }
-    
+    public boolean excluir(Integer id) {
+        afastamentoRepository.deleteById(id);
+        return true;
+    }
 }
