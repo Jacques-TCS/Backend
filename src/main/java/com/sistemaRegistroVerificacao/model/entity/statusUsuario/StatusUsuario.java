@@ -1,5 +1,12 @@
 package com.sistemaRegistroVerificacao.model.entity.statusUsuario;
 
-public class StatusUsuario {
-    
+//OBS: label é a descricao formatada
+public enum StatusUsuario {
+	ATIVO("Ativo"), INATIVO("Inativo"), AFASTADO("Afastado");
+
+	public final String label;
+
+	private StatusUsuario(String label) {
+		this.label = label;
+	}
 }
