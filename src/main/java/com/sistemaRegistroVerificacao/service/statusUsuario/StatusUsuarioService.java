@@ -2,32 +2,44 @@ package com.sistemaRegistroVerificacao.service.statusUsuario;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.sistemaRegistroVerificacao.model.entity.statusUsuario.StatusUsuario;
+import com.sistemaRegistroVerificacao.model.repository.statusUsuario.StatusUsuarioRepository;
 import com.sistemaRegistroVerificacao.seletor.statusUsuario.StatusUsuarioSeletor;
+import com.sistemaRegistroVerificacao.specification.statusUsuario.StatusUsuarioSpecification;
 
 public class StatusUsuarioService {
 
+    @Autowired
+    private StatusUsuarioRepository statsUsuarioRepository;
+
     public StatusUsuario inserir(StatusUsuario novoStatusUsuario) {
-        return null;
+        return statsUsuarioRepository.save(novoStatusUsuario);
     }
 
     public StatusUsuario atualizar(StatusUsuario statusUsuarioParaAtualizar) {
-        return null;
+        return statsUsuarioRepository.save(statusUsuarioParaAtualizar);
     }
 
     public StatusUsuario consultarPorId(Integer id) {
-        return null;
+        return statsUsuarioRepository.findById(id).get();
     }
 
+    @Transactional
     public List<StatusUsuario> listarTodos() {
-        return null;
+        return statsUsuarioRepository.findAll();
     }
 
     public List<StatusUsuario> listarComSeletor(StatusUsuarioSeletor seletor) {
-        return null;
+        Specification<StatusUsuario> specification = StatusUsuarioSpecification.comFiltros(seletor);
+        return statsUsuarioRepository.findAll(specification);
     }
 
     public boolean excluir(Integer id) {
-        return false;
+        statsUsuarioRepository.deleteById(id);
+        return true;
     }
 }
