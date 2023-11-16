@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Usuario;
 import com.sistemaRegistroVerificacao.model.repository.UsuarioRepository;
-import com.sistemaRegistroVerificacao.seletor.UsuarioSeletor;
-import com.sistemaRegistroVerificacao.specification.UsuarioSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.UsuarioSeletor;
+import com.sistemaRegistroVerificacao.model.specification.UsuarioSpecification;
 
 public class UsuarioService {
 

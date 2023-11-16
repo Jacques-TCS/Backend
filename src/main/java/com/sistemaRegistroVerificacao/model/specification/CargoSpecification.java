@@ -1,9 +1,9 @@
-package com.sistemaRegistroVerificacao.specification;
+package com.sistemaRegistroVerificacao.model.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 
 import com.sistemaRegistroVerificacao.model.entity.Cargo;
-import com.sistemaRegistroVerificacao.seletor.CargoSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.CargoSeletor;
 
 public class CargoSpecification {
 

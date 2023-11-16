@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.StatusUsuario;
-import com.sistemaRegistroVerificacao.seletor.StatusUsuarioSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.StatusUsuarioSeletor;
 import com.sistemaRegistroVerificacao.service.StatusUsuarioService;
 
 @RestController

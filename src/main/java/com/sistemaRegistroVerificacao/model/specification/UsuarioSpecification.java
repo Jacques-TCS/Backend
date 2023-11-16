@@ -1,9 +1,9 @@
-package com.sistemaRegistroVerificacao.specification;
+package com.sistemaRegistroVerificacao.model.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 
 import com.sistemaRegistroVerificacao.model.entity.Usuario;
-import com.sistemaRegistroVerificacao.seletor.UsuarioSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.UsuarioSeletor;
 
 public class UsuarioSpecification {
 

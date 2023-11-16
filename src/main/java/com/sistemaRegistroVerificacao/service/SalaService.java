@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Sala;
 import com.sistemaRegistroVerificacao.model.repository.SalaRepository;
-import com.sistemaRegistroVerificacao.seletor.SalaSeletor;
-import com.sistemaRegistroVerificacao.specification.SalaSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.SalaSeletor;
+import com.sistemaRegistroVerificacao.model.specification.SalaSpecification;
 
 public class SalaService {
 

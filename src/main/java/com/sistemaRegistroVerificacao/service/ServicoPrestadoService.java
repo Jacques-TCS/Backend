@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.ServicoPrestado;
 import com.sistemaRegistroVerificacao.model.repository.ServicoPrestadoRepository;
-import com.sistemaRegistroVerificacao.seletor.ServicoPrestadoSeletor;
-import com.sistemaRegistroVerificacao.specification.ServicoPrestadoSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.ServicoPrestadoSeletor;
+import com.sistemaRegistroVerificacao.model.specification.ServicoPrestadoSpecification;
 
 public class ServicoPrestadoService {
 

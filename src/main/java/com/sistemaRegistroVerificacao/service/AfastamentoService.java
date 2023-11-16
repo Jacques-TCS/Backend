@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Afastamento;
 import com.sistemaRegistroVerificacao.model.repository.AfastamentoRepository;
-import com.sistemaRegistroVerificacao.seletor.AfastamentoSeletor;
-import com.sistemaRegistroVerificacao.specification.AfastamentoSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.AfastamentoSeletor;
+import com.sistemaRegistroVerificacao.model.specification.AfastamentoSpecification;
 
 @Service
 public class AfastamentoService {

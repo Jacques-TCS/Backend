@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Afastamento;
-import com.sistemaRegistroVerificacao.seletor.AfastamentoSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.AfastamentoSeletor;
 import com.sistemaRegistroVerificacao.service.AfastamentoService;
 
 @RestController

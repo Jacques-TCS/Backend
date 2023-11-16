@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Atividade;
 import com.sistemaRegistroVerificacao.model.repository.AtividadeRepository;
-import com.sistemaRegistroVerificacao.seletor.AtividadeSeletor;
-import com.sistemaRegistroVerificacao.specification.AtividadeSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.AtividadeSeletor;
+import com.sistemaRegistroVerificacao.model.specification.AtividadeSpecification;
 
 public class AtividadeService {
 

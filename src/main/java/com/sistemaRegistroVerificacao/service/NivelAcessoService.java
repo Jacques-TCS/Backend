@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
 import com.sistemaRegistroVerificacao.model.repository.NivelAcessoRepository;
-import com.sistemaRegistroVerificacao.seletor.NivelAcessoSeletor;
-import com.sistemaRegistroVerificacao.specification.NivelAcessoSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.NivelAcessoSeletor;
+import com.sistemaRegistroVerificacao.model.specification.NivelAcessoSpecification;
 
 public class NivelAcessoService {
 

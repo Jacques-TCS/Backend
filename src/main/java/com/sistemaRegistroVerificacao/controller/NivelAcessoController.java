@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
-import com.sistemaRegistroVerificacao.seletor.NivelAcessoSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.NivelAcessoSeletor;
 import com.sistemaRegistroVerificacao.service.NivelAcessoService;
 
 @RestController

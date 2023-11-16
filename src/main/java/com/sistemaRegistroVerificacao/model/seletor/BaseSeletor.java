@@ -1,4 +1,4 @@
-package com.sistemaRegistroVerificacao.seletor;
+package com.sistemaRegistroVerificacao.model.seletor;
 
 public abstract class BaseSeletor {
 

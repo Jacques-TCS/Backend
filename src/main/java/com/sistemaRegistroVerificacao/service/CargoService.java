@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Cargo;
 import com.sistemaRegistroVerificacao.model.repository.CargoRepository;
-import com.sistemaRegistroVerificacao.seletor.CargoSeletor;
-import com.sistemaRegistroVerificacao.specification.CargoSpecification;
+import com.sistemaRegistroVerificacao.model.seletor.CargoSeletor;
+import com.sistemaRegistroVerificacao.model.specification.CargoSpecification;
 
 public class CargoService {
 

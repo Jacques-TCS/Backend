@@ -1,4 +1,4 @@
-package com.sistemaRegistroVerificacao.specification;
+package com.sistemaRegistroVerificacao.model.specification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.sistemaRegistroVerificacao.model.entity.Afastamento;
-import com.sistemaRegistroVerificacao.seletor.AfastamentoSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.AfastamentoSeletor;
 
 import jakarta.persistence.criteria.Predicate;
 
