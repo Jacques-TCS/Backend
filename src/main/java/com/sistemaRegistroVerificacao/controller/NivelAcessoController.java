@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
-import com.sistemaRegistroVerificacao.seletor.NivelAcessoSeletor;
 import com.sistemaRegistroVerificacao.service.NivelAcessoService;
 
 @RestController
@@ -42,11 +41,6 @@ public class NivelAcessoController {
     public List<NivelAcesso> listarTodosNivelAcessos() {
         return nivelAcessoService.listarTodos();
     }
-
-    @PostMapping("/filtro")
-	public List<NivelAcesso> listarComSeletor(@RequestBody NivelAcessoSeletor seletor){
-		return nivelAcessoService.listarComSeletor(seletor);
-	}
 
     @DeleteMapping(path = "/{id}")
     public boolean excluir(@PathVariable Integer id) {
