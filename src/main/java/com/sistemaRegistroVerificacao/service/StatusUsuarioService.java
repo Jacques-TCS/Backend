@@ -13,7 +13,7 @@ import com.sistemaRegistroVerificacao.specification.StatusUsuarioSpecification;
 
 public class StatusUsuarioService {
 
-    @Autowired
+	@Autowired
     private StatusUsuarioRepository statsUsuarioRepository;
 
     public StatusUsuario inserir(StatusUsuario novoStatusUsuario) {
@@ -36,6 +36,10 @@ public class StatusUsuarioService {
     public List<StatusUsuario> listarComSeletor(StatusUsuarioSeletor seletor) {
         Specification<StatusUsuario> specification = StatusUsuarioSpecification.comFiltros(seletor);
         return statsUsuarioRepository.findAll(specification);
+    }
+    
+    public StatusUsuario consultarPorDescricao(String descricao) {
+        return statsUsuarioRepository.findByDescricao(descricao);
     }
 
     public boolean excluir(Integer id) {
