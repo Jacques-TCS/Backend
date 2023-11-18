@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Atividade;
-import com.sistemaRegistroVerificacao.seletor.AtividadeSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.AtividadeSeletor;
 import com.sistemaRegistroVerificacao.service.AtividadeService;
 
 @RestController

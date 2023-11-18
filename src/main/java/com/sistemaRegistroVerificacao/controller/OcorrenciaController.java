@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
-import com.sistemaRegistroVerificacao.seletor.OcorrenciaSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
 import com.sistemaRegistroVerificacao.service.OcorrenciaService;
 
 @RestController
