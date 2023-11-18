@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.ServicoPrestado;
-import com.sistemaRegistroVerificacao.seletor.ServicoPrestadoSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.ServicoPrestadoSeletor;
 import com.sistemaRegistroVerificacao.service.ServicoPrestadoService;
 @RestController
 @RequestMapping(path = "/api/servicoPrestado")

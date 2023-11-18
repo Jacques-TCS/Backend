@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Cargo;
-import com.sistemaRegistroVerificacao.seletor.CargoSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.CargoSeletor;
 import com.sistemaRegistroVerificacao.service.CargoService;
 
 @RestController

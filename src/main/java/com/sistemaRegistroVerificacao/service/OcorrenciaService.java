@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
-import com.sistemaRegistroVerificacao.seletor.OcorrenciaSeletor;
+import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
 
 public class OcorrenciaService {
 
