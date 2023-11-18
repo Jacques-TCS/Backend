@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.StatusUsuario;
-import com.sistemaRegistroVerificacao.model.seletor.StatusUsuarioSeletor;
 import com.sistemaRegistroVerificacao.service.StatusUsuarioService;
 
 @RestController
@@ -42,11 +41,6 @@ public class StatusUsuarioController {
     public List<StatusUsuario> listarTodosStatusUsuarios() {
         return statusUsuarioService.listarTodos();
     }
-
-    @PostMapping("/filtro")
-	public List<StatusUsuario> listarComSeletor(@RequestBody StatusUsuarioSeletor seletor){
-		return statusUsuarioService.listarComSeletor(seletor);
-	}
 
     @DeleteMapping(path = "/{id}")
     public boolean excluir(@PathVariable Integer id) {

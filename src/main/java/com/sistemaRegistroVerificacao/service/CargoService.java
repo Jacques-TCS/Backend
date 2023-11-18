@@ -3,13 +3,10 @@ package com.sistemaRegistroVerificacao.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Cargo;
 import com.sistemaRegistroVerificacao.model.repository.CargoRepository;
-import com.sistemaRegistroVerificacao.model.seletor.CargoSeletor;
-import com.sistemaRegistroVerificacao.model.specification.CargoSpecification;
 
 public class CargoService {
 
@@ -31,11 +28,6 @@ public class CargoService {
     @Transactional
     public List<Cargo> listarTodos() {
         return cargoRepository.findAll();
-    }
-
-    public List<Cargo> listarComSeletor(CargoSeletor seletor) {
-        Specification<Cargo> specification = CargoSpecification.comFiltros(seletor);
-        return cargoRepository.findAll(specification);
     }
     
     public Cargo consultarPorDescricao(String descricao) {

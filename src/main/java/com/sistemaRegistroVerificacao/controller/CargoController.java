@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Cargo;
-import com.sistemaRegistroVerificacao.model.seletor.CargoSeletor;
 import com.sistemaRegistroVerificacao.service.CargoService;
 
 @RestController
@@ -43,11 +42,6 @@ public class CargoController {
     public List<Cargo> listarTodosCargos() {
         return cargoService.listarTodos();
     }
-
-    @PostMapping("/filtro")
-	public List<Cargo> listarComSeletor(@RequestBody CargoSeletor seletor){
-		return cargoService.listarComSeletor(seletor);
-	}
 
     @DeleteMapping(path = "/{id}")
     public boolean excluir(@PathVariable Integer id) {

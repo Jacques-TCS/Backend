@@ -3,13 +3,10 @@ package com.sistemaRegistroVerificacao.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.StatusUsuario;
 import com.sistemaRegistroVerificacao.model.repository.StatusUsuarioRepository;
-import com.sistemaRegistroVerificacao.model.seletor.StatusUsuarioSeletor;
-import com.sistemaRegistroVerificacao.model.specification.StatusUsuarioSpecification;
 
 public class StatusUsuarioService {
 
@@ -33,11 +30,6 @@ public class StatusUsuarioService {
         return statsUsuarioRepository.findAll();
     }
 
-    public List<StatusUsuario> listarComSeletor(StatusUsuarioSeletor seletor) {
-        Specification<StatusUsuario> specification = StatusUsuarioSpecification.comFiltros(seletor);
-        return statsUsuarioRepository.findAll(specification);
-    }
-    
     public StatusUsuario consultarPorDescricao(String descricao) {
         return statsUsuarioRepository.findByDescricao(descricao);
     }

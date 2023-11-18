@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Atividade;
-import com.sistemaRegistroVerificacao.model.seletor.AtividadeSeletor;
 import com.sistemaRegistroVerificacao.service.AtividadeService;
 
 @RestController
@@ -43,11 +42,6 @@ public class AtividadeController {
     public List<Atividade> listarTodosAtividades() {
         return atividadeService.listarTodas();
     }
-
-    @PostMapping("/filtro")
-	public List<Atividade> listarComSeletor(@RequestBody AtividadeSeletor seletor){
-		return atividadeService.listarComSeletor(seletor);
-	}
 
     @DeleteMapping(path = "/{id}")
     public boolean excluir(@PathVariable Integer id) {

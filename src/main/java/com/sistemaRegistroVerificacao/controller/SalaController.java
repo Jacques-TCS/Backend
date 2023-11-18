@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Sala;
-import com.sistemaRegistroVerificacao.model.seletor.SalaSeletor;
 import com.sistemaRegistroVerificacao.service.SalaService;
 
 @RestController
@@ -43,11 +42,6 @@ public class SalaController {
     public List<Sala> listarTodasSalas() {
         return salaService.listarTodas();
     }
-
-    @PostMapping("/filtro")
-	public List<Sala> listarComSeletor(@RequestBody SalaSeletor seletor){
-		return salaService.listarComSeletor(seletor);
-	}
 
     @DeleteMapping(path = "/{id}")
     public boolean excluir(@PathVariable Integer id) {

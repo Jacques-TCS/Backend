@@ -16,29 +16,37 @@ public class AfastamentoSpecification {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            // if (seletor.getRua() != null){
-            //     predicates.add((Predicate) cb.like(cb.lower(root.get("rua")), "%" +  seletor.getRua().toLowerCase() + "%"));
-            // }
+            if (seletor.getDescricao() != null){
+                predicates.add((Predicate) cb.like(cb.lower(root.get("descricao")), "%" +  seletor.getDescricao().toLowerCase() + "%"));
+            }
 
-            // if (seletor.getNumero() != null){
-            //     predicates.add((Predicate) cb.like(cb.lower(root.get("numero")), "%" +  seletor.getNumero().toLowerCase() + "%"));
-            // }
+            if (seletor.getNatureza() != null){
+                predicates.add((Predicate) cb.like(cb.lower(root.get("natureza")), "%" +  seletor.getNatureza().toLowerCase() + "%"));
+            }
 
-            // if (seletor.getBairro() != null){
-            //     predicates.add((Predicate) cb.like(cb.lower(root.get("bairro")), "%" +  seletor.getBairro().toLowerCase() + "%"));
-            // }
+            if (seletor.getMenorDataInicio() != null && seletor.getmaiorDataInicio() != null) {
+                // WHERE dataInicio BETWEEN min AND max
+                predicates.add(cb.between(root.get("dataInicio"), seletor.getMenorDataInicio(),
+                        seletor.getmaiorDataInicio()));
+            } else if (seletor.getMenorDataInicio() != null) {
+                // WHERE dataInicio >= min
+                predicates.add(cb.greaterThanOrEqualTo(root.get("dataInicio"), seletor.getMenorDataInicio()));
+            } else if (seletor.getmaiorDataInicio() != null) {
+                // WHERE dataInicio <= max
+                predicates.add(cb.lessThanOrEqualTo(root.get("dataInicio"), seletor.getmaiorDataInicio()));
+            }
 
-            // if (seletor.getCep() != null){
-            //     predicates.add((Predicate) cb.like(cb.lower(root.get("cep")), "%" +  seletor.getCep().toLowerCase() + "%"));
-            // }
-
-            // if (seletor.getCidade() != null){
-            //     predicates.add((Predicate) cb.like(cb.lower(root.get("cidade")), "%" +  seletor.getCidade().toLowerCase() + "%"));
-            // }
-
-            // if (seletor.getEstado() != null){
-            //     predicates.add((Predicate) cb.like(cb.lower(root.get("estado")), "%" +  seletor.getEstado().toLowerCase() + "%"));
-            // }
+            if (seletor.getMenorDataFim() != null && seletor.getMaiorDataFim() != null) {
+                // WHERE dataFim BETWEEN min AND max
+                predicates.add(cb.between(root.get("dataFim"), seletor.getMenorDataFim(),
+                        seletor.getMaiorDataFim()));
+            } else if (seletor.getMenorDataFim() != null) {
+                // WHERE dataFim >= min
+                predicates.add(cb.greaterThanOrEqualTo(root.get("dataFim"), seletor.getMenorDataFim()));
+            } else if (seletor.getMaiorDataFim() != null) {
+                // WHERE dataFim <= max
+                predicates.add(cb.lessThanOrEqualTo(root.get("dataFim"), seletor.getMaiorDataFim()));
+            }
 
             return cb.and(predicates.toArray(new Predicate[0]));
         };
