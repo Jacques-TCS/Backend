@@ -28,13 +28,13 @@ public class UsuarioSpecification {
             }
 
             if (seletor.getCargo() != null) {
-                predicates.add(cb.equal(root.join("cargo").get("label"),
-                        seletor.getCargo()));
+                predicates.add(cb.like(root.join("cargo").get("label"),
+                        "%" + seletor.getCargo() + "%"));
             }
 
             if (seletor.getStatusUsuario() != null) {
-                predicates.add(cb.equal(root.join("statusUsuario").get("label"),
-                        seletor.getStatusUsuario()));
+                predicates.add(cb.like(root.join("statusUsuario").get("label"),
+                        "%" + seletor.getStatusUsuario() + "%"));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));
