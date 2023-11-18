@@ -4,10 +4,17 @@ import java.time.LocalDate;
 
 public class AfastamentoSeletor extends BaseSeletor{
 	
+	private String descricao;
 	private String natureza;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
 	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	public String getNatureza() {
 		return natureza;
 	}
