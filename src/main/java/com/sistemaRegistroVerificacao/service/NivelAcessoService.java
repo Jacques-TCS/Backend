@@ -3,13 +3,10 @@ package com.sistemaRegistroVerificacao.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
 import com.sistemaRegistroVerificacao.model.repository.NivelAcessoRepository;
-import com.sistemaRegistroVerificacao.model.seletor.NivelAcessoSeletor;
-import com.sistemaRegistroVerificacao.model.specification.NivelAcessoSpecification;
 
 public class NivelAcessoService {
 
@@ -31,11 +28,6 @@ public class NivelAcessoService {
     @Transactional
     public List<NivelAcesso> listarTodos() {
         return nivelAcessoRepository.findAll();
-    }
-
-    public List<NivelAcesso> listarComSeletor(NivelAcessoSeletor seletor) {
-        Specification<NivelAcesso> specification = NivelAcessoSpecification.comFiltros(seletor);
-        return nivelAcessoRepository.findAll(specification);
     }
 
     public boolean excluir(Integer id) {

@@ -37,6 +37,10 @@ public class CargoService {
         Specification<Cargo> specification = CargoSpecification.comFiltros(seletor);
         return cargoRepository.findAll(specification);
     }
+    
+    public Cargo consultarPorDescricao(String descricao) {
+        return cargoRepository.findByDescricao(descricao);
+    }
 
     public boolean excluir(Integer id) {
         cargoRepository.deleteById(id);
