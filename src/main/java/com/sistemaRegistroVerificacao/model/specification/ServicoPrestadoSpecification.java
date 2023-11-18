@@ -31,15 +31,8 @@ public class ServicoPrestadoSpecification {
             }
 
             //TODO
-            if (seletor.getAtividades() != null) {
-                predicates.add(cb.like(root.join("atividades").get("label"),
-                        "%" + seletor.getAtividades() + "%"));
-            }
-
-            //TODO
-            if (seletor.getOcorrencias() != null) {
-                predicates.add(cb.like(root.join("ocorrencias").get("label"),
-                        "%" + seletor.getOcorrencias() + "%"));
+            if (seletor.getIdTipoOcorrencia() != null) {
+                predicates.add(cb.equal(root.join("ocorrencias").get("id"), seletor.getIdTipoOcorrencia()));
             }
 
             if (seletor.getCargo() != null) {
@@ -49,7 +42,7 @@ public class ServicoPrestadoSpecification {
 
             if (seletor.getUsuario() != null) {
                 predicates.add(cb.like(root.join("usuario").get("nome"), "%" +
-                        seletor.getUsuario() + "%"));
+                        seletor.getUsuario().toLowerCase() + "%"));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));
