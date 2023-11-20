@@ -21,169 +21,146 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "USUARIO")
 public class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String nome;
-	private String cpf;
-	private String telefone;
-	private LocalDate dataNascimento;
-	private String ctps;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private LocalDate dataNascimento;
+    private String ctps;
 
-	@ManyToOne
-	@JoinColumn(name = "IDNIVELACESSO")
-	private NivelAcesso nivelAcesso;
+    @ManyToOne
+    @JoinColumn(name = "IDNIVELACESSO")
+    private NivelAcesso nivelAcesso;
 
-	@ManyToOne
-	@JoinColumn(name = "IDCARGO")
-	private Cargo cargo;
+    @ManyToOne
+    @JoinColumn(name = "IDCARGO")
+    private Cargo cargo;
 
-	private String matricula;
-	private String senha;
+    private String matricula;
+    private String senha;
 
-	@ManyToOne
-	@JoinColumn(name = "IDSTATUSUSUARIO")
-	private StatusUsuario statusUsuario;
+    @ManyToOne
+    @JoinColumn(name = "IDSTATUSUSUARIO")
+    private StatusUsuario statusUsuario;
 
-	private Afastamento ultimoAfastamento;
+    @ManyToOne
+    @JoinColumn(name = "IDULTIMOAFASTAMENTO")
+    private Afastamento ultimoAfastamento;
 
-	private LocalDate dataDesligamento;
-	private LocalDate dataContratacao;
+    private LocalDate dataDesligamento;
+    private LocalDate dataContratacao;
 
-	public Usuario(Integer id, String nome, String cpf, String telefone, LocalDate dataNascimento, String ctps,
-			NivelAcesso nivelAcesso, Cargo cargo, String matricula, String senha, StatusUsuario statusUsuario,
-			Afastamento ultimoAfastamento, LocalDate dataDesligamento, LocalDate dataContratacao) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.telefone = telefone;
-		this.dataNascimento = dataNascimento;
-		this.ctps = ctps;
-		this.nivelAcesso = nivelAcesso;
-		this.cargo = cargo;
-		this.matricula = matricula;
-		this.senha = senha;
-		this.statusUsuario = statusUsuario;
-		this.ultimoAfastamento = ultimoAfastamento;
-		this.dataDesligamento = dataDesligamento;
-		this.dataContratacao = dataContratacao;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public Usuario() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
+    public String getCtps() {
+        return ctps;
+    }
 
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+    public void setCtps(String ctps) {
+        this.ctps = ctps;
+    }
 
-	public String getCtps() {
-		return ctps;
-	}
+    public NivelAcesso getNivelAcesso() {
+        return nivelAcesso;
+    }
 
-	public void setCtps(String ctps) {
-		this.ctps = ctps;
-	}
+    public void setNivelAcesso(NivelAcesso nivelAcesso) {
+        this.nivelAcesso = nivelAcesso;
+    }
 
-	public NivelAcesso getNivelAcesso() {
-		return nivelAcesso;
-	}
+    public Cargo getCargo() {
+        return cargo;
+    }
 
-	public void setNivelAcesso(NivelAcesso nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
-	}
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
 
-	public Cargo getCargo() {
-		return cargo;
-	}
+    public String getMatricula() {
+        return matricula;
+    }
 
-	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
-	}
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
 
-	public String getMatricula() {
-		return matricula;
-	}
+    public String getSenha() {
+        return senha;
+    }
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public StatusUsuario getStatusUsuario() {
+        return statusUsuario;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public void setStatusUsuario(StatusUsuario statusUsuario) {
+        this.statusUsuario = statusUsuario;
+    }
 
-	public StatusUsuario getStatusUsuario() {
-		return statusUsuario;
-	}
+    public Afastamento getUltimoAfastamento() {
+        return ultimoAfastamento;
+    }
 
-	public void setStatusUsuario(StatusUsuario statusUsuario) {
-		this.statusUsuario = statusUsuario;
-	}
+    public void setUltimoAfastamento(Afastamento ultimoAfastamento) {
+        this.ultimoAfastamento = ultimoAfastamento;
+    }
 
-	public Afastamento getUltimoAfastamento() {
-		return ultimoAfastamento;
-	}
+    public LocalDate getDataDesligamento() {
+        return dataDesligamento;
+    }
 
-	public void setUltimoAfastamento(Afastamento ultimoAfastamento) {
-		this.ultimoAfastamento = ultimoAfastamento;
-	}
+    public void setDataDesligamento(LocalDate dataDesligamento) {
+        this.dataDesligamento = dataDesligamento;
+    }
 
-	public LocalDate getDataDesligamento() {
-		return dataDesligamento;
-	}
+    public LocalDate getDataContratacao() {
+        return dataContratacao;
+    }
 
-	public void setDataDesligamento(LocalDate dataDesligamento) {
-		this.dataDesligamento = dataDesligamento;
-	}
-
-	public LocalDate getDataContratacao() {
-		return dataContratacao;
-	}
-
-	public void setDataContratacao(LocalDate dataContratacao) {
-		this.dataContratacao = dataContratacao;
-	}
+    public void setDataContratacao(LocalDate dataContratacao) {
+        this.dataContratacao = dataContratacao;
+    }
 }

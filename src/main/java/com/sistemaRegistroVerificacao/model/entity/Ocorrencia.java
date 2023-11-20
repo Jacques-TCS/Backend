@@ -32,4 +32,51 @@ public class Ocorrencia {
 	@JoinColumn(name = "IDSERVICOPRESTADO")
 	private ServicoPrestado idServicoPrestado;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public LocalDate getDataOcorrencia() {
+		return dataOcorrencia;
+	}
+
+	public void setDataOcorrencia(LocalDate dataOcorrencia) {
+		this.dataOcorrencia = dataOcorrencia;
+	}
+
+	public ServicoPrestado getIdServicoPrestado() {
+		return idServicoPrestado;
+	}
+
+	public void setIdServicoPrestado(ServicoPrestado idServicoPrestado) {
+		this.idServicoPrestado = idServicoPrestado;
+	}
 }

@@ -1,7 +1,11 @@
 package com.sistemaRegistroVerificacao.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
+import com.sistemaRegistroVerificacao.model.entity.Atividade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +20,50 @@ public class ServicoPrestadoService {
     @Autowired
     private ServicoPrestadoRepository servicoPrestadoRepository;
 
-    public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) {
+    public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) throws CampoInvalidoException {
+        validarCamposObrigatorios(novoServicoPrestado);
         return servicoPrestadoRepository.save(novoServicoPrestado);
     }
 
-    public ServicoPrestado atualizar(ServicoPrestado servicoPrestadoParaAtualizar) {
+    public ServicoPrestado atualizar(ServicoPrestado servicoPrestadoParaAtualizar) throws CampoInvalidoException {
+        validarCamposObrigatorios(servicoPrestadoParaAtualizar);
         return servicoPrestadoRepository.save(servicoPrestadoParaAtualizar);
+    }
+
+    private void validarCamposObrigatorios(ServicoPrestado servicoPrestado) throws CampoInvalidoException {
+        String mensagemValidacao = "";
+        mensagemValidacao += validarCampoData(servicoPrestado.getDataHoraInicio(), "data e hora inicio", servicoPrestado.getDataHoraFim(), "data e hora fim");
+        mensagemValidacao += validarCampoList(servicoPrestado.getAtividades(), "atividades");
+
+        if (!mensagemValidacao.isEmpty()) {
+            throw new CampoInvalidoException(mensagemValidacao);
+        }
+    }
+
+    private String validarCampoData(LocalDateTime dataHoraInicio, String nomeCampo, LocalDateTime dataHoraFim, String nomeCampoFim) {
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+        int diaAtual = dataHoraAtual.getDayOfMonth();
+        int diaInicio = dataHoraInicio.getDayOfMonth();
+        int diaFim = dataHoraFim.getDayOfMonth();
+
+        if (dataHoraInicio == null || dataHoraFim == null) {
+            return "Informe as datas de inicio e fim do serviço\n";
+        }
+        //A data de inicio do serviço só pode ser o dia atual
+        if (diaInicio != diaAtual) {
+            return "A data do serviço deve ser o dia corrente";
+        }
+        if (diaFim != diaInicio) {
+            return "O serviço deve ser iniciado e finalizado no mesmo dia \n";
+        }
+        return "";
+    }
+
+    private String validarCampoList(List<Atividade> atividades, String nomeCampo) {
+        if (atividades == null || atividades.isEmpty()) {
+            return "Informe ao menos 1 atividade \n";
+        }
+        return "";
     }
 
     public ServicoPrestado consultarPorId(Integer id) {

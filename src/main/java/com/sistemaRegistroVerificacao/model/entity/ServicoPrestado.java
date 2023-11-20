@@ -1,6 +1,6 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -24,27 +24,82 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "SERVICOPRESTADO")
 public class ServicoPrestado {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@ManyToOne
-	@JoinColumn(name = "IDSALA")
-	private Sala idSala;
+    @ManyToOne
+    @JoinColumn(name = "IDSALA")
+    private Sala idSala;
 
-	private LocalDate dataHoraInicio;
-	private LocalDate dataHoraFim;
+    private LocalDateTime dataHoraInicio;
+    private LocalDateTime dataHoraFim;
 
-	@ManyToOne
-	@JoinColumn(name = "IDUSUARIO")
-	private Usuario idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "IDUSUARIO")
+    private Usuario idUsuario;
 
-	@JsonBackReference
-	@OneToMany(mappedBy = "ATIVIDADE")
-	private List<Atividade> atividades;
+    @JsonBackReference
+    @OneToMany(mappedBy = "ATIVIDADE")
+    private List<Atividade> atividades;
 
-	@JsonBackReference
-	@OneToMany(mappedBy = "OCORRENCIA")
-	private List<Ocorrencia> ocorrencias;
+    @JsonBackReference
+    @OneToMany(mappedBy = "OCORRENCIA")
+    private List<Ocorrencia> ocorrencias;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Sala getIdSala() {
+        return idSala;
+    }
+
+    public void setIdSala(Sala idSala) {
+        this.idSala = idSala;
+    }
+
+    public LocalDateTime getDataHoraInicio() {
+        return dataHoraInicio;
+    }
+
+    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+        this.dataHoraInicio = dataHoraInicio;
+    }
+
+    public LocalDateTime getDataHoraFim() {
+        return dataHoraFim;
+    }
+
+    public void setDataHoraFim(LocalDateTime dataHoraFim) {
+        this.dataHoraFim = dataHoraFim;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public List<Atividade> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(List<Atividade> atividades) {
+        this.atividades = atividades;
+    }
+
+    public List<Ocorrencia> getOcorrencias() {
+        return ocorrencias;
+    }
+
+    public void setOcorrencias(List<Ocorrencia> ocorrencias) {
+        this.ocorrencias = ocorrencias;
+    }
 }
