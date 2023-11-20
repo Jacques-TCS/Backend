@@ -49,4 +49,141 @@ public class Usuario {
 
 	private LocalDate dataDesligamento;
 	private LocalDate dataContratacao;
+
+	public Usuario(Integer id, String nome, String cpf, String telefone, LocalDate dataNascimento, String ctps,
+			NivelAcesso nivelAcesso, Cargo cargo, String matricula, String senha, StatusUsuario statusUsuario,
+			Afastamento ultimoAfastamento, LocalDate dataDesligamento, LocalDate dataContratacao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.dataNascimento = dataNascimento;
+		this.ctps = ctps;
+		this.nivelAcesso = nivelAcesso;
+		this.cargo = cargo;
+		this.matricula = matricula;
+		this.senha = senha;
+		this.statusUsuario = statusUsuario;
+		this.ultimoAfastamento = ultimoAfastamento;
+		this.dataDesligamento = dataDesligamento;
+		this.dataContratacao = dataContratacao;
+	}
+
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getCtps() {
+		return ctps;
+	}
+
+	public void setCtps(String ctps) {
+		this.ctps = ctps;
+	}
+
+	public NivelAcesso getNivelAcesso() {
+		return nivelAcesso;
+	}
+
+	public void setNivelAcesso(NivelAcesso nivelAcesso) {
+		this.nivelAcesso = nivelAcesso;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public StatusUsuario getStatusUsuario() {
+		return statusUsuario;
+	}
+
+	public void setStatusUsuario(StatusUsuario statusUsuario) {
+		this.statusUsuario = statusUsuario;
+	}
+
+	public Afastamento getUltimoAfastamento() {
+		return ultimoAfastamento;
+	}
+
+	public void setUltimoAfastamento(Afastamento ultimoAfastamento) {
+		this.ultimoAfastamento = ultimoAfastamento;
+	}
+
+	public LocalDate getDataDesligamento() {
+		return dataDesligamento;
+	}
+
+	public void setDataDesligamento(LocalDate dataDesligamento) {
+		this.dataDesligamento = dataDesligamento;
+	}
+
+	public LocalDate getDataContratacao() {
+		return dataContratacao;
+	}
+
+	public void setDataContratacao(LocalDate dataContratacao) {
+		this.dataContratacao = dataContratacao;
+	}
 }
