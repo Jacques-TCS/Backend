@@ -2,6 +2,7 @@ package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +30,10 @@ public class Afastamento {
 	@JoinColumn(name = "IDUSUARIO")
 	private Usuario idUsuario;
 
+	@Column(name = "DATAINICIO")
 	private LocalDate dataInicio;
+
+	@Column(name = "DATAFIM")
 	private LocalDate dataFim;
 	private String descricao;
 
