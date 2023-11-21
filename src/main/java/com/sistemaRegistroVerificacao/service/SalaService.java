@@ -4,11 +4,13 @@ import java.util.List;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Sala;
 import com.sistemaRegistroVerificacao.model.repository.SalaRepository;
 
+@Service
 public class SalaService {
 
     @Autowired
