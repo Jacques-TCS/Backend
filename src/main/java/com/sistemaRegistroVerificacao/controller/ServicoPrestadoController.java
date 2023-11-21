@@ -26,11 +26,6 @@ public class ServicoPrestadoController {
     public ServicoPrestado salvar(@RequestBody ServicoPrestado novoServicoPrestado) throws CampoInvalidoException {
         return servicoPrestadoService.inserir(novoServicoPrestado);
     }
-
-    @PutMapping
-    public boolean atualizar(@RequestBody ServicoPrestado servicoPrestadoParaAtualizar) throws CampoInvalidoException {
-        return servicoPrestadoService.atualizar(servicoPrestadoParaAtualizar) != null;
-    }
     
     @GetMapping(path = "/{id}")
     public ServicoPrestado consultarPorId(@PathVariable Integer id){
@@ -46,9 +41,4 @@ public class ServicoPrestadoController {
 	public List<ServicoPrestado> listarComSeletor(@RequestBody ServicoPrestadoSeletor seletor){
 		return servicoPrestadoService.listarComSeletor(seletor);
 	}
-
-    @DeleteMapping(path = "/{id}")
-    public boolean excluir(@PathVariable Integer id) {
-        return servicoPrestadoService.excluir(id);
-    }
 }
