@@ -30,20 +30,11 @@ public class Usuario {
     private LocalDate dataNascimento;
     private String ctps;
 
-    @ManyToOne
-    @JoinColumn(name = "IDNIVELACESSO")
-    private NivelAcesso nivelAcesso;
-
-    @ManyToOne
-    @JoinColumn(name = "IDCARGO")
-    private Cargo cargo;
-
-    private String matricula;
-    private String senha;
-
-    @ManyToOne
-    @JoinColumn(name = "IDSTATUSUSUARIO")
-    private StatusUsuario statusUsuario;
+	private String nivelAcesso;
+	private String cargo;
+	private String matricula;
+	private String senha;
+	private String statusUsuario;
 
     @ManyToOne
     @JoinColumn(name = "IDULTIMOAFASTAMENTO")
@@ -100,19 +91,19 @@ public class Usuario {
         this.ctps = ctps;
     }
 
-    public NivelAcesso getNivelAcesso() {
+    public String getNivelAcesso() {
         return nivelAcesso;
     }
 
-    public void setNivelAcesso(NivelAcesso nivelAcesso) {
+    public void setNivelAcesso(String nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
     }
 
-    public Cargo getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(Cargo cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
@@ -132,11 +123,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public StatusUsuario getStatusUsuario() {
+    public String getStatusUsuario() {
         return statusUsuario;
     }
 
-    public void setStatusUsuario(StatusUsuario statusUsuario) {
+    public void setStatusUsuario(String statusUsuario) {
         this.statusUsuario = statusUsuario;
     }
 
