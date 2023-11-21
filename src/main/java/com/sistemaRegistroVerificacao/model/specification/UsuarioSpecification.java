@@ -26,12 +26,12 @@ public class UsuarioSpecification {
             }
 
             if (seletor.getCargo() != null) {
-                predicates.add(cb.like(root.join("cargo").get("label"),
+                predicates.add(cb.like(root.get("cargo"),
                         "%" + seletor.getCargo() + "%"));
             }
 
             if (seletor.getStatusUsuario() != null) {
-                predicates.add(cb.like(root.join("statusUsuario").get("label"),
+                predicates.add(cb.like(root.get("statusUsuario"),
                         "%" + seletor.getStatusUsuario() + "%"));
             }
 

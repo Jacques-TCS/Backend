@@ -2,10 +2,7 @@ package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,20 +30,11 @@ public class Usuario {
     private LocalDate dataNascimento;
     private String ctps;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "DESCRICAO")
-    private NivelAcesso nivelAcesso;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "DESCRICAO")
-    private Cargo cargo;
-
-    private String matricula;
-    private String senha;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "DESCRICAO")
-    private StatusUsuario statusUsuario;
+	private String nivelAcesso;
+	private String cargo;
+	private String matricula;
+	private String senha;
+	private String statusUsuario;
 
     @ManyToOne
     @JoinColumn(name = "IDULTIMOAFASTAMENTO")
@@ -103,19 +91,19 @@ public class Usuario {
         this.ctps = ctps;
     }
 
-    public NivelAcesso getNivelAcesso() {
+    public String getNivelAcesso() {
         return nivelAcesso;
     }
 
-    public void setNivelAcesso(NivelAcesso nivelAcesso) {
+    public void setNivelAcesso(String nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
     }
 
-    public Cargo getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(Cargo cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
@@ -135,11 +123,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public StatusUsuario getStatusUsuario() {
+    public String getStatusUsuario() {
         return statusUsuario;
     }
 
-    public void setStatusUsuario(StatusUsuario statusUsuario) {
+    public void setStatusUsuario(String statusUsuario) {
         this.statusUsuario = statusUsuario;
     }
 
