@@ -30,7 +30,7 @@ public class Ocorrencia {
 
 	@ManyToOne
 	@JoinColumn(name = "IDSERVICOPRESTADO")
-	private ServicoPrestado idServicoPrestado;
+	private ServicoPrestado servicoPrestado;
 
 	public Integer getId() {
 		return id;
@@ -72,11 +72,11 @@ public class Ocorrencia {
 		this.dataOcorrencia = dataOcorrencia;
 	}
 
-	public ServicoPrestado getIdServicoPrestado() {
-		return idServicoPrestado;
+	public ServicoPrestado getServicoPrestado() {
+		return servicoPrestado;
 	}
 
-	public void setIdServicoPrestado(ServicoPrestado idServicoPrestado) {
-		this.idServicoPrestado = idServicoPrestado;
+	public void setServicoPrestado(ServicoPrestado servicoPrestado) {
+		this.servicoPrestado = servicoPrestado;
 	}
 }

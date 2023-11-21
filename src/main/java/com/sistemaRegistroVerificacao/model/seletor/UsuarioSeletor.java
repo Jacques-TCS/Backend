@@ -1,10 +1,5 @@
 package com.sistemaRegistroVerificacao.model.seletor;
 
-import com.sistemaRegistroVerificacao.model.entity.Afastamento;
-import com.sistemaRegistroVerificacao.model.entity.Cargo;
-import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
-import com.sistemaRegistroVerificacao.model.entity.StatusUsuario;
-
 import java.time.LocalDate;
 
 public class UsuarioSeletor extends BaseSeletor {

@@ -1,7 +1,5 @@
 package com.sistemaRegistroVerificacao.model.specification;
 
-import com.sistemaRegistroVerificacao.model.entity.Afastamento;
-import com.sistemaRegistroVerificacao.model.seletor.AfastamentoSeletor;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 

@@ -40,11 +40,11 @@ public class ServicoPrestado {
     private Usuario idUsuario;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "ATIVIDADE")
+    @OneToMany(mappedBy = "servicoPrestadoAtividade")
     private List<Atividade> atividades;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "OCORRENCIA")
+    @OneToMany(mappedBy = "servicoPrestado")
     private List<Ocorrencia> ocorrencias;
 
     public Integer getId() {
