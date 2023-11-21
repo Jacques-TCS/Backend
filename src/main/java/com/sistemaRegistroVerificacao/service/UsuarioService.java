@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.sistemaRegistroVerificacao.model.entity.StatusUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,8 @@ public class UsuarioService {
 
     public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
         validarCamposObrigatorios(novoUsuario);
+        novoUsuario.setStatusUsuario(StatusUsuario.ATIVO);
+        novoUsuario.setDataContratacao(LocalDate.now());
         return usuarioRepository.save(novoUsuario);
     }
 
