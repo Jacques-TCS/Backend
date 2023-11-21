@@ -2,6 +2,7 @@ package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,29 +28,28 @@ public class Usuario {
     private String nome;
     private String cpf;
     private String telefone;
+
+    @Column(name = "DATANASCIMENTO")
     private LocalDate dataNascimento;
     private String ctps;
 
-    @ManyToOne
-    @JoinColumn(name = "IDNIVELACESSO")
-    private NivelAcesso nivelAcesso;
-
-    @ManyToOne
-    @JoinColumn(name = "IDCARGO")
-    private Cargo cargo;
-
-    private String matricula;
-    private String senha;
-
-    @ManyToOne
-    @JoinColumn(name = "IDSTATUSUSUARIO")
-    private StatusUsuario statusUsuario;
+    @Column(name = "NIVELACESSO")
+	private String nivelAcesso;
+	private String cargo;
+	private String matricula;
+	private String senha;
+    
+    @Column(name = "STATUSUSUARIO")
+	private String statusUsuario;
 
     @ManyToOne
     @JoinColumn(name = "IDULTIMOAFASTAMENTO")
     private Afastamento ultimoAfastamento;
 
+    @Column(name = "DATADESLIGAMENTO")
     private LocalDate dataDesligamento;
+
+    @Column(name = "DATACONTRATACAO")
     private LocalDate dataContratacao;
 
     public Integer getId() {
@@ -100,19 +100,19 @@ public class Usuario {
         this.ctps = ctps;
     }
 
-    public NivelAcesso getNivelAcesso() {
+    public String getNivelAcesso() {
         return nivelAcesso;
     }
 
-    public void setNivelAcesso(NivelAcesso nivelAcesso) {
+    public void setNivelAcesso(String nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
     }
 
-    public Cargo getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(Cargo cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
@@ -132,11 +132,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public StatusUsuario getStatusUsuario() {
+    public String getStatusUsuario() {
         return statusUsuario;
     }
 
-    public void setStatusUsuario(StatusUsuario statusUsuario) {
+    public void setStatusUsuario(String statusUsuario) {
         this.statusUsuario = statusUsuario;
     }
 

@@ -1,7 +1,5 @@
 package com.sistemaRegistroVerificacao.model.specification;
 
-import com.sistemaRegistroVerificacao.model.entity.Afastamento;
-import com.sistemaRegistroVerificacao.model.seletor.AfastamentoSeletor;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -28,12 +26,12 @@ public class UsuarioSpecification {
             }
 
             if (seletor.getCargo() != null) {
-                predicates.add(cb.like(root.join("cargo").get("label"),
+                predicates.add(cb.like(root.get("cargo"),
                         "%" + seletor.getCargo() + "%"));
             }
 
             if (seletor.getStatusUsuario() != null) {
-                predicates.add(cb.like(root.join("statusUsuario").get("label"),
+                predicates.add(cb.like(root.get("statusUsuario"),
                         "%" + seletor.getStatusUsuario() + "%"));
             }
 

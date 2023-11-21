@@ -5,11 +5,14 @@ import java.util.List;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.repository.OcorrenciaRepository;
+
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
 import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
 
+@Service
 public class OcorrenciaService {
 
     private OcorrenciaRepository ocorrenciaRepository;
