@@ -2,6 +2,7 @@ package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,20 +28,28 @@ public class Usuario {
     private String nome;
     private String cpf;
     private String telefone;
+
+    @Column(name = "DATANASCIMENTO")
     private LocalDate dataNascimento;
     private String ctps;
 
+    @Column(name = "NIVELACESSO")
 	private String nivelAcesso;
 	private String cargo;
 	private String matricula;
 	private String senha;
+    
+    @Column(name = "STATUSUSUARIO")
 	private String statusUsuario;
 
     @ManyToOne
     @JoinColumn(name = "IDULTIMOAFASTAMENTO")
     private Afastamento ultimoAfastamento;
 
+    @Column(name = "DATADESLIGAMENTO")
     private LocalDate dataDesligamento;
+
+    @Column(name = "DATACONTRATACAO")
     private LocalDate dataContratacao;
 
     public Integer getId() {

@@ -20,7 +20,7 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String numero;
-    private String status;
+    private boolean disponivel;
 
     public Integer getId() {
         return id;
@@ -38,11 +38,11 @@ public class Sala {
         this.numero = numero;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean getDisponivel() {
+        return disponivel;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 }
