@@ -16,33 +16,39 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "SALA")
 public class Sala {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String numero;
-    private boolean disponivel;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String numero;
+	private boolean disponivel;
 
-    public Integer getId() {
-        return id;
-    }
+	public Sala(Integer id, String numero, boolean disponivel) {
+		this.id = id;
+		this.numero = numero;
+		this.disponivel = disponivel;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getNumero() {
-        return numero;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+	public String getNumero() {
+		return numero;
+	}
 
-    public boolean getDisponivel() {
-        return disponivel;
-    }
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
+	public boolean getDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
 }
