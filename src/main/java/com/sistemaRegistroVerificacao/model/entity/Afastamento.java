@@ -27,8 +27,8 @@ public class Afastamento {
 	private String natureza;
 
 	@ManyToOne
-	@JoinColumn(name = "IDUSUARIO")
-	private Usuario idUsuario;
+    @JoinColumn(name = "IDUSUARIO")
+    private Usuario usuario;
 
 	@Column(name = "DATAINICIO")
 	private LocalDate dataInicio;

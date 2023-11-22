@@ -23,7 +23,7 @@ public class UsuarioService {
 
     public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
         validarCamposObrigatorios(novoUsuario);
-        // novoUsuario.setStatusUsuario(novoUsuario.setStatusUsuario("Ativo"));
+        novoUsuario.setStatusUsuario("Ativo");
         novoUsuario.setDataContratacao(LocalDate.now());
         return usuarioRepository.save(novoUsuario);
     }
