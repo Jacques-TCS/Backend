@@ -53,12 +53,12 @@ public class Afastamento {
 		this.natureza = natureza;
 	}
 
-	public Usuario getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdUsuario(Usuario idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public LocalDate getDataInicio() {
