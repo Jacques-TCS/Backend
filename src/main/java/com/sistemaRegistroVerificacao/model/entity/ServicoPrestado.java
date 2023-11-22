@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,9 +43,9 @@ public class ServicoPrestado {
 	@JoinTable(name = "ATIVIDADE_SERVICOPRESTADO", joinColumns = @JoinColumn(name = "IDSERVICOPRESTADO"), inverseJoinColumns = @JoinColumn(name = "IDATIVIDADE"))
 	Set<Atividade> atividades;
 
-	@ManyToMany
-	@JoinTable(name = "OCORRENCIA_SERVICOPRESTADO", joinColumns = @JoinColumn(name = "IDSERVICOPRESTADO"), inverseJoinColumns = @JoinColumn(name = "IDOCORRENCIA"))
-	Set<Ocorrencia> ocorrencias;
+	@OneToOne
+	@JoinColumn(name = "IDOCORRENCIA")
+	private Ocorrencia ocorrencia;
 
 	public Integer getId() {
 		return id;
@@ -94,12 +95,11 @@ public class ServicoPrestado {
 		this.atividades = atividades;
 	}
 
-	public Set<Ocorrencia> getOcorrencias() {
-		return ocorrencias;
+	public Ocorrencia getOcorrencia() {
+		return ocorrencia;
 	}
 
-	public void setOcorrencias(Set<Ocorrencia> ocorrencias) {
-		this.ocorrencias = ocorrencias;
+	public void setOcorrencia(Ocorrencia ocorrencia) {
+		this.ocorrencia = ocorrencia;
 	}
-
 }

@@ -64,7 +64,9 @@ CREATE TABLE servicoprestado
     DATAINICIO    DATETIME,
     DATAFIM       DATETIME,
     IDUSUARIO INT,
-    FOREIGN KEY (IDUSUARIO) REFERENCES usuario (ID)
+    FOREIGN KEY (IDUSUARIO) REFERENCES usuario (ID),
+    IDOCORRENCIA INT,
+    FOREIGN KEY (IDOCORRENCIA) REFERENCES ocorrencia (ID)
 );
  
 CREATE TABLE atividade_servicoprestado 
@@ -72,15 +74,6 @@ CREATE TABLE atividade_servicoprestado
 	IDATIVIDADE_SERVICOPRESTADO INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	IDATIVIDADE INT,
     FOREIGN KEY (IDATIVIDADE) REFERENCES atividade (ID),
-	IDSERVICOPRESTADO INT,
-    FOREIGN KEY (IDSERVICOPRESTADO) REFERENCES servicoprestado (ID)
-);
- 
-CREATE TABLE ocorrencia_servicoprestado 
-(
-	IDOCORRENCIA_SERVICOPRESTADO INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	IDOCORRENCIA INT,
-	FOREIGN KEY (IDOCORRENCIA) REFERENCES ocorrencia (ID),
 	IDSERVICOPRESTADO INT,
     FOREIGN KEY (IDSERVICOPRESTADO) REFERENCES servicoprestado (ID)
 );
@@ -96,23 +89,3 @@ INSERT INTO sala (numero, disponivel)
 VALUES (201, TRUE);
 INSERT INTO sala (numero, disponivel)
 VALUES (202, TRUE);
- 
--- SELECT 
---     U.ID AS idUsuario,
---     U.NOME AS nomeUsuario,
---     U.CARGO AS cargo,
---     S.ID AS idSala,
---     S.NUMERO AS numeroSala,
---     SP.DATAINICIO AS dataInicio,
---     SP.DATAFIM AS dataFim,
---     A.DESCRICAO AS atividade,
---     O.DESCRICAO AS ocorrencia
--- FROM
---     USUARIO U,
---     SALA S,
---     SERVICOPRESTADO SP,
---     ATIVIDADE A,
---     OCORRENCIA O
--- WHERE
---     SP.IDUSUARIO = U.ID
---         AND S.ID = SP.IDSALA;

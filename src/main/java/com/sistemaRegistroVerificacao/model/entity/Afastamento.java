@@ -27,8 +27,8 @@ public class Afastamento {
 	private String natureza;
 
 	@ManyToOne
-	@JoinColumn(name = "IDUSUARIO")
-	private Usuario idUsuario;
+    @JoinColumn(name = "IDUSUARIO")
+    private Usuario usuario;
 
 	@Column(name = "DATAINICIO")
 	private LocalDate dataInicio;
@@ -53,12 +53,12 @@ public class Afastamento {
 		this.natureza = natureza;
 	}
 
-	public Usuario getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdUsuario(Usuario idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public LocalDate getDataInicio() {

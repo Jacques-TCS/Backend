@@ -1,14 +1,14 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,9 +42,8 @@ public class Usuario {
     @Column(name = "STATUSUSUARIO")
 	private String statusUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "IDULTIMOAFASTAMENTO")
-    private Afastamento ultimoAfastamento;
+    @OneToMany(mappedBy = "usuario")
+    private List<Afastamento> afastamentos;
 
     @Column(name = "DATADESLIGAMENTO")
     private LocalDate dataDesligamento;
@@ -140,13 +139,13 @@ public class Usuario {
         this.statusUsuario = statusUsuario;
     }
 
-    public Afastamento getUltimoAfastamento() {
-        return ultimoAfastamento;
-    }
+    // public Afastamento getUltimoAfastamento() {
+    //     return ultimoAfastamento;
+    // }
 
-    public void setUltimoAfastamento(Afastamento ultimoAfastamento) {
-        this.ultimoAfastamento = ultimoAfastamento;
-    }
+    // public void setUltimoAfastamento(Afastamento ultimoAfastamento) {
+    //     this.ultimoAfastamento = ultimoAfastamento;
+    // }
 
     public LocalDate getDataDesligamento() {
         return dataDesligamento;
