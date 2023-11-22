@@ -3,6 +3,8 @@ package com.sistemaRegistroVerificacao.model.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,10 +34,12 @@ public class ServicoPrestado {
 	@JoinColumn(name = "IDSALA")
 	private Sala idSala;
 
+	@Column(name = "DATAINICIO")
 	private LocalDateTime dataHoraInicio;
+	@Column(name = "DATAFIM")
 	private LocalDateTime dataHoraFim;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "IDUSUARIO")
 	private Usuario idUsuario;
 
