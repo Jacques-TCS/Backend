@@ -1,6 +1,7 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -42,9 +43,9 @@ public class ServicoPrestado {
 	@JoinTable(name = "ATIVIDADE_SERVICOPRESTADO", joinColumns = @JoinColumn(name = "IDSERVICOPRESTADO"), inverseJoinColumns = @JoinColumn(name = "IDATIVIDADE"))
 	Set<Atividade> atividades;
 
-	@ManyToMany
-	@JoinTable(name = "OCORRENCIA_SERVICOPRESTADO", joinColumns = @JoinColumn(name = "IDSERVICOPRESTADO"), inverseJoinColumns = @JoinColumn(name = "IDOCORRENCIA"))
-	Set<Ocorrencia> ocorrencias;
+	@ManyToOne
+	@JoinColumn(name = "IDOCORRENCIA")
+	List<Ocorrencia> ocorrencias;
 
 	public Integer getId() {
 		return id;
@@ -94,11 +95,11 @@ public class ServicoPrestado {
 		this.atividades = atividades;
 	}
 
-	public Set<Ocorrencia> getOcorrencias() {
+	public List<Ocorrencia> getOcorrencias() {
 		return ocorrencias;
 	}
 
-	public void setOcorrencias(Set<Ocorrencia> ocorrencias) {
+	public void setOcorrencias(List<Ocorrencia> ocorrencias) {
 		this.ocorrencias = ocorrencias;
 	}
 
