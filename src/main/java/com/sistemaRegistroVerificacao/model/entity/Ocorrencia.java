@@ -1,11 +1,16 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +27,15 @@ public class Ocorrencia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
-	private String categoria;
+
+	@ManyToMany
+	@JoinTable(name = "CATEGORIA_OCORRENCIA", joinColumns = @JoinColumn(name = "IDOCORRENCIA"), inverseJoinColumns = @JoinColumn(name = "IDCATEGORIA"))
+	Set<Categoria> categorias;
+
+	@Column(name = "STATUSOCORRENCIA")
 	private boolean status;
+
+	@Column(name = "DATAOCORRENCIA")
 	private LocalDate dataOcorrencia;
 
 	public Integer getId() {
@@ -42,12 +54,12 @@ public class Ocorrencia {
 		this.descricao = descricao;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public Set<Categoria> getCategorias() {
+		return categorias;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	public boolean isStatus() {
