@@ -12,29 +12,28 @@ import com.sistemaRegistroVerificacao.model.repository.AtividadeRepository;
 @Service
 public class AtividadeService {
 
-    @Autowired
-    private AtividadeRepository atividadeRepository;
+	@Autowired
+	private AtividadeRepository atividadeRepository;
 
-    public Atividade inserir(Atividade novaAtividade) {
-        return atividadeRepository.save(novaAtividade);
-    }
+	public Atividade inserir(Atividade novaAtividade) {
+		return atividadeRepository.save(novaAtividade);
+	}
 
-    public Atividade atualizar(Atividade atividadeParaAtualizar) {
-        return atividadeRepository.save(atividadeParaAtualizar);
-    }
+	public Atividade atualizar(Atividade atividadeParaAtualizar) {
+		return atividadeRepository.save(atividadeParaAtualizar);
+	}
 
-    public Atividade consultarPorId(Integer id) {
-        return atividadeRepository.findById(id).get();
-    }
+	public Atividade consultarPorId(Integer id) {
+		return atividadeRepository.findById(id).get();
+	}
 
-    @Transactional
-    public List<Atividade> listarTodas() {
-        return atividadeRepository.findAll();
-    }
+	@Transactional
+	public List<Atividade> listarTodas() {
+		return atividadeRepository.findAll();
+	}
 
-
-    public boolean excluir(Integer id) {
-        atividadeRepository.deleteById(id);
-        return true;
-    }
+	public boolean excluir(Integer id) {
+		atividadeRepository.deleteById(id);
+		return true;
+	}
 }

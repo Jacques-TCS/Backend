@@ -1,85 +1,103 @@
 package com.sistemaRegistroVerificacao.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.repository.OcorrenciaRepository;
+import com.sistemaRegistroVerificacao.model.repository.ServicoPrestadoRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sistemaRegistroVerificacao.model.entity.Categoria;
 import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
+import com.sistemaRegistroVerificacao.model.entity.ServicoPrestado;
 import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
 
 @Service
 public class OcorrenciaService {
 
-    private OcorrenciaRepository ocorrenciaRepository;
+	@Autowired
+	private OcorrenciaRepository ocorrenciaRepository;
 
-    public Ocorrencia inserir(Ocorrencia novaOcorrencia) throws CampoInvalidoException {
-        validarCamposObrigatorios(novaOcorrencia);
-        return ocorrenciaRepository.save(novaOcorrencia);
-    }
+	@Autowired
+	private ServicoPrestadoRepository servicoPrestadoRepository;
 
-    public Ocorrencia atualizar(Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
-        validarCamposObrigatorios(ocorrenciaParaAtualizar);
-        return ocorrenciaRepository.save(ocorrenciaParaAtualizar);
-    }
+	public Ocorrencia inserir(Ocorrencia novaOcorrencia) throws CampoInvalidoException {
+		novaOcorrencia.setStatus(false);
+		novaOcorrencia.setDataOcorrencia(LocalDateTime.now());
+		validarCamposObrigatorios(novaOcorrencia);
 
-    private void validarCamposObrigatorios(Ocorrencia ocorrencia) throws CampoInvalidoException {
-        String mensagemValidacao = "";
+		novaOcorrencia = ocorrenciaRepository.save(novaOcorrencia);
 
-        mensagemValidacao += validarCampoString(ocorrencia.getDescricao(), "descrição");
-        mensagemValidacao += validarCampoString(ocorrencia.getCategoria(), "categoria");
-        mensagemValidacao += validarCampoBoolean(ocorrencia.isStatus(), "status");
-        mensagemValidacao += validarCampoData(ocorrencia.getDataOcorrencia(), "data ocorrência");
+		ServicoPrestado servico = servicoPrestadoRepository.findById(novaOcorrencia.getServicoPrestado().getId()).get();
+		servico.setOcorrencia(novaOcorrencia);
 
-        //TODO será que precisa validar isso?
-        //private ServicoPrestado idServicoPrestado;
+		// Atualiza a coluna IDOCORRENCIA em SERVICOPRESTADO
+		servicoPrestadoRepository.save(servico);
 
-        if (!mensagemValidacao.isEmpty()) {
-            throw new CampoInvalidoException(mensagemValidacao);
-        }
-    }
+		return novaOcorrencia;
+	}
 
-    private String validarCampoString(String valorCampo, String nomeCampo) {
-        if (valorCampo == null || valorCampo.trim().isEmpty()) {
-            return "Informe a " + nomeCampo + " \n";
-        }
-        return "";
-    }
+	public Ocorrencia atualizar(Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
+		validarCamposObrigatorios(ocorrenciaParaAtualizar);
+		return ocorrenciaRepository.save(ocorrenciaParaAtualizar);
+	}
 
-    //TODO Não tenho ctz se é assim a validação de um boolean
-    private String validarCampoBoolean(Boolean valorCampo, String nomeCampo) {
-        if (valorCampo == null) {
-            return "Informe o " + nomeCampo + " \n";
-        }
-        return "";
-    }
+	private void validarCamposObrigatorios(Ocorrencia ocorrencia) throws CampoInvalidoException {
+		String mensagemValidacao = "";
 
-    private String validarCampoData(LocalDate dataOcorrencia, String nomeCampo) {
-        if (dataOcorrencia == null) {
-            return "Informe uma data \n";
-        }
-        return "";
-    }
+		mensagemValidacao += validarCampoString(ocorrencia.getDescricao(), "descricao");
+		mensagemValidacao += validarCampoList(ocorrencia.getCategorias(), "categoria");
+		mensagemValidacao += validarCampoBoolean(ocorrencia.isStatus(), "status");
+		mensagemValidacao += validarCampoData(ocorrencia.getDataOcorrencia(), "dataOcorrencia");
 
-    public Ocorrencia consultarPorId(Integer id) {
-        return ocorrenciaRepository.findById(id).get();
-    }
+		if (!mensagemValidacao.isEmpty()) {
+			throw new CampoInvalidoException(mensagemValidacao);
+		}
+	}
 
-    @Transactional
-    public List<Ocorrencia> listarTodas() {
-        return ocorrenciaRepository.findAll();
-    }
+	private String validarCampoList(Set<Categoria> categorias, String nomeCampo) {
+		if (categorias == null || categorias.isEmpty()) {
+			return "Informe ao menos 1 categoria \n";
+		}
+		return "";
+	}
 
-    public List<Ocorrencia> listarComSeletor(OcorrenciaSeletor seletor) {
-        return null;
-    }
+	private String validarCampoString(String valorCampo, String nomeCampo) {
+		if (valorCampo == null || valorCampo.trim().isEmpty()) {
+			return "Informe a " + nomeCampo + " \n";
+		}
+		return "";
+	}
 
-    public boolean excluir(Integer id) {
-        ocorrenciaRepository.deleteById(id);
-        return true;
-    }
+	private String validarCampoBoolean(Boolean valorCampo, String nomeCampo) {
+		if (valorCampo == null) {
+			return "Informe o " + nomeCampo + " \n";
+		}
+		return "";
+	}
+
+	private String validarCampoData(LocalDateTime dataOcorrencia, String nomeCampo) {
+		if (dataOcorrencia == null) {
+			return "Informe uma data \n";
+		}
+		return "";
+	}
+
+	public Ocorrencia consultarPorId(Integer id) {
+		return ocorrenciaRepository.findById(id).get();
+	}
+
+	@Transactional
+	public List<Ocorrencia> listarTodas() {
+		return ocorrenciaRepository.findAll();
+	}
+
+	public List<Ocorrencia> listarComSeletor(OcorrenciaSeletor seletor) {
+		return null;
+	}
 }

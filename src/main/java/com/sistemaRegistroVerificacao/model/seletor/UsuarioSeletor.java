@@ -4,40 +4,50 @@ import java.time.LocalDate;
 
 public class UsuarioSeletor extends BaseSeletor {
 
-    private String nome;
-    private String cargo;
-    private String statusUsuario;
-    private LocalDate dataDesligamento;
+	private String nome;
+	private String cargo;
+	private String statusUsuario;
+	private LocalDate dataDesligamentoInicio;
+	private LocalDate dataDesligamentoFim;
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getStatusUsuario() {
-        return statusUsuario;
-    }
+	public String getStatusUsuario() {
+		return statusUsuario;
+	}
 
-    public void setStatusUsuario(String statusUsuario) {
-        this.statusUsuario = statusUsuario;
-    }
+	public void setStatusUsuario(String statusUsuario) {
+		this.statusUsuario = statusUsuario;
+	}
 
-    public String getCargo() {
-        return cargo;
-    }
+	public String getCargo() {
+		return cargo;
+	}
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 
-    public LocalDate getDataDesligamento() {
-        return dataDesligamento;
-    }
+	public LocalDate getDataDesligamentoInicio() {
+		return dataDesligamentoInicio;
+	}
 
-    public void setDataDesligamento(LocalDate dataDesligamento) {
-        this.dataDesligamento = dataDesligamento;
-    }
+	public void setDataDesligamentoInicio(LocalDate dataDesligamentoInicio) {
+		this.dataDesligamentoInicio = dataDesligamentoInicio;
+	}
+
+	public LocalDate getDataDesligamentoFim() {
+		return dataDesligamentoFim;
+	}
+
+	public void setDataDesligamentoFim(LocalDate dataDesligamentoFim) {
+		this.dataDesligamentoFim = dataDesligamentoFim;
+	}
+
 }

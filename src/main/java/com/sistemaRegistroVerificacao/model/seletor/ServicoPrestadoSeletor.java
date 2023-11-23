@@ -1,61 +1,90 @@
 package com.sistemaRegistroVerificacao.model.seletor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 //No seletor ficam os atributos referentes ao que o usuário está inserindo no filtro
 public class ServicoPrestadoSeletor extends BaseSeletor {
-    private String sala;
-    private LocalDate dataHoraInicio;
-    private LocalDate dataHoraFim;
-    private Integer idTipoOcorrencia;
-    private String cargo;
-    private String usuario;
 
-    public String getSala() {
-        return sala;
-    }
+	private String sala;
+	private LocalDateTime menorDataHoraInicio;
+	private LocalDateTime menorDataHoraFim;
+	private LocalDateTime maiorDataHoraInicio;
+	private LocalDateTime maiorDataHoraFim;
+	private Integer idTipoOcorrencia;
+	private String cargo;
+	private String usuario;
+	private String atividade;
 
-    public void setSala(String sala) {
-        this.sala = sala;
-    }
+	public String getSala() {
+		return sala;
+	}
 
-    public LocalDate getDataHoraInicio() {
-        return dataHoraInicio;
-    }
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
 
-    public void setDataHoraInicio(LocalDate dataHoraInicio) {
-        this.dataHoraInicio = dataHoraInicio;
-    }
+	public LocalDateTime getMenorDataHoraInicio() {
+		return menorDataHoraInicio;
+	}
 
-    public LocalDate getDataHoraFim() {
-        return dataHoraFim;
-    }
+	public void setMenorDataHoraInicio(LocalDateTime menorDataHoraInicio) {
+		this.menorDataHoraInicio = menorDataHoraInicio;
+	}
 
-    public void setDataHoraFim(LocalDate dataHoraFim) {
-        this.dataHoraFim = dataHoraFim;
-    }
+	public LocalDateTime getMenorDataHoraFim() {
+		return menorDataHoraFim;
+	}
 
-    public Integer getIdTipoOcorrencia() {
-        return idTipoOcorrencia;
-    }
+	public void setMenorDataHoraFim(LocalDateTime menorDataHoraFim) {
+		this.menorDataHoraFim = menorDataHoraFim;
+	}
 
-    public void setIdTipoOcorrencia(Integer idTipoOcorrencia) {
-        this.idTipoOcorrencia = idTipoOcorrencia;
-    }
+	public LocalDateTime getMaiorDataHoraInicio() {
+		return maiorDataHoraInicio;
+	}
 
-    public String getCargo() {
-        return cargo;
-    }
+	public void setMaiorDataHoraInicio(LocalDateTime maiorDataHoraInicio) {
+		this.maiorDataHoraInicio = maiorDataHoraInicio;
+	}
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+	public LocalDateTime getMaiorDataHoraFim() {
+		return maiorDataHoraFim;
+	}
 
-    public String getUsuario() {
-        return usuario;
-    }
+	public void setMaiorDataHoraFim(LocalDateTime maiorDataHoraFim) {
+		this.maiorDataHoraFim = maiorDataHoraFim;
+	}
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+	public Integer getIdTipoOcorrencia() {
+		return idTipoOcorrencia;
+	}
+
+	public void setIdTipoOcorrencia(Integer idTipoOcorrencia) {
+		this.idTipoOcorrencia = idTipoOcorrencia;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(String atividade) {
+		this.atividade = atividade;
+	}
+
 }

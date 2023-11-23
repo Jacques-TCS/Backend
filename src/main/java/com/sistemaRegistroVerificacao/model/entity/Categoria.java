@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @Data
 
 @Entity
-@Table(name = "SALA")
-public class Sala {
+@Table(name = "CATEGORIA")
+public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String numero;
-	private Boolean disponivel;
+	private String nome;
+	private Boolean ativo;
 
 	public Integer getId() {
 		return id;
@@ -30,19 +30,19 @@ public class Sala {
 		this.id = id;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public Boolean getDisponivel() {
-		return disponivel;
+	public Boolean getAtivo() {
+		return ativo;
 	}
 
-	public void setDisponivel(Boolean disponivel) {
-		this.disponivel = disponivel;
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 }

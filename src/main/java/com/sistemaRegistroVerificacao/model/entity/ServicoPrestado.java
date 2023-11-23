@@ -3,6 +3,7 @@ package com.sistemaRegistroVerificacao.model.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,14 +31,17 @@ public class ServicoPrestado {
 
 	@ManyToOne
 	@JoinColumn(name = "IDSALA")
-	private Sala idSala;
+	private Sala sala;
 
+	@Column(name = "DATAINICIO")
 	private LocalDateTime dataHoraInicio;
+
+	@Column(name = "DATAFIM")
 	private LocalDateTime dataHoraFim;
 
 	@ManyToOne
 	@JoinColumn(name = "IDUSUARIO")
-	private Usuario idUsuario;
+	private Usuario usuario;
 
 	@ManyToMany
 	@JoinTable(name = "ATIVIDADE_SERVICOPRESTADO", joinColumns = @JoinColumn(name = "IDSERVICOPRESTADO"), inverseJoinColumns = @JoinColumn(name = "IDATIVIDADE"))
@@ -55,12 +59,20 @@ public class ServicoPrestado {
 		this.id = id;
 	}
 
-	public Sala getIdSala() {
-		return idSala;
+	public Sala getSala() {
+		return sala;
 	}
 
-	public void setIdSala(Sala idSala) {
-		this.idSala = idSala;
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public LocalDateTime getDataHoraInicio() {
@@ -77,14 +89,6 @@ public class ServicoPrestado {
 
 	public void setDataHoraFim(LocalDateTime dataHoraFim) {
 		this.dataHoraFim = dataHoraFim;
-	}
-
-	public Usuario getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Usuario idUsuario) {
-		this.idUsuario = idUsuario;
 	}
 
 	public Set<Atividade> getAtividades() {
