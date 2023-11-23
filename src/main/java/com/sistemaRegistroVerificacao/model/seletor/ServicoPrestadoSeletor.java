@@ -1,15 +1,15 @@
 package com.sistemaRegistroVerificacao.model.seletor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 //No seletor ficam os atributos referentes ao que o usuário está inserindo no filtro
 public class ServicoPrestadoSeletor extends BaseSeletor {
 
 	private String sala;
-	private LocalDate menorDataHoraInicio;
-	private LocalDate menorDataHoraFim;
-	private LocalDate maiorDataHoraInicio;
-	private LocalDate maiorDataHoraFim;
+	private LocalDateTime menorDataHoraInicio;
+	private LocalDateTime menorDataHoraFim;
+	private LocalDateTime maiorDataHoraInicio;
+	private LocalDateTime maiorDataHoraFim;
 	private Integer idTipoOcorrencia;
 	private String cargo;
 	private String usuario;
@@ -23,35 +23,35 @@ public class ServicoPrestadoSeletor extends BaseSeletor {
 		this.sala = sala;
 	}
 
-	public LocalDate getMenorDataHoraInicio() {
+	public LocalDateTime getMenorDataHoraInicio() {
 		return menorDataHoraInicio;
 	}
 
-	public void setMenorDataHoraInicio(LocalDate menorDataHoraInicio) {
+	public void setMenorDataHoraInicio(LocalDateTime menorDataHoraInicio) {
 		this.menorDataHoraInicio = menorDataHoraInicio;
 	}
 
-	public LocalDate getMenorDataHoraFim() {
+	public LocalDateTime getMenorDataHoraFim() {
 		return menorDataHoraFim;
 	}
 
-	public void setMenorDataHoraFim(LocalDate menorDataHoraFim) {
+	public void setMenorDataHoraFim(LocalDateTime menorDataHoraFim) {
 		this.menorDataHoraFim = menorDataHoraFim;
 	}
 
-	public LocalDate getMaiorDataHoraInicio() {
+	public LocalDateTime getMaiorDataHoraInicio() {
 		return maiorDataHoraInicio;
 	}
 
-	public void setMaiorDataHoraInicio(LocalDate maiorDataHoraInicio) {
+	public void setMaiorDataHoraInicio(LocalDateTime maiorDataHoraInicio) {
 		this.maiorDataHoraInicio = maiorDataHoraInicio;
 	}
 
-	public LocalDate getMaiorDataHoraFim() {
+	public LocalDateTime getMaiorDataHoraFim() {
 		return maiorDataHoraFim;
 	}
 
-	public void setMaiorDataHoraFim(LocalDate maiorDataHoraFim) {
+	public void setMaiorDataHoraFim(LocalDateTime maiorDataHoraFim) {
 		this.maiorDataHoraFim = maiorDataHoraFim;
 	}
 

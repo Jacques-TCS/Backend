@@ -22,9 +22,9 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
-		validarCamposObrigatorios(novoUsuario);
 		novoUsuario.setStatusUsuario("Ativo");
 		novoUsuario.setDataContratacao(LocalDate.now());
+		validarCamposObrigatorios(novoUsuario);
 		return usuarioRepository.save(novoUsuario);
 	}
 
@@ -47,9 +47,8 @@ public class UsuarioService {
 		return usuarioRepository.findAll(specification);
 	}
 
-	public boolean excluir(Integer id) {
-		usuarioRepository.deleteById(id);
-		return true;
+	public Usuario excluir(Usuario usuarioParaExcluir) {
+		return usuarioRepository.save(usuarioParaExcluir);
 	}
 
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
