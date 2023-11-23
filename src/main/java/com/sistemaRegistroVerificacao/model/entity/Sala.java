@@ -22,12 +22,6 @@ public class Sala {
 	private String numero;
 	private boolean disponivel;
 
-	public Sala(Integer id, String numero, boolean disponivel) {
-		this.id = id;
-		this.numero = numero;
-		this.disponivel = disponivel;
-	}
-
 	public Integer getId() {
 		return id;
 	}

@@ -5,8 +5,10 @@ import java.time.LocalDate;
 //No seletor ficam os atributos referentes ao que o usuário está inserindo no filtro
 public class ServicoPrestadoSeletor extends BaseSeletor {
     private String sala;
-    private LocalDate dataHoraInicio;
-    private LocalDate dataHoraFim;
+    private LocalDate menorDataHoraInicio;
+    private LocalDate menorDataHoraFim;
+    private LocalDate maiorDataHoraInicio;
+    private LocalDate maiorDataHoraFim;
     private Integer idTipoOcorrencia;
     private String cargo;
     private String usuario;
@@ -19,20 +21,36 @@ public class ServicoPrestadoSeletor extends BaseSeletor {
         this.sala = sala;
     }
 
-    public LocalDate getDataHoraInicio() {
-        return dataHoraInicio;
+    public LocalDate getMenorDataHoraInicio() {
+        return menorDataHoraInicio;
     }
 
-    public void setDataHoraInicio(LocalDate dataHoraInicio) {
-        this.dataHoraInicio = dataHoraInicio;
+    public void setMenorDataHoraInicio(LocalDate menorDataHoraInicio) {
+        this.menorDataHoraInicio = menorDataHoraInicio;
     }
 
-    public LocalDate getDataHoraFim() {
-        return dataHoraFim;
+    public LocalDate getMenorDataHoraFim() {
+        return menorDataHoraFim;
     }
 
-    public void setDataHoraFim(LocalDate dataHoraFim) {
-        this.dataHoraFim = dataHoraFim;
+    public void setMenorDataHoraFim(LocalDate menorDataHoraFim) {
+        this.menorDataHoraFim = menorDataHoraFim;
+    }
+
+    public LocalDate getMaiorDataHoraInicio() {
+        return maiorDataHoraInicio;
+    }
+
+    public void setMaiorDataHoraInicio(LocalDate maiorDataHoraInicio) {
+        this.maiorDataHoraInicio = maiorDataHoraInicio;
+    }
+
+    public LocalDate getMaiorDataHoraFim() {
+        return maiorDataHoraFim;
+    }
+
+    public void setMaiorDataHoraFim(LocalDate maiorDataHoraFim) {
+        this.maiorDataHoraFim = maiorDataHoraFim;
     }
 
     public Integer getIdTipoOcorrencia() {
