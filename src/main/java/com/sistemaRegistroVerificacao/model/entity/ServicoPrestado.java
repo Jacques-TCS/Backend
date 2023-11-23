@@ -35,7 +35,7 @@ public class ServicoPrestado {
 
 	@Column(name = "DATAINICIO")
 	private LocalDateTime dataHoraInicio;
-
+	
 	@Column(name = "DATAFIM")
 	private LocalDateTime dataHoraFim;
 

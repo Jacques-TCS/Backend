@@ -59,7 +59,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"natureza\": \"doença\",\r\n\"usuario\": \"1\"\r\n\"dataInicio\": \"2023-11-21\",\r\n\"dataFim\": \"2023-11-24\",\r\n\"descricao\": \"atestado de gripe\"\r\n}\r\n\r\n{\r\n\"natureza\": \"licença maternidade\",\r\n\"usuario\": \"3\"\r\n\"dataInicio\": \"2023-08-05\",\r\n\"dataFim\": \"2023-05-12\",\r\n\"descricao\": \"licença maternidade para gravidez de gemeos\"\r\n}"
+							"raw": "{\r\n\"natureza\": \"doença\",\r\n\"usuario\": 1,\r\n\"dataInicio\": \"2023-11-21\",\r\n\"dataFim\": \"2023-11-24\",\r\n\"descricao\": \"Atestado de gripe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "localhost:8080/api/afastamento",
@@ -99,26 +104,33 @@
 					"response": []
 				}
 			],
-			"description": "Métodos completos: AFASTAMENTO\n\nGET  \n/2\n\nPOST\n\n{  \n\"natureza\": \"doença\",  \n\"usuario\": \"1\"  \n\"dataInicio\": \"2023-11-21\",  \n\"dataFim\": \"2023-11-24\",  \n\"descricao\": \"Atestado de gripe\"  \n}\n\n{  \n\"natureza\": \"licença maternidade\",  \n\"usuario\": \"3\"  \n\"dataInicio\": \"2023-08-05\",  \n\"dataFim\": \"2023-05-12\",  \n\"descricao\": \"Licença maternidade para gravidez de gêmeos\"  \n}\n\nPUT\n\n{  \n\"natureza\": \"licença maternidade\",  \n\"usuario\": \"3\"  \n\"dataInicio\": \"2023-08-05\",  \n\"dataFim\": \"2023-07-12\",  \n\"descricao\": \"Mãe pediu mais dois meses em casa para adaptação dos bebes\"  \n}"
+			"description": "Métodos completos: AFASTAMENTO\n\nGET  \n/2\n\nPOST\n\n{  \n\"natureza\": \"doença\",  \n\"usuario\": 1,  \n\"dataInicio\": \"2023-11-21\",  \n\"dataFim\": \"2023-11-24\",  \n\"descricao\": \"Atestado de gripe\"  \n}\n\n{  \n\"natureza\": \"licença maternidade\",  \n\"usuario\": 3,  \n\"dataInicio\": \"2023-08-05\",  \n\"dataFim\": \"2023-05-12\",  \n\"descricao\": \"Licença maternidade para gravidez de gêmeos\"  \n}\n\nPUT\n\n{  \n\"natureza\": \"licença maternidade\",  \n\"usuario\": 3,  \n\"dataInicio\": \"2023-08-05\",  \n\"dataFim\": \"2023-07-12\",  \n\"descricao\": \"Mãe pediu mais dois meses em casa para adaptação dos bebes\"  \n}"
 		},
 		{
 			"name": "Atividade",
 			"item": [
 				{
 					"name": "consultarPorId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:8080/api/atividade\"/{id}\"",
+							"raw": "localhost:8080/api/atividade/14",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"atividade\"",
-								"{id}\""
+								"atividade",
+								"14"
 							]
 						}
 					},
@@ -130,7 +142,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/atividade/todos/",
+							"raw": "localhost:8080/api/atividade/todos",
 							"host": [
 								"localhost"
 							],
@@ -138,28 +150,7 @@
 							"path": [
 								"api",
 								"atividade",
-								"todos",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "listarComFiltro",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/atividade/filtro",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"atividade",
-								"filtro"
+								"todos"
 							]
 						}
 					},
@@ -170,6 +161,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"descricao\": \"Limpeza rotineira\",\r\n\"cargo\": \"Faxina\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:8080/api/atividade",
 							"host": [
@@ -189,6 +189,15 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"descricao\": \"Manutenção TELEFONIA\",\r\n\"cargo\": \"Técnico\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:8080/api/atividade",
 							"host": [
@@ -206,10 +215,10 @@
 				{
 					"name": "excluir",
 					"request": {
-						"method": "PUT",
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/afastamento/\"/{id)/\"",
+							"raw": "localhost:8080/api/afastamento/14",
 							"host": [
 								"localhost"
 							],
@@ -217,16 +226,14 @@
 							"path": [
 								"api",
 								"afastamento",
-								"\"",
-								"{id)",
-								"\""
+								"14"
 							]
 						}
 					},
 					"response": []
 				}
 			],
-			"description": "Métodos completos: ATIVIDADE\n\nGET  \n/4\n\nPOST  \n{\n\n\"descricao\": \"Limpeza rotineira\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada CHÃO\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada JANELAS\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada PAREDES\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada FORRO\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Manutenção ELÉTRICA\",\n\n\"cargo\": \"Técnico\"  \n}  \n{\n\n\"descricao\": \"Manutenção HIDRÁULICA\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção AR CONDICIONADO\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção PORTA / JANELA\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção LÂMPADAS\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção PRAGAS\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção MOBÍLIA\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção TELEFONIA\",\n\n\"cargo\": \"Técnico\"  \n}\n\nPUT\n\n{\n\n\"descricao\": \"Manutenção TELEFONIA\",\n\n\"cargo\": \"Técnico\"  \n}"
+			"description": "Métodos completos: ATIVIDADE\n\nGET  \n/14\n\nPOST  \n{\n\n\"descricao\": \"Limpeza rotineira\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada CHÃO\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada JANELAS\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada PAREDES\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Limpeza pesada FORRO\",\n\n\"cargo\": \"Faxina\"  \n}\n\n{\n\n\"descricao\": \"Manutenção ELÉTRICA\",\n\n\"cargo\": \"Técnico\"  \n}  \n{\n\n\"descricao\": \"Manutenção HIDRÁULICA\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção AR CONDICIONADO\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção PORTA / JANELA\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção LÂMPADAS\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção PRAGAS\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção MOBÍLIA\",\n\n\"cargo\": \"Técnico\"  \n}\n\n{\n\n\"descricao\": \"Manutenção TELEFONIA\",\n\n\"cargo\": \"Técnico\"  \n}\n\nPUT\n\n{\n\n\"descricao\": \"Manutenção TELEFONIA\",\n\n\"cargo\": \"Técnico\"  \n}"
 		},
 		{
 			"name": "Ocorrencia",
@@ -244,7 +251,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/ocorrencia/4",
+							"raw": "localhost:8080/api/ocorrencia/3",
 							"host": [
 								"localhost"
 							],
@@ -252,7 +259,7 @@
 							"path": [
 								"api",
 								"ocorrencia",
-								"4"
+								"3"
 							]
 						}
 					},
@@ -305,7 +312,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"descricao\": \"Monitor desapareceu\",\r\n\"categoria\": \"Furto\"\r\n\"statusOcorrencia\": false,\r\n\"dataOcorrencia\": \"2023-07-15T12:00\",\r\n\"idServicoPrestado\": \"1\"\r\n}\r\n{\r\n\"descricao\": \"Cadeiras depredadas\",\r\n\"categoria\": \"Avaria\"\r\n\"statusOcorrencia\": false,\r\n\"dataOcorrencia\": \"2023-07-15T12:00\",\r\n\"idServicoPrestado\": \"1\"\r\n}\r\n{\r\n\"descricao\": \"Quadro riscado com caneta permanente\",\r\n\"categoria\": \"Avaria\"\r\n\"statusOcorrencia\": false,\r\n\"dataOcorrencia\": \"2023-07-15T14:30\",\r\n\"idServicoPrestado\": \"2\"\r\n}\r\n"
+							"raw": "{\r\n    \"descricao\": \"Deu problema\",\r\n    \"categorias\":[ {\r\n        \"id\": 1\r\n     }],\r\n    \"status\": false,\r\n    \"dataOcorrencia\": \"2023-07-15T14:30\",\r\n    \"servicoPrestado\":{\r\n     \"id\": 4\r\n    }\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "localhost:8080/api/ocorrencia",
@@ -328,7 +340,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"id\": 3,\r\n\"descricao\": \"Quadro riscado com caneta permanente\",\r\n\"categoria\": \"Avaria\"\r\n\"statusOcorrencia\": true,\r\n\"dataOcorrencia\": \"2023-07-15T14:30\",\r\n\"idServicoPrestado\": \"2\"\r\n}"
+							"raw": "  {\r\n        \"id\": 3,\r\n        \"descricao\": \"Cadeira com rodinhas quebradas\",\r\n        \"categoria\": \"Avaria\",\r\n        \"status\": false,\r\n        \"dataOcorrencia\": \"2023-07-14\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "localhost:8080/api/ocorrencia",
@@ -345,10 +362,10 @@
 					"response": []
 				}
 			],
-			"description": "Métodos completos: OCORRENCIA\n\nGET  \n/4\n\nPOST  \n{  \n\"descricao\": \"Monitor desapareceu\",  \n\"categoria\": \"Furto\"  \n\"statusOcorrencia\": false,  \n\"dataOcorrencia\": \"2023-07-15T12:00\",  \n\"idServicoPrestado\": \"1\"  \n}\n\n{  \n\"descricao\": \"Cadeiras depredadas\",  \n\"categoria\": \"Avaria\"  \n\"statusOcorrencia\": false,  \n\"dataOcorrencia\": \"2023-07-15T12:00\",  \n\"idServicoPrestado\": \"1\"  \n}\n\n{  \n\"descricao\": \"Quadro riscado com caneta permanente\",  \n\"categoria\": \"Avaria\"  \n\"statusOcorrencia\": false,  \n\"dataOcorrencia\": \"2023-07-15T14:30\",  \n\"idServicoPrestado\": \"2\"  \n}\n\nPUT  \n{  \n\"id\": 3,  \n\"descricao\": \"Quadro riscado com caneta permanente\",  \n\"categoria\": \"Avaria\"  \n\"statusOcorrencia\": true,  \n\"dataOcorrencia\": \"2023-07-15T14:30\",  \n\"idServicoPrestado\": \"2\"  \n}"
+			"description": "Métodos completos: OCORRENCIA\n\nGET  \n/3\n\nPOST  \n{  \n\"descricao\": \"Monitor desapareceu\",  \n\"categoria\": \"Furto\",  \n\"status\": false,  \n\"dataOcorrencia\": \"2023-07-15T12:00\"  \n}\n\n{  \n\"descricao\": \"Cadeiras depredadas\",  \n\"categoria\": \"Avaria\",  \n\"status\": false,  \n\"dataOcorrencia\": \"2023-07-15T12:00\"  \n}\n\n{  \n\"descricao\": \"Quadro riscado com caneta permanente\",  \n\"categoria\": \"Avaria\",  \n\"status\": false,  \n\"dataOcorrencia\": \"2023-07-15T14:30\"  \n}\n\nPUT  \n{        \n\n\"id\": 3,       \n\n\"descricao\": \"Cadeira com rodinhas quebradas\",        \n\n\"categoria\": \"Avaria\",        \n\n\"status\": false,        \n\n\"dataOcorrencia\": \"2023-07-14\"    \n\n}"
 		},
 		{
-			"name": "Sala [Conferido]",
+			"name": "Sala",
 			"item": [
 				{
 					"name": "consultarPorId",
@@ -397,7 +414,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"numero\": \"204\",\r\n\"disponivel\": true\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -493,7 +510,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/servicoPrestado/2",
+							"raw": "localhost:8080/api/servicoPrestado/4",
 							"host": [
 								"localhost"
 							],
@@ -501,7 +518,7 @@
 							"path": [
 								"api",
 								"servicoPrestado",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -513,15 +530,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/servicoPrestado\"/todos\"",
+							"raw": "localhost:8080/api/servicoPrestado/todos",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"servicoPrestado\"",
-								"todos\""
+								"servicoPrestado",
+								"todos"
 							]
 						}
 					},
@@ -534,7 +551,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\r\n    \"sala\": {\r\n        \"id\": 1\r\n    },\r\n    \"dataHoraInicio\": \"2023-11-23T10:10:00\",\r\n    \"dataHoraFim\": \"2023-11-23T10:27:00\",\r\n    \"usuario\": {\r\n        \"id\": 1\r\n    },\r\n    \"atividades\": [\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "localhost:8080/api/servicoPrestado",
@@ -571,7 +593,7 @@
 					"response": []
 				}
 			],
-			"description": "Métodos completos: SERVICOPRESTADO\n\nGET  \n/4\n\nPOST  \n{\n\n\"idSala\": 1;  \n\"dataHoraInicio\": \"2023-07-15T11:35\",  \n\"dataHoraFim\": \"2023-07-15T12:00\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[1\\],  \n\"ocorrencias\":\\[1, 2\\]\n\n}  \n{\n\n\"idSala\": 2,  \n\"dataHoraInicio\": \"2023-07-15T13:30\",  \n\"dataHoraFim\": \"2023-07-15T14:30\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[2, 3\\],  \n\"ocorrencias\":\\[3\\]\n\n}  \n{\n\n\"idSala\": 3,  \n\"dataHoraInicio\": \"2023-07-15T14:35\",  \n\"dataHoraFim\": \"2023-07-15T15:20\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[1\\],  \n\"ocorrencias\":\\[1\\]\n\n}  \n{\n\n\"idSala\": 4;  \n\"dataHoraInicio\": \"2023-07-15T15:27\",  \n\"dataHoraFim\": \"2023-07-15T15:58\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[1, 3\\],  \n\"ocorrencias\":\\[2\\]\n\n}\n\n{\n\n\"idSala\": 2;  \n\"dataHoraInicio\": \"2023-07-15T16:00\",  \n\"dataHoraFim\": \"2023-07-15T17:35\",  \n\"idUsuario\": 6,  \n\"atividades\":\\[6, 8\\],  \n\"ocorrencias\":\\[2\\]\n\n}"
+			"description": "Métodos completos: SERVICOPRESTADO\n\nGET  \n/4\n\nPOST  \n{\n\n\"sala\": {\n\n}  \n\"dataHoraInicio\": \"2023-07-15T11:35\",  \n\"dataHoraFim\": \"2023-07-15T12:00\",  \n\"usuario\": 5,  \n\"atividades\":\\[1\\],  \n\"ocorrencia\":1\n\n}  \n{\n\n\"idSala\": 2,  \n\"dataHoraInicio\": \"2023-07-15T13:30\",  \n\"dataHoraFim\": \"2023-07-15T14:30\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[2, 3\\],  \n\"ocorrencia\":3\n\n}  \n{\n\n\"idSala\": 3,  \n\"dataHoraInicio\": \"2023-07-15T14:35\",  \n\"dataHoraFim\": \"2023-07-15T15:20\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[1\\],  \n\"ocorrencia\":1\n\n}  \n{\n\n\"idSala\": 4,  \n\"dataHoraInicio\": \"2023-07-15T15:27\",  \n\"dataHoraFim\": \"2023-07-15T15:58\",  \n\"idUsuario\": 5,  \n\"atividades\":\\[1, 3\\],  \n\"ocorrencia\":2\n\n}\n\n{\n\n\"idSala\": 2;  \n\"dataHoraInicio\": \"2023-07-15T16:00\",  \n\"dataHoraFim\": \"2023-07-15T17:35\",  \n\"idUsuario\": 6,  \n\"atividades\":\\[6, 8\\],  \n\"ocorrencia\":2\n\n}"
 		},
 		{
 			"name": "Usuario",
@@ -603,7 +625,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Samuel André Duarte\",\r\n    \"cpf\": \"67890123456\",\r\n    \"telefone\": \"48991294598\",\r\n    \"dataNascimento\": \"1990-08-27\",\r\n    \"ctps\": \"56789012654\",\r\n    \"nivelAcesso\": \"Funcionário\",\r\n    \"cargo\": \"Técnico\",\r\n    \"matricula\": 100006,\r\n    \"senha\": \"123456\",\r\n    \"statusUsuario\": \"ativo\",\r\n    \"idUltimoAfastamento\": \"\",\r\n    \"dataContratacao\": \"2023-09-13\",\r\n    \"dataDesligamento\": \"\"\r\n}",
+							"raw": "{\n\"nome\": \"Bárbara Luersen\",\n\"cpf\": \"12345678901\",\n\"telefone\": \"4599725361\",\n\"dataNascimento\": \"2000-10-02\",\n\"ctps\": \"12345678901\",\n\"nivelAcesso\": \"Gerência\",\n\"cargo\": \"Gerência\",\n\"matricula\": 100001,\n\"senha\": \"123456\",\n\"statusUsuario\": \"ativo\",\n\"afastamentos\": [],\n\"dataContratacao\": \"2023-05-13\",\n\"dataDesligamento\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -631,7 +653,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"id\": 4,\r\n\"nome\": \"Renan Leal\",\r\n\"cpf\": \"45678901234\",\r\n\"telefone\": \"4899887881\",\r\n\"dataNascimento\": \"2002-06-17\",\r\n\"ctps\": \"45678901234\",\r\n\"idNivelAcesso\": 3,\r\n\"idCargo\": 5,\r\n\"matricula\": 100004,\r\n\"senha\": \"123456\",\r\n\"idStatusUsuario\": 3,\r\n\"idUltimoAfastamento\": \"2023-07-12\",\r\n\"dataContratacao\": \"2023-07-10\",\r\n\"dataDesligamento\": \"\"\r\n}",
+							"raw": "{\r\n\"id\": 4,\r\n\"nome\": \"Renan Leal\",\r\n\"cpf\": \"45678901234\",\r\n\"telefone\": \"4899887881\",\r\n\"dataNascimento\": \"2002-06-17\",\r\n\"ctps\": \"45678901234\",\r\n\"nivelAcesso\": \"Gerência\",\r\n\"cargo\": \"Gerência\",\r\n\"matricula\": 100004,\r\n\"senha\": \"123456\",\r\n\"statusUsuario\": \"afastado\",\r\n\"afastamentos\": [],\r\n\"dataContratacao\": \"2023-07-10\",\r\n\"dataDesligamento\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -659,18 +681,22 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"id\": 4\r\n\"nome\": \"Renan Leal\",\r\n\"cpf\": \"45678901234\",\r\n\"telefone\": \"4899887881\",\r\n\"dataNascimento\": \"2002-06-17\",\r\n\"ctps\": \"45678901234\",\r\n\"idNivelAcesso\": 3,\r\n\"idCargo\": 5,\r\n\"matricula\": 100004,\r\n\"senha\": \"123456\",\r\n\"idStatusUsuario\": 2,\r\n\"idUltimoAfastamento\": \"2023-07-12\",\r\n\"dataContratacao\": \"2023-07-10\",\r\n\"dataDesligamento\": \"2023-07-24\"\r\n}"
+							"raw": "{\r\n\"id\": 4,\r\n\"nome\": \"Renan Leal\",\r\n\"cpf\": \"45678901234\",\r\n\"telefone\": \"4899887881\",\r\n\"dataNascimento\": \"2002-06-17\",\r\n\"ctps\": \"45678901234\",\r\n\"nivelAcesso\": \"Gerência\",\r\n\"cargo\": \"Gerência\",\r\n\"matricula\": 100004,\r\n\"senha\": \"123456\",\r\n\"statusUsuario\": \"inativo\",\r\n\"afastamentos\": [],\r\n\"dataContratacao\": \"2023-07-10\",\r\n\"dataDesligamento\": \"2023-07-24\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/usuario\"/{4}\"",
+							"raw": "localhost:8080/api/usuario",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"usuario\"",
-								"{4}\""
+								"usuario"
 							]
 						}
 					},
@@ -717,7 +743,65 @@
 					"response": []
 				}
 			],
-			"description": "Métodos completos: USUARIO\n\nGET  \n/1\n\nPOST  \n{  \n\"nome\": \"Bárbara Luersen\",  \n\"cpf\": \"12345678901\",  \n\"telefone\": \"4599725361\",  \n\"dataNascimento\": \"2000-10-02\",  \n\"ctps\": \"12345678901\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100001,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"idUltimoAfastamento\": \"\",  \n\"dataContratacao\": \"2023-05-13\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Luis Alberto Weber\",  \n\"cpf\": \"23456789012\",  \n\"telefone\": \"48998577999\",  \n\"dataNascimento\": \"1999-05-19\",  \n\"ctps\": \"23456789012\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100002,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"idUltimoAfastamento\": \"\",  \n\"dataContratacao\": \"2023-05-13\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Gabriela Zanon\",  \n\"cpf\": \"34567890123\",  \n\"telefone\": \"4896415211\",  \n\"dataNascimento\": \"2002-05-04\",  \n\"ctps\": \"34567890123\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100003,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"idUltimoAfastamento\": \"\",  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Renan Leal\",  \n\"cpf\": \"45678901234\",  \n\"telefone\": \"4899887881\",  \n\"dataNascimento\": \"2002-06-17\",  \n\"ctps\": \"45678901234\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100004,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"idUltimoAfastamento\": \"\",  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Juliana Querino\",  \n\"cpf\": \"56789012345\",  \n\"telefone\": \"48999563562\",  \n\"dataNascimento\": \"1998-11-06\",  \n\"ctps\": \"56789012345\",  \n\"nivelAcesso\": \"Funcionário\",  \n\"cargo\": \"Faxina\",  \n\"matricula\": 100005,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"idUltimoAfastamento\": \"\",  \n\"dataContratacao\": \"2023-07-13\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Samuel André Duarte\",  \n\"cpf\": \"67890123456\",  \n\"telefone\": \"48991294598\",  \n\"dataNascimento\": \"1990-08-27\",  \n\"ctps\": \"56789012654\",  \n\"nivelAcesso\": \"Funcionário\",  \n\"cargo\": \"Técnico\",  \n\"matricula\": 100006,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"idUltimoAfastamento\": \"\",  \n\"dataContratacao\": \"2023-09-13\",  \n\"dataDesligamento\": \"\"  \n}\n\nPUT  \n{  \n\"id\": 4  \n\"nome\": \"Renan Leal\",  \n\"cpf\": \"45678901234\",  \n\"telefone\": \"4899887881\",  \n\"dataNascimento\": \"2002-06-17\",  \n\"ctps\": \"45678901234\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100004,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"afastado\",  \n\"idUltimoAfastamento\": \"2023-07-12\",  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"\"  \n}\n\nPUT(DELETE)  \n{  \n\"id\": 4  \n\"nome\": \"Renan Leal\",  \n\"cpf\": \"45678901234\",  \n\"telefone\": \"4899887881\",  \n\"dataNascimento\": \"2002-06-17\",  \n\"ctps\": \"45678901234\",  \n\"nivelAcesso\": 3,  \n\"cargo\": 5,  \n\"matricula\": 100004,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"inativo\",  \n\"idUltimoAfastamento\": \"2023-07-12\",  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"2023-07-24\"  \n}\n\n---"
+			"description": "Métodos completos: USUARIO\n\nGET  \n/1\n\nPOST  \n{  \n\"nome\": \"Bárbara Luersen\",  \n\"cpf\": \"12345678901\",  \n\"telefone\": \"4599725361\",  \n\"dataNascimento\": \"2000-10-02\",  \n\"ctps\": \"12345678901\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100001,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-05-13\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Luis Alberto Weber\",  \n\"cpf\": \"23456789012\",  \n\"telefone\": \"48998577999\",  \n\"dataNascimento\": \"1999-05-19\",  \n\"ctps\": \"23456789012\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100002,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-05-13\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Gabriela Zanon\",  \n\"cpf\": \"34567890123\",  \n\"telefone\": \"4896415211\",  \n\"dataNascimento\": \"2002-05-04\",  \n\"ctps\": \"34567890123\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100003,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Renan Leal\",  \n\"cpf\": \"45678901234\",  \n\"telefone\": \"4899887881\",  \n\"dataNascimento\": \"2002-06-17\",  \n\"ctps\": \"45678901234\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100004,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Juliana Querino\",  \n\"cpf\": \"56789012345\",  \n\"telefone\": \"48999563562\",  \n\"dataNascimento\": \"1998-11-06\",  \n\"ctps\": \"56789012345\",  \n\"nivelAcesso\": \"Funcionário\",  \n\"cargo\": \"Faxina\",  \n\"matricula\": 100005,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-07-13\",  \n\"dataDesligamento\": \"\"  \n}\n\n{  \n\"nome\": \"Samuel André Duarte\",  \n\"cpf\": \"67890123456\",  \n\"telefone\": \"48991294598\",  \n\"dataNascimento\": \"1990-08-27\",  \n\"ctps\": \"56789012654\",  \n\"nivelAcesso\": \"Funcionário\",  \n\"cargo\": \"Técnico\",  \n\"matricula\": 100006,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"ativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-09-13\",  \n\"dataDesligamento\": \"\"  \n}\n\nPUT  \n{  \n\"id\": 4  \n\"nome\": \"Renan Leal\",  \n\"cpf\": \"45678901234\",  \n\"telefone\": \"4899887881\",  \n\"dataNascimento\": \"2002-06-17\",  \n\"ctps\": \"45678901234\",  \n\"nivelAcesso\": \"Gerência\",  \n\"cargo\": \"Gerência\",  \n\"matricula\": 100004,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"afastado\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"\"  \n}\n\nPUT(DELETE)  \n{  \n\"id\": 4  \n\"nome\": \"Renan Leal\",  \n\"cpf\": \"45678901234\",  \n\"telefone\": \"4899887881\",  \n\"dataNascimento\": \"2002-06-17\",  \n\"ctps\": \"45678901234\",  \n\"nivelAcesso\": 3,  \n\"cargo\": 5,  \n\"matricula\": 100004,  \n\"senha\": \"123456\",  \n\"statusUsuario\": \"inativo\",  \n\"afastamentos\": \\[\\],  \n\"dataContratacao\": \"2023-07-10\",  \n\"dataDesligamento\": \"2023-07-24\"  \n}\n\n---"
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Avaria\",\r\n    \"ativo\":true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "listarTodasCategorias",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "consultarPorId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "Métodos completos: CATEGORIA\n\nGET  \n/1\n\nPOST  \n{\n\n\"nome\":\n\n\"ativo\":\n\n}"
 		}
 	]
 }
