@@ -15,23 +15,22 @@ public class OcorrenciaSpecification {
 		return (root, query, cb) -> {
 			List<Predicate> predicates = new ArrayList<>();
 
-			if (seletor.getDescricao() != null) {
+			if (seletor.getDescricao() != null && !seletor.getDescricao().isEmpty()) {
 				predicates.add((Predicate) cb.like(cb.lower(root.get("descricao")),
 						"%" + seletor.getDescricao().toLowerCase() + "%"));
 			}
 
-			if (seletor.getSala() != null) {
-				predicates.add(
-						(Predicate) cb.like(cb.lower(root.get("sala")), "%" + seletor.getSala().toLowerCase() + "%"));
+			if (seletor.getSala() != null && !seletor.getSala().isEmpty()) {
+				predicates.add((Predicate) cb.like(cb.lower(root.join("servicoPrestado").get("sala").get("numero")),
+						"%" + seletor.getSala().toLowerCase() + "%"));
 			}
 
-			// TODO
 			if (seletor.getCategoria() != null) {
-				predicates.add((Predicate) cb.like(cb.lower(root.get("categoria")),
+				predicates.add((Predicate) cb.like(cb.lower(root.join("categoria").get("nome")),
 						"%" + seletor.getCategoria().toLowerCase() + "%"));
 			}
 
-			if (seletor.getStatus() != false) {
+			if (seletor.getStatus() != null) {
 				predicates.add((Predicate) cb.equal(cb.lower(root.get("status")), "%" + seletor.getStatus() + "%"));
 			}
 

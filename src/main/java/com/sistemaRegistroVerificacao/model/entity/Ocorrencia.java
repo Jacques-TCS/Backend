@@ -1,7 +1,9 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,10 +36,14 @@ public class Ocorrencia {
 	Set<Categoria> categorias;
 
 	@Column(name = "STATUSOCORRENCIA")
-	private boolean status;
+	private Boolean status;
 
 	@Column(name = "DATAOCORRENCIA")
-	private LocalDate dataOcorrencia;
+	private LocalDateTime dataOcorrencia;
+	
+	@JsonBackReference
+	@OneToOne(mappedBy = "ocorrencia")
+	private ServicoPrestado servicoPrestado;
 
 	public Integer getId() {
 		return id;
@@ -62,19 +69,31 @@ public class Ocorrencia {
 		this.categorias = categorias;
 	}
 
-	public boolean isStatus() {
+	public Boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
-	public LocalDate getDataOcorrencia() {
+	public LocalDateTime getDataOcorrencia() {
 		return dataOcorrencia;
 	}
 
-	public void setDataOcorrencia(LocalDate dataOcorrencia) {
+	public void setDataOcorrencia(LocalDateTime dataOcorrencia) {
 		this.dataOcorrencia = dataOcorrencia;
+	}
+
+	public ServicoPrestado getServicoPrestado() {
+		return servicoPrestado;
+	}
+
+	public void setServicoPrestado(ServicoPrestado servicoPrestado) {
+		this.servicoPrestado = servicoPrestado;
+	}
+
+	public Boolean getStatus() {
+		return status;
 	}
 }

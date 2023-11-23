@@ -23,13 +23,9 @@ public class ServicoPrestadoService {
 	private ServicoPrestadoRepository servicoPrestadoRepository;
 
 	public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) throws CampoInvalidoException {
+		novoServicoPrestado.setDataHoraInicio(LocalDateTime.now());
 		validarCamposObrigatorios(novoServicoPrestado);
 		return servicoPrestadoRepository.save(novoServicoPrestado);
-	}
-
-	public ServicoPrestado atualizar(ServicoPrestado servicoPrestadoParaAtualizar) throws CampoInvalidoException {
-		validarCamposObrigatorios(servicoPrestadoParaAtualizar);
-		return servicoPrestadoRepository.save(servicoPrestadoParaAtualizar);
 	}
 
 	private void validarCamposObrigatorios(ServicoPrestado servicoPrestado) throws CampoInvalidoException {
