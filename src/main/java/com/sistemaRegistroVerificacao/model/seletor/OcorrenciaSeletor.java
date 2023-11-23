@@ -1,52 +1,62 @@
 package com.sistemaRegistroVerificacao.model.seletor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class OcorrenciaSeletor extends BaseSeletor{
-	
+public class OcorrenciaSeletor extends BaseSeletor {
+
 	private String descricao;
 	private String sala;
 	private String categoria;
-	private boolean status;
-	private LocalDate dataInicio;
-	private LocalDate dataFim;
-
+	private Boolean status;
+	private LocalDateTime dataInicio;
+	private LocalDateTime dataFim;
 
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getSala() {
-		return sala;
-	}
-	public void setSala(String sala) {
-		this.sala = sala;
-	}
+
 	public String getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public boolean getStatus() {
+
+	public Boolean getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	public LocalDate getDataInicio() {
+
+	public LocalDateTime getDataInicio() {
 		return dataInicio;
 	}
-	public void setDataInicio(LocalDate dataInicio) {
+
+	public void setDataInicio(LocalDateTime dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	public LocalDate getDataFim() {
+
+	public LocalDateTime getDataFim() {
 		return dataFim;
 	}
-	public void setDataFim(LocalDate dataFim) {
+
+	public void setDataFim(LocalDateTime dataFim) {
 		this.dataFim = dataFim;
 	}
-    
+
+	public String getSala() {
+		return sala;
+	}
+
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+
 }

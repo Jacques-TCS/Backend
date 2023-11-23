@@ -3,6 +3,8 @@ package com.sistemaRegistroVerificacao.model.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +44,7 @@ public class Usuario {
     @Column(name = "STATUSUSUARIO")
 	private String statusUsuario;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "usuario")
     private List<Afastamento> afastamentos;
 

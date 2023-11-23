@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,39 +19,34 @@ import com.sistemaRegistroVerificacao.service.OcorrenciaService;
 
 @RestController
 @RequestMapping(path = "/api/ocorrencia")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5500"}, maxAge = 3600)
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:5500" }, maxAge = 3600)
 public class OcorrenciaController {
 
-    @Autowired
-    private OcorrenciaService ocorrenciaService;
+	@Autowired
+	private OcorrenciaService ocorrenciaService;
 
-    @PostMapping
-    public Ocorrencia salvar(@RequestBody Ocorrencia novaOcorrencia) throws CampoInvalidoException {
-        return ocorrenciaService.inserir(novaOcorrencia);
-    }
-
-    @PutMapping
-    public boolean atualizar(@RequestBody Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
-        return ocorrenciaService.atualizar(ocorrenciaParaAtualizar) != null;
-    }
-    
-    @GetMapping(path = "/{id}")
-    public Ocorrencia consultarPorId(@PathVariable Integer id){
-        return ocorrenciaService.consultarPorId(id);
-    }
-
-    @GetMapping(path = "/todos")
-    public List<Ocorrencia> listarTodasOcorrencias() {
-        return ocorrenciaService.listarTodas();
-    }
-
-    @PostMapping("/filtro")
-	public List<Ocorrencia> listarComSeletor(@RequestBody OcorrenciaSeletor seletor){
-		return ocorrenciaService.listarComSeletor(seletor);
+	@PostMapping
+	public Ocorrencia salvar(@RequestBody Ocorrencia novaOcorrencia) throws CampoInvalidoException {
+		return ocorrenciaService.inserir(novaOcorrencia);
 	}
 
-    @DeleteMapping(path = "/{id}")
-    public boolean excluir(@PathVariable Integer id) {
-        return ocorrenciaService.excluir(id);
-    }
+	@PutMapping
+	public boolean atualizar(@RequestBody Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
+		return ocorrenciaService.atualizar(ocorrenciaParaAtualizar) != null;
+	}
+
+	@GetMapping(path = "/{id}")
+	public Ocorrencia consultarPorId(@PathVariable Integer id) {
+		return ocorrenciaService.consultarPorId(id);
+	}
+
+	@GetMapping(path = "/todos")
+	public List<Ocorrencia> listarTodasOcorrencias() {
+		return ocorrenciaService.listarTodas();
+	}
+
+	@PostMapping("/filtro")
+	public List<Ocorrencia> listarComSeletor(@RequestBody OcorrenciaSeletor seletor) {
+		return ocorrenciaService.listarComSeletor(seletor);
+	}
 }
