@@ -31,7 +31,7 @@ public class OcorrenciaSpecification {
 			}
 
 			if (seletor.getStatus() != null) {
-				predicates.add((Predicate) cb.equal(cb.lower(root.get("status")), "%" + seletor.getStatus() + "%"));
+				predicates.add((Predicate) cb.equal(root.get("status"), seletor.getStatus()));
 			}
 
 			if (seletor.getDataInicio() != null && seletor.getDataFim() != null) {
