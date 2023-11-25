@@ -47,10 +47,6 @@ public class UsuarioService {
 		return usuarioRepository.findAll(specification);
 	}
 
-	public Usuario excluir(Usuario usuarioParaExcluir) {
-		return usuarioRepository.save(usuarioParaExcluir);
-	}
-
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");

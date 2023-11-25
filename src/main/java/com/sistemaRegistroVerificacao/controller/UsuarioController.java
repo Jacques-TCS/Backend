@@ -49,9 +49,4 @@ public class UsuarioController {
 	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
 	}
-
-	@PutMapping
-	public Usuario excluir(@RequestBody Usuario usuarioParaExcluir) {
-		return usuarioService.excluir(usuarioParaExcluir);
-	}
 }
