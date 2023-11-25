@@ -32,9 +32,4 @@ public class SalaService {
 	public List<Sala> listarTodas() {
 		return salaRepository.findAll();
 	}
-
-	public boolean excluir(Sala salaParaExcluir) {
-		salaRepository.save(salaParaExcluir);
-		return true;
-	}
 }

@@ -43,9 +43,4 @@ public class SalaController {
 	public List<Sala> listarTodasSalas() {
 		return salaService.listarTodas();
 	}
-
-	@PutMapping(path = "/{id}")
-	public boolean excluir(@RequestBody Sala salaParaExcluir) {
-		return salaService.excluir(salaParaExcluir);
-	}
 }
