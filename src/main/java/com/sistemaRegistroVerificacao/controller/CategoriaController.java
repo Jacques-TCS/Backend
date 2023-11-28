@@ -49,10 +49,4 @@ public class CategoriaController {
 	public List<Categoria> listarComSeletor(@RequestBody CategoriaSeletor seletor) {
 		return categoriaService.listarComSeletor(seletor);
 	}
-
-	@DeleteMapping(path = "/{id}")
-	public boolean excluir(@PathVariable Integer id) {
-		return categoriaService.excluir(id);
-	}
-
 }
