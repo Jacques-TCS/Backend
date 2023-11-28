@@ -55,11 +55,6 @@ public class CategoriaService {
 		return categoriaRepository.findAll();
 	}
 
-	public boolean excluir(Integer id) {
-		categoriaRepository.deleteById(id);
-		return true;
-	}
-
 	public List<Categoria> listarComSeletor(CategoriaSeletor seletor) {
 		Specification<Categoria> specification = CategoriaSpecification.comFiltros(seletor);
 		return categoriaRepository.findAll(specification);
