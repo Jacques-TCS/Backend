@@ -47,6 +47,10 @@ public class UsuarioService {
 		return usuarioRepository.findAll(specification);
 	}
 
+	public List<String> listarCargos() {
+		return List.of(Usuario.CARGO_FUNCIONARIO, Usuario.CARGO_RH, Usuario.CARGO_GERENTE);
+	}
+
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");
@@ -94,4 +98,5 @@ public class UsuarioService {
 		}
 		return "";
 	}
+
 }
