@@ -28,8 +28,14 @@ import lombok.NoArgsConstructor;
 public class Usuario {
 
 	public static final String CARGO_GERENTE = "Gerente";
-	public static final String CARGO_FUNCIONARIO = "Funcionário";
+	public static final String CARGO_FAXINA = "Faxina";
 	public static final String CARGO_RH = "Recursos Humanos";
+	public static final String CARGO_ZELADORIA = "Zeladoria";
+	public static final String CARGO_TECNICO = "Técnico";
+
+	public static final String NIVEL_FUNCIONARIO = "Funcionário";
+	public static final String NIVEL_GERENTE = "Gerente";
+	public static final String NIVEL_RH = "Recursos Humanos";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

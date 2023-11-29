@@ -54,4 +54,9 @@ public class UsuarioController {
 	public List<String> listarCargos() {
 		return this.usuarioService.listarCargos();
 	}
+
+	@GetMapping(path = "/niveisAcesso")
+	public List<String> listarNiveis() {
+		return this.usuarioService.listarNiveis();
+	}
 }
