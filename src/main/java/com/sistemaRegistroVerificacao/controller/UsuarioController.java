@@ -49,4 +49,14 @@ public class UsuarioController {
 	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
 	}
+
+	@GetMapping(path = "/cargos")
+	public List<String> listarCargos() {
+		return this.usuarioService.listarCargos();
+	}
+
+	@GetMapping(path = "/niveisAcesso")
+	public List<String> listarNiveis() {
+		return this.usuarioService.listarNiveis();
+	}
 }

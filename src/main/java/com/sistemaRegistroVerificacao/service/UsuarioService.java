@@ -47,6 +47,15 @@ public class UsuarioService {
 		return usuarioRepository.findAll(specification);
 	}
 
+	public List<String> listarCargos() {
+		return List.of(Usuario.CARGO_FAXINA, Usuario.CARGO_ZELADORIA, Usuario.CARGO_TECNICO, Usuario.CARGO_RH,
+				Usuario.CARGO_GERENTE);
+	}
+
+	public List<String> listarNiveis() {
+		return List.of(Usuario.NIVEL_FUNCIONARIO, Usuario.NIVEL_RH, Usuario.NIVEL_GERENTE);
+	}
+
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");
