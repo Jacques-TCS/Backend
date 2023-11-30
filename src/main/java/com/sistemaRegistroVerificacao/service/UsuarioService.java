@@ -56,6 +56,10 @@ public class UsuarioService {
 		return List.of(Usuario.NIVEL_FUNCIONARIO, Usuario.NIVEL_RH, Usuario.NIVEL_GERENTE);
 	}
 
+	public List<String> listarStatus() {
+		return List.of(Usuario.STATUS_ATIVO, Usuario.STATUS_AFASTADO, Usuario.STATUS_INATIVO);
+	}
+
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");
