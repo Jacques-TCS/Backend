@@ -37,6 +37,10 @@ public class Usuario {
 	public static final String NIVEL_GERENTE = "Gerente";
 	public static final String NIVEL_RH = "Recursos Humanos";
 
+	public static final String STATUS_ATIVO = "Ativo";
+	public static final String STATUS_INATIVO = "Inativo";
+	public static final String STATUS_AFASTADO = "Afastado";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

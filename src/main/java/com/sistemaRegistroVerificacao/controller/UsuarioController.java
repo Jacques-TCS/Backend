@@ -59,4 +59,9 @@ public class UsuarioController {
 	public List<String> listarNiveis() {
 		return this.usuarioService.listarNiveis();
 	}
+
+	@GetMapping(path = "/status")
+	public List<String> listarStatus() {
+		return this.usuarioService.listarStatus();
+	}
 }
