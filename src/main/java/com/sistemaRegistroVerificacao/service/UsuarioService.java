@@ -89,9 +89,6 @@ public class UsuarioService {
 		int anoNascimento = dataNascimento.getYear();
 		int anoAtual = LocalDateTime.now().getYear();
 
-		if (dataNascimento == null) {
-			return "Informe uma data \n";
-		}
 		if (anoAtual - anoNascimento < 18) {
 			return "Temos uma politica de idade mínima de 18 anos";
 		}
