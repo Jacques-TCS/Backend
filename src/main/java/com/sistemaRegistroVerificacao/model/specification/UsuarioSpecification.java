@@ -13,7 +13,7 @@ import jakarta.persistence.criteria.Predicate;
 public class UsuarioSpecification {
 
 	public static Specification<Usuario> comFiltros(UsuarioSeletor seletor) {
-		return (root, query_, cb) -> {
+		return (root, query, cb) -> {
 			List<Predicate> predicates = new ArrayList<>();
 
 			if (seletor.getNome() != null) {

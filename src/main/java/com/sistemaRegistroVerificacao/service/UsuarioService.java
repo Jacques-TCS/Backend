@@ -33,7 +33,7 @@ public class UsuarioService {
 	}
 
 	public Usuario atualizar(Usuario usuarioParaAtualizar) throws CampoInvalidoException {
-		//tirarMascaras(usuarioParaAtualizar);
+		// tirarMascaras(usuarioParaAtualizar);
 		validarCamposObrigatorios(usuarioParaAtualizar);
 		return usuarioRepository.save(usuarioParaAtualizar);
 	}
@@ -47,15 +47,22 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
-	public Page<Usuario> listarComSeletor(UsuarioSeletor seletor) {
+	// public Page<Usuario> listarComSeletor(UsuarioSeletor seletor) {
+	// Specification<Usuario> specification =
+	// UsuarioSpecification.comFiltros(seletor);
+
+	// if (seletor.temPaginacao()) {
+	// Pageable paginacao = PageRequest.of(seletor.getPagina(),
+	// seletor.getLimite());
+	// return (Page<Usuario>) usuarioRepository.findAll(specification, paginacao);
+	// }
+
+	// return (Page<Usuario>) usuarioRepository.findAll(specification);
+	// }
+
+	public List<Usuario> listarComSeletor(UsuarioSeletor seletor) {
 		Specification<Usuario> specification = UsuarioSpecification.comFiltros(seletor);
-
-		if (seletor.temPaginacao()) {
-			Pageable paginacao = PageRequest.of(seletor.getPagina(), seletor.getLimite());
-			return (Page<Usuario>) usuarioRepository.findAll(specification, paginacao);
-		}
-
-		return (Page<Usuario>) usuarioRepository.findAll(specification);
+		return usuarioRepository.findAll(specification);
 	}
 
 	public List<String> listarCargos() {
