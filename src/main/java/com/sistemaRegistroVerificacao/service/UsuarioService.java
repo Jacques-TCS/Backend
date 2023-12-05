@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,9 +47,15 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
-	public List<Usuario> listarComSeletor(UsuarioSeletor seletor) {
+	public Page<Usuario> listarComSeletor(UsuarioSeletor seletor) {
 		Specification<Usuario> specification = UsuarioSpecification.comFiltros(seletor);
-		return usuarioRepository.findAll(specification);
+
+		if (seletor.temPaginacao()) {
+			Pageable paginacao = PageRequest.of(seletor.getPagina(), seletor.getLimite());
+			return (Page<Usuario>) usuarioRepository.findAll(specification, paginacao);
+		}
+
+		return (Page<Usuario>) usuarioRepository.findAll(specification);
 	}
 
 	public List<String> listarCargos() {
