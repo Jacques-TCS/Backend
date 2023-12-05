@@ -30,7 +30,7 @@ public class UsuarioService {
 	}
 
 	public Usuario atualizar(Usuario usuarioParaAtualizar) throws CampoInvalidoException {
-		//StirarMascaras(usuarioParaAtualizar);
+		//tirarMascaras(usuarioParaAtualizar);
 		validarCamposObrigatorios(usuarioParaAtualizar);
 		return usuarioRepository.save(usuarioParaAtualizar);
 	}
