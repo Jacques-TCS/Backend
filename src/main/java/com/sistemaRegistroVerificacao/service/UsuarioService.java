@@ -24,11 +24,13 @@ public class UsuarioService {
 	public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
 		novoUsuario.setStatusUsuario("Ativo");
 		novoUsuario.setDataContratacao(LocalDate.now());
+		// tirarMascaras(novoUsuario);
 		validarCamposObrigatorios(novoUsuario);
 		return usuarioRepository.save(novoUsuario);
 	}
 
 	public Usuario atualizar(Usuario usuarioParaAtualizar) throws CampoInvalidoException {
+		//StirarMascaras(usuarioParaAtualizar);
 		validarCamposObrigatorios(usuarioParaAtualizar);
 		return usuarioRepository.save(usuarioParaAtualizar);
 	}
@@ -60,13 +62,24 @@ public class UsuarioService {
 		return List.of(Usuario.STATUS_ATIVO, Usuario.STATUS_AFASTADO, Usuario.STATUS_INATIVO);
 	}
 
+//	private void tirarMascaras(Usuario usuario) {
+//		System.out.println("CPF Original: " + usuario.getCpf());
+//		String cpfSemMascara = usuario.getCpf().replaceAll("\\.", "").replace("-", "");
+//		usuario.setCpf(cpfSemMascara);
+//		System.out.println("CPF Sem Máscara: " + cpfSemMascara);
+//
+//		String telefoneSemMascara = usuario.getTelefone().replace("(", "").replace(")", "").replace(" ", "");
+//		
+//		usuario.setTelefone(telefoneSemMascara);
+//		String ctpsSemMascara = usuario.getCtps().replace("\\/", "");
+//		usuario.setCtps(ctpsSemMascara);
+//	}
+
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");
 		mensagemValidacao += validarCampoString(usuario.getCpf(), "cpf");
 		mensagemValidacao += validarCampoString(usuario.getTelefone(), "telefone");
-		// Olhar em funcionarioController do projeto do semestre passado para saber
-		// sobre a validação de Data
 		mensagemValidacao += validarCampoData(usuario.getDataNascimento(), "data de nascimento");
 		mensagemValidacao += validarCampoString(usuario.getCtps(), "ctps");
 
