@@ -44,7 +44,11 @@ public class ServicoPrestadoSpecification {
 			}
 
 			if (seletor.getCargo() != null) {
-				predicates.add(cb.like(root.join("cargo").get("label"), "%" + seletor.getCargo() + "%"));
+				predicates.add(cb.like(root.get("cargo"), "%" + seletor.getCargo() + "%"));
+			}
+
+			if (seletor.getAtividade() != null) {
+				predicates.add(cb.like(root.join("atividades").get("descricao"), "%" + seletor.getAtividade() + "%"));
 			}
 
 			if (seletor.getUsuario() != null) {

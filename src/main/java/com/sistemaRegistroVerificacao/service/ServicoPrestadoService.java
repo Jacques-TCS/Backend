@@ -23,7 +23,7 @@ public class ServicoPrestadoService {
 	private ServicoPrestadoRepository servicoPrestadoRepository;
 
 	public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) throws CampoInvalidoException {
-		novoServicoPrestado.setDataHoraInicio(LocalDateTime.now());
+		novoServicoPrestado.setDataHoraFim(LocalDateTime.now());
 		validarCamposObrigatorios(novoServicoPrestado);
 		return servicoPrestadoRepository.save(novoServicoPrestado);
 	}
@@ -32,6 +32,7 @@ public class ServicoPrestadoService {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoData(servicoPrestado.getDataHoraInicio(), "data e hora inicio",
 				servicoPrestado.getDataHoraFim(), "data e hora fim");
+				//TODO ajuste de validação
 		mensagemValidacao += validarCampoList(servicoPrestado.getAtividades(), "atividades");
 
 		if (!mensagemValidacao.isEmpty()) {
