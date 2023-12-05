@@ -1,22 +1,21 @@
 package com.sistemaRegistroVerificacao.model.specification;
 
-import jakarta.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import com.sistemaRegistroVerificacao.model.entity.Usuario;
 import com.sistemaRegistroVerificacao.model.seletor.UsuarioSeletor;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.criteria.Predicate;
 
 public class UsuarioSpecification {
 
 	public static Specification<Usuario> comFiltros(UsuarioSeletor seletor) {
-		return (root, query, cb) -> {
+		return (root, query_, cb) -> {
 			List<Predicate> predicates = new ArrayList<>();
 
-			// WHERE/AND COLUNA OPERADOR VALOR
-			// WHERE nome like %Juliana%
 			if (seletor.getNome() != null) {
 				predicates.add(
 						(Predicate) cb.like(cb.lower(root.get("nome")), "%" + seletor.getNome().toLowerCase() + "%"));

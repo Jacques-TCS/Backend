@@ -3,6 +3,7 @@ package com.sistemaRegistroVerificacao.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +47,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/filtro")
-	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
+	public Page<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
 	}
 
