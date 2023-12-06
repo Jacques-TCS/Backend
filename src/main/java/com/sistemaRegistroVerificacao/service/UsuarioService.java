@@ -65,8 +65,6 @@ public class UsuarioService {
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");
 		mensagemValidacao += validarCampoString(usuario.getCpf(), "cpf");
 		mensagemValidacao += validarCampoString(usuario.getTelefone(), "telefone");
-		// Olhar em funcionarioController do projeto do semestre passado para saber
-		// sobre a validação de Data
 		mensagemValidacao += validarCampoData(usuario.getDataNascimento(), "data de nascimento");
 		mensagemValidacao += validarCampoString(usuario.getCtps(), "ctps");
 
@@ -104,4 +102,12 @@ public class UsuarioService {
 		}
 		return "";
 	}
+
+//	private String validarLogin(String loginCampo, String senhaCampo) {
+//		if (loginCampo == null || senhaCampo.trim().isEmpty()) {
+//			return "Informe o " + loginCampo + " e/ou a " + senhaCampo + " \n";
+//		}
+//		return "";
+//	}
+
 }

@@ -3,6 +3,12 @@ package com.sistemaRegistroVerificacao.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +30,12 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+
+	@Autowired
+	private TokenService tokenService;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	@PostMapping
 	public Usuario salvar(@RequestBody Usuario novoUsuario) throws CampoInvalidoException {
@@ -63,5 +75,18 @@ public class UsuarioController {
 	@GetMapping(path = "/status")
 	public List<String> listarStatus() {
 		return this.usuarioService.listarStatus();
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+		try {
+			var senha = new UsernamePasswordAuthenticationToken(usuario.getMatricula(), usuario.getSenha());
+			// Usuario usuario = new Usuario(AutenticacaoDTO.login(), AutenticacaoDTO.senha());
+			var authenticate = this.authenticationManager.authenticate(senha);
+			var token = tokenService.generateToken((Usuario) authenticate.getPrincipal());
+			return ResponseEntity.ok(token);
+		} catch (AuthenticationException e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha inválida " + e.getMessage());
+		}
 	}
 }
