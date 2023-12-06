@@ -2,6 +2,7 @@ package com.sistemaRegistroVerificacao.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,15 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
-		novoUsuario.setStatusUsuario("Ativo");
-		novoUsuario.setDataContratacao(LocalDate.now());
+		novoUsuario.setStatusUsuario(Usuario.STATUS_ATIVO);
+		novoUsuario.setDataContratacao(ZonedDateTime.now());
+		// tirarMascaras(novoUsuario);
 		validarCamposObrigatorios(novoUsuario);
 		return usuarioRepository.save(novoUsuario);
 	}
 
 	public Usuario atualizar(Usuario usuarioParaAtualizar) throws CampoInvalidoException {
+		// tirarMascaras(usuarioParaAtualizar);
 		validarCamposObrigatorios(usuarioParaAtualizar);
 		return usuarioRepository.save(usuarioParaAtualizar);
 	}
@@ -41,6 +44,19 @@ public class UsuarioService {
 	public List<Usuario> listarTodos() {
 		return usuarioRepository.findAll();
 	}
+
+	// public Page<Usuario> listarComSeletor(UsuarioSeletor seletor) {
+	// Specification<Usuario> specification =
+	// UsuarioSpecification.comFiltros(seletor);
+
+	// if (seletor.temPaginacao()) {
+	// Pageable paginacao = PageRequest.of(seletor.getPagina(),
+	// seletor.getLimite());
+	// return (Page<Usuario>) usuarioRepository.findAll(specification, paginacao);
+	// }
+
+	// return (Page<Usuario>) usuarioRepository.findAll(specification);
+	// }
 
 	public List<Usuario> listarComSeletor(UsuarioSeletor seletor) {
 		Specification<Usuario> specification = UsuarioSpecification.comFiltros(seletor);
@@ -60,13 +76,24 @@ public class UsuarioService {
 		return List.of(Usuario.STATUS_ATIVO, Usuario.STATUS_AFASTADO, Usuario.STATUS_INATIVO);
 	}
 
+//	private void tirarMascaras(Usuario usuario) {
+//		System.out.println("CPF Original: " + usuario.getCpf());
+//		String cpfSemMascara = usuario.getCpf().replaceAll("\\.", "").replace("-", "");
+//		usuario.setCpf(cpfSemMascara);
+//		System.out.println("CPF Sem Máscara: " + cpfSemMascara);
+//
+//		String telefoneSemMascara = usuario.getTelefone().replace("(", "").replace(")", "").replace(" ", "");
+//		
+//		usuario.setTelefone(telefoneSemMascara);
+//		String ctpsSemMascara = usuario.getCtps().replace("\\/", "");
+//		usuario.setCtps(ctpsSemMascara);
+//	}
+
 	private void validarCamposObrigatorios(Usuario usuario) throws CampoInvalidoException {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoNome(usuario.getNome(), "nome");
 		mensagemValidacao += validarCampoString(usuario.getCpf(), "cpf");
 		mensagemValidacao += validarCampoString(usuario.getTelefone(), "telefone");
-		// Olhar em funcionarioController do projeto do semestre passado para saber
-		// sobre a validação de Data
 		mensagemValidacao += validarCampoData(usuario.getDataNascimento(), "data de nascimento");
 		mensagemValidacao += validarCampoString(usuario.getCtps(), "ctps");
 

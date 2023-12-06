@@ -46,6 +46,9 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/filtro")
+	// public Page<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
+	// return usuarioService.listarComSeletor(seletor);
+	// }
 	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
 	}

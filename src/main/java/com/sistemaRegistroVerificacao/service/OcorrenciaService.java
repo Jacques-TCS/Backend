@@ -17,7 +17,6 @@ import com.sistemaRegistroVerificacao.model.entity.Categoria;
 import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
 import com.sistemaRegistroVerificacao.model.entity.ServicoPrestado;
 import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
-import com.sistemaRegistroVerificacao.model.specification.CategoriaSpecification;
 import com.sistemaRegistroVerificacao.model.specification.OcorrenciaSpecification;
 
 @Service

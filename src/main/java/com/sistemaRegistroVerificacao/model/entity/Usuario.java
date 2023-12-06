@@ -1,9 +1,10 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
-
-import org.apache.tomcat.util.bcel.Const;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -67,10 +68,10 @@ public class Usuario {
 	private List<Afastamento> afastamentos;
 
 	@Column(name = "DATADESLIGAMENTO")
-	private LocalDate dataDesligamento;
+	private LocalDateTime dataDesligamento;
 
 	@Column(name = "DATACONTRATACAO")
-	private LocalDate dataContratacao;
+	private LocalDateTime dataContratacao;
 
 	public Integer getId() {
 		return id;
@@ -168,19 +169,21 @@ public class Usuario {
 	// this.ultimoAfastamento = ultimoAfastamento;
 	// }
 
-	public LocalDate getDataDesligamento() {
-		return dataDesligamento;
+	public ZonedDateTime getDataDesligamento() {
+		ZoneId zoneId = ZoneId.of("America/Sao_Paulo");
+		return dataDesligamento.atZone(zoneId);
 	}
 
-	public void setDataDesligamento(LocalDate dataDesligamento) {
-		this.dataDesligamento = dataDesligamento;
+	public void setDataDesligamento(ZonedDateTime dataDesligamento) {
+		this.dataDesligamento = dataDesligamento.toLocalDateTime();
 	}
 
-	public LocalDate getDataContratacao() {
-		return dataContratacao;
+	public ZonedDateTime getDataContratacao() {
+		ZoneId zoneId = ZoneId.of("America/Sao_Paulo");
+		return dataContratacao.atZone(zoneId);
 	}
 
-	public void setDataContratacao(LocalDate dataContratacao) {
-		this.dataContratacao = dataContratacao;
+	public void setDataContratacao(ZonedDateTime dataContratacao) {
+		this.dataContratacao = dataContratacao.toLocalDateTime();
 	}
 }
