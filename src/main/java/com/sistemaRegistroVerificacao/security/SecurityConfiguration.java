@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/usuario/salvar").hasRole(Usuario.NIVEL_RH)
                         .requestMatchers(HttpMethod.POST, "/usuario/salvar").hasRole(Usuario.NIVEL_FUNCIONARIO)
                         .requestMatchers(HttpMethod.POST, "/ocorrencia/todos").hasRole(Usuario.NIVEL_RH)
-                        .requestMatchers(HttpMethod.POST, "/ocorrencia/todos").hasRole(Usuario.NIVEL_FUNCIONARIO)
+                        //.requestMatchers(HttpMethod.POST, "/ocorrencia/todos").hasRole(Usuario.NIVEL_FUNCIONARIO)
                         //voltar aqui e ver como se faz isso direito pq não entendi
                         .anyRequest().authenticated()
                 )
