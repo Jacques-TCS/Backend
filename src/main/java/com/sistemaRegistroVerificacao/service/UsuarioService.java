@@ -2,12 +2,10 @@ package com.sistemaRegistroVerificacao.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +23,8 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
-		novoUsuario.setStatusUsuario("Ativo");
-		novoUsuario.setDataContratacao(LocalDate.now());
+		novoUsuario.setStatusUsuario(Usuario.STATUS_ATIVO);
+		novoUsuario.setDataContratacao(ZonedDateTime.now());
 		// tirarMascaras(novoUsuario);
 		validarCamposObrigatorios(novoUsuario);
 		return usuarioRepository.save(novoUsuario);

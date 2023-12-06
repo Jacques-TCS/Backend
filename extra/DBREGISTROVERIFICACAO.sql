@@ -9,10 +9,10 @@ CREATE TABLE usuario
 (
     ID            INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     NOME          VARCHAR(255),
-    CPF           VARCHAR(11),
-    TELEFONE      VARCHAR(11),
+    CPF           VARCHAR(14),
+    TELEFONE      VARCHAR(15),
     DATANASCIMENTO  DATE,
-    CTPS          VARCHAR(11) UNIQUE,
+    CTPS          VARCHAR(12) UNIQUE,
     NIVELACESSO VARCHAR(255),
     CARGO VARCHAR(255),
 	MATRICULA 	  NUMERIC(6) UNIQUE,
@@ -98,6 +98,72 @@ VALUES (102, TRUE);
 INSERT INTO sala (numero, disponivel)
 VALUES (103, TRUE);
 INSERT INTO sala (numero, disponivel)
-VALUES (201, TRUE);
+VALUES (104, TRUE);
 INSERT INTO sala (numero, disponivel)
-VALUES (202, TRUE);
+VALUES (105, TRUE);
+INSERT INTO sala (numero, disponivel)
+VALUES (106, TRUE);
+INSERT INTO sala (numero, disponivel)
+VALUES (107, TRUE);
+INSERT INTO sala (numero, disponivel)
+VALUES (108, TRUE);
+INSERT INTO sala (numero, disponivel)
+VALUES (109, TRUE);
+INSERT INTO sala (numero, disponivel)
+VALUES (110, TRUE);
+
+/*CATEGORIAS*/
+INSERT INTO categoria (nome, ativo)
+VALUES ('Avaria', TRUE);
+INSERT INTO categoria (nome, ativo)
+VALUES ('Furto', TRUE);
+INSERT INTO categoria (nome, ativo)
+VALUES ('Problema Técnico', TRUE);
+INSERT INTO categoria (nome, ativo)
+VALUES ('Vandalismo', TRUE);
+
+/*ATIVIDADES*/
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Limpeza rotineira', 'Faxina');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Limpeza pesada Chão', 'Faxina');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Limpeza pesada Janelas', 'Faxina');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Limpeza pesada Paredes', 'Faxina');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Limpeza pesada Forro', 'Faxina');
+
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Elétrica', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Hidráulica', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Ar Condicionado', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Porta/Janela', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Lâmpadas', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Pragas', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Mobília', 'Zeladoria');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Telefonia', 'Zeladoria');
+
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Elétrica', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Hidráulica', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Ar Condicionado', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Porta/Janela', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Lâmpadas', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Pragas', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Mobília', 'Técnico');
+INSERT INTO atividade (descricao, cargo)
+VALUES ('Manutenção Telefonia', 'Técnico');
