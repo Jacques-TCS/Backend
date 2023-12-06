@@ -1,6 +1,6 @@
 package com.sistemaRegistroVerificacao.service;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +23,7 @@ public class ServicoPrestadoService {
 	private ServicoPrestadoRepository servicoPrestadoRepository;
 
 	public ServicoPrestado inserir(ServicoPrestado novoServicoPrestado) throws CampoInvalidoException {
-		novoServicoPrestado.setDataHoraInicio(LocalDateTime.now());
+		novoServicoPrestado.setDataHoraFim(ZonedDateTime.now());
 		validarCamposObrigatorios(novoServicoPrestado);
 		return servicoPrestadoRepository.save(novoServicoPrestado);
 	}
@@ -32,6 +32,7 @@ public class ServicoPrestadoService {
 		String mensagemValidacao = "";
 		mensagemValidacao += validarCampoData(servicoPrestado.getDataHoraInicio(), "data e hora inicio",
 				servicoPrestado.getDataHoraFim(), "data e hora fim");
+				//TODO ajuste de validação
 		mensagemValidacao += validarCampoList(servicoPrestado.getAtividades(), "atividades");
 
 		if (!mensagemValidacao.isEmpty()) {
@@ -39,9 +40,9 @@ public class ServicoPrestadoService {
 		}
 	}
 
-	private String validarCampoData(LocalDateTime dataHoraInicio, String nomeCampo, LocalDateTime dataHoraFim,
+	private String validarCampoData(ZonedDateTime dataHoraInicio, String nomeCampo, ZonedDateTime dataHoraFim,
 			String nomeCampoFim) {
-		LocalDateTime dataHoraAtual = LocalDateTime.now();
+		ZonedDateTime dataHoraAtual = ZonedDateTime.now();
 		int diaAtual = dataHoraAtual.getDayOfMonth();
 		int diaInicio = dataHoraInicio.getDayOfMonth();
 		int diaFim = dataHoraFim.getDayOfMonth();

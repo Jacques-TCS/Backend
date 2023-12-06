@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class Ocorrencia {
 	private LocalDateTime dataOcorrencia;
 	
 	@JsonBackReference
-	@OneToOne(mappedBy = "ocorrencia")
+	@OneToOne(mappedBy = "ocorrencia", cascade = CascadeType.PERSIST)
 	private ServicoPrestado servicoPrestado;
 
 	public Integer getId() {

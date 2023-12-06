@@ -1,8 +1,11 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,7 +50,7 @@ public class ServicoPrestado {
 	@JoinTable(name = "ATIVIDADE_SERVICOPRESTADO", joinColumns = @JoinColumn(name = "IDSERVICOPRESTADO"), inverseJoinColumns = @JoinColumn(name = "IDATIVIDADE"))
 	Set<Atividade> atividades;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "IDOCORRENCIA")
 	private Ocorrencia ocorrencia;
 
@@ -75,20 +78,22 @@ public class ServicoPrestado {
 		this.usuario = usuario;
 	}
 
-	public LocalDateTime getDataHoraInicio() {
-		return dataHoraInicio;
+	public ZonedDateTime getDataHoraInicio() {
+		ZoneId zoneId = ZoneId.of("America/Sao_Paulo");
+		return dataHoraInicio.atZone(zoneId);
 	}
 
-	public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
-		this.dataHoraInicio = dataHoraInicio;
+	public void setDataHoraInicio(ZonedDateTime dataHoraInicio) {
+		this.dataHoraInicio = dataHoraInicio.toLocalDateTime();
 	}
 
-	public LocalDateTime getDataHoraFim() {
-		return dataHoraFim;
+	public ZonedDateTime getDataHoraFim() {
+		ZoneId zoneId = ZoneId.of("America/Sao_Paulo");
+		return dataHoraFim.atZone(zoneId);
 	}
 
-	public void setDataHoraFim(LocalDateTime dataHoraFim) {
-		this.dataHoraFim = dataHoraFim;
+	public void setDataHoraFim(ZonedDateTime dataHoraFim) {
+		this.dataHoraFim = dataHoraFim.toLocalDateTime();
 	}
 
 	public Set<Atividade> getAtividades() {

@@ -16,22 +16,22 @@ public class OcorrenciaSpecification {
 			List<Predicate> predicates = new ArrayList<>();
 
 			if (seletor.getDescricao() != null && !seletor.getDescricao().isEmpty()) {
-				predicates.add((Predicate) cb.like(cb.lower(root.get("descricao")),
+				predicates.add(cb.like(cb.lower(root.get("descricao")),
 						"%" + seletor.getDescricao().toLowerCase() + "%"));
 			}
 
 			if (seletor.getSala() != null && !seletor.getSala().isEmpty()) {
-				predicates.add((Predicate) cb.like(cb.lower(root.join("servicoPrestado").get("sala").get("numero")),
+				predicates.add(cb.like(cb.lower(root.join("servicoPrestado").get("sala").get("numero")),
 						"%" + seletor.getSala().toLowerCase() + "%"));
 			}
 
 			if (seletor.getCategoria() != null) {
-				predicates.add((Predicate) cb.like(cb.lower(root.join("categoria").get("nome")),
+				predicates.add(cb.like(cb.lower(root.join("categoria").get("nome")),
 						"%" + seletor.getCategoria().toLowerCase() + "%"));
 			}
 
 			if (seletor.getStatus() != null) {
-				predicates.add((Predicate) cb.equal(root.get("status"), seletor.getStatus()));
+				predicates.add(cb.equal(root.get("status"), seletor.getStatus()));
 			}
 
 			if (seletor.getDataInicio() != null && seletor.getDataFim() != null) {
