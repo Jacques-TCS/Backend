@@ -23,20 +23,21 @@ public class UsuarioSpecification {
 			}
 
 			if (seletor.getDataDesligamentoInicio() != null && seletor.getDataDesligamentoFim() != null) {
-				predicates.add(cb.between(root.get("menorDataHoraInicio"), seletor.getDataDesligamentoInicio(),
-						seletor.getDataDesligamentoFim()));
-			} else if (seletor.getDataDesligamentoInicio() != null) {
-				predicates.add(
-						cb.greaterThanOrEqualTo(root.get("menorDataHoraInicio"), seletor.getDataDesligamentoInicio()));
-			} else if (seletor.getDataDesligamentoFim() != null) {
-				predicates.add(cb.lessThanOrEqualTo(root.get("menorDataHoraFim"), seletor.getDataDesligamentoFim()));
-			}
-			if (seletor.getCargo() != null) {
-				predicates.add(cb.like(root.get("cargo"), "%" + seletor.getCargo() + "%"));
+                predicates.add(cb.between(root.get("dataDesligamento"), seletor.getDataDesligamentoInicio(),
+                        seletor.getDataDesligamentoFim()));
+            } else if (seletor.getDataDesligamentoInicio() != null) {
+                predicates.add(
+                        cb.greaterThanOrEqualTo(root.get("dataDesligamento"), seletor.getDataDesligamentoInicio()));
+            } else if (seletor.getDataDesligamentoFim() != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("dataDesligamento"), seletor.getDataDesligamentoFim()));
+            }
+
+			if (seletor.getStatusUsuario() != null && seletor.getStatusUsuario() != "") {
+				predicates.add(cb.equal(root.get("statusUsuario"), seletor.getStatusUsuario()));
 			}
 
-			if (seletor.getStatusUsuario() != null) {
-				predicates.add(cb.like(root.get("statusUsuario"), "%" + seletor.getStatusUsuario() + "%"));
+			if (seletor.getCargo() != null && seletor.getCargo() != "") {
+				predicates.add(cb.like(root.get("cargo"), "%" + seletor.getCargo() + "%"));
 			}
 
 			return cb.and(predicates.toArray(new Predicate[0]));

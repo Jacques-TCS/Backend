@@ -1,7 +1,7 @@
 package com.sistemaRegistroVerificacao.service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class UsuarioService {
 
 	public Usuario inserir(Usuario novoUsuario) throws CampoInvalidoException {
 		novoUsuario.setStatusUsuario("Ativo");
-		novoUsuario.setDataContratacao(LocalDate.now());
+		novoUsuario.setDataContratacao(ZonedDateTime.now());
 		validarCamposObrigatorios(novoUsuario);
 		return usuarioRepository.save(novoUsuario);
 	}
@@ -87,7 +87,7 @@ public class UsuarioService {
 
 	private String validarCampoData(LocalDate dataNascimento, String nomeCampo) {
 		int anoNascimento = dataNascimento.getYear();
-		int anoAtual = LocalDateTime.now().getYear();
+		int anoAtual = ZonedDateTime.now().getYear();
 
 		if (anoAtual - anoNascimento < 18) {
 			return "Temos uma politica de idade mínima de 18 anos";

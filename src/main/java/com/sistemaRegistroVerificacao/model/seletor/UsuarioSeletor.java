@@ -1,14 +1,14 @@
 package com.sistemaRegistroVerificacao.model.seletor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class UsuarioSeletor extends BaseSeletor {
 
 	private String nome;
 	private String cargo;
 	private String statusUsuario;
-	private LocalDate dataDesligamentoInicio;
-	private LocalDate dataDesligamentoFim;
+	private LocalDateTime dataDesligamentoInicio;
+	private LocalDateTime dataDesligamentoFim;
 
 	public String getNome() {
 		return nome;
@@ -34,19 +34,19 @@ public class UsuarioSeletor extends BaseSeletor {
 		this.cargo = cargo;
 	}
 
-	public LocalDate getDataDesligamentoInicio() {
+	public LocalDateTime getDataDesligamentoInicio() {
 		return dataDesligamentoInicio;
 	}
 
-	public void setDataDesligamentoInicio(LocalDate dataDesligamentoInicio) {
+	public void setDataDesligamentoInicio(LocalDateTime dataDesligamentoInicio) {
 		this.dataDesligamentoInicio = dataDesligamentoInicio;
 	}
 
-	public LocalDate getDataDesligamentoFim() {
+	public LocalDateTime getDataDesligamentoFim() {
 		return dataDesligamentoFim;
 	}
 
-	public void setDataDesligamentoFim(LocalDate dataDesligamentoFim) {
+	public void setDataDesligamentoFim(LocalDateTime dataDesligamentoFim) {
 		this.dataDesligamentoFim = dataDesligamentoFim;
 	}
 

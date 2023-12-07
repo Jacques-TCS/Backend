@@ -19,25 +19,25 @@ public class ServicoPrestadoSpecification {
 				predicates.add(cb.like(root.join("sala").get("numero"), "%" + seletor.getSala() + "%"));
 			}
 
-			if (seletor.getMenorDataHoraInicio() != null && seletor.getMenorDataHoraFim() != null) {
-				predicates.add(cb.between(root.get("menorDataHoraInicio"), seletor.getMenorDataHoraInicio(),
-						seletor.getMenorDataHoraFim()));
-			} else if (seletor.getMenorDataHoraInicio() != null) {
-				predicates.add(
-						cb.greaterThanOrEqualTo(root.get("menorDataHoraInicio"), seletor.getMenorDataHoraInicio()));
+			if (seletor.getMenorDataHoraFim() != null && seletor.getMaiorDataHoraFim() != null) {
+				predicates.add(cb.between(root.get("dataHoraFim"), seletor.getMenorDataHoraFim(),
+						seletor.getMaiorDataHoraFim()));
 			} else if (seletor.getMenorDataHoraFim() != null) {
-				predicates.add(cb.lessThanOrEqualTo(root.get("menorDataHoraFim"), seletor.getMenorDataHoraFim()));
+				predicates.add(
+						cb.greaterThanOrEqualTo(root.get("dataHoraFim"), seletor.getMenorDataHoraFim()));
+			} else if (seletor.getMaiorDataHoraFim() != null) {
+				predicates.add(cb.lessThanOrEqualTo(root.get("dataHoraFim"), seletor.getMaiorDataHoraFim()));
 			}
 
-			if (seletor.getMaiorDataHoraInicio() != null && seletor.getMaiorDataHoraFim() != null) {
-				predicates.add(cb.between(root.get("maiorDataHoraInicio"), seletor.getMaiorDataHoraInicio(),
-						seletor.getMaiorDataHoraFim()));
-			} else if (seletor.getMaiorDataHoraInicio() != null) {
-				predicates.add(
-						cb.greaterThanOrEqualTo(root.get("maiorDataHoraInicio"), seletor.getMaiorDataHoraInicio()));
-			} else if (seletor.getMaiorDataHoraFim() != null) {
-				predicates.add(cb.lessThanOrEqualTo(root.get("maiorDataHoraFim"), seletor.getMaiorDataHoraFim()));
-			}
+			// if (seletor.getMaiorDataHoraInicio() != null && seletor.getMaiorDataHoraFim() != null) {
+			// 	predicates.add(cb.between(root.get("maiorDataHoraInicio"), seletor.getMaiorDataHoraInicio(),
+			// 			seletor.getMaiorDataHoraFim()));
+			// } else if (seletor.getMaiorDataHoraInicio() != null) {
+			// 	predicates.add(
+			// 			cb.greaterThanOrEqualTo(root.get("maiorDataHoraInicio"), seletor.getMaiorDataHoraInicio()));
+			// } else if (seletor.getMaiorDataHoraFim() != null) {
+			// 	predicates.add(cb.lessThanOrEqualTo(root.get("maiorDataHoraFim"), seletor.getMaiorDataHoraFim()));
+			// }
 
 			if (seletor.getIdTipoOcorrencia() != null) {
 				predicates.add(cb.equal(root.join("ocorrencias").get("id"), seletor.getIdTipoOcorrencia()));

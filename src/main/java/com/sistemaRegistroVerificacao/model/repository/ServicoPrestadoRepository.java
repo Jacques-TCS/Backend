@@ -7,8 +7,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import com.sistemaRegistroVerificacao.model.entity.Atividade;
 import com.sistemaRegistroVerificacao.model.entity.Sala;
 import com.sistemaRegistroVerificacao.model.entity.ServicoPrestado;
+import java.time.ZonedDateTime;
+
 
 public interface ServicoPrestadoRepository extends JpaRepository<ServicoPrestado, Integer>, JpaSpecificationExecutor<ServicoPrestado> {
     List<ServicoPrestado> findByAtividades(Atividade atividade);
     List<ServicoPrestado> findBySala(Sala sala);
+    List<ServicoPrestado> findByDataHoraFim(ZonedDateTime dataHoraFim);
 }
