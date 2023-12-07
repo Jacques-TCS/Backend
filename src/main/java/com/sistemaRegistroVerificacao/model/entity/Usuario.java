@@ -171,7 +171,11 @@ public class Usuario {
 	}
 
 	public void setDataDesligamento(ZonedDateTime dataDesligamento) {
-		this.dataDesligamento = dataDesligamento.toLocalDateTime();
+		if (dataDesligamento != null) {
+			this.dataDesligamento = dataDesligamento.toLocalDateTime();
+		} else {
+			this.dataDesligamento = null;  // Or set it to some default value, depending on your requirements.
+		}
 	}
 
 	public ZonedDateTime getDataContratacao() {
