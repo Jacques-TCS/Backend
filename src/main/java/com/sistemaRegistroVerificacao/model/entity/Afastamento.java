@@ -10,78 +10,38 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "afastamento")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
-@Entity
-@Table(name = "AFASTAMENTO")
 public class Afastamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column()
+    @NotNull(message = "É necessário informar a natureza do afastamento")
 	private String natureza;
 
 	@ManyToOne
-    @JoinColumn(name = "IDUSUARIO")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
 
-	@Column(name = "DATAINICIO")
+
+	@Column(name = "data_inicio")
+    @NotNull(message = "É necessário informar a data de início de afastamento")
 	private LocalDate dataInicio;
 
-	@Column(name = "DATAFIM")
+	@Column(name = "data_fim")
+    @NotNull(message = "É necessário informar a data de fim de afastamento")
 	private LocalDate dataFim;
+
+	@Column()
 	private String descricao;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNatureza() {
-		return natureza;
-	}
-
-	public void setNatureza(String natureza) {
-		this.natureza = natureza;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public LocalDate getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(LocalDate dataFim) {
-		this.dataFim = dataFim;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 }
