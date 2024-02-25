@@ -55,7 +55,7 @@ public class OcorrenciaService {
 
 		mensagemValidacao += validarCampoString(ocorrencia.getDescricao(), "descricao");
 		mensagemValidacao += validarCampoList(ocorrencia.getCategorias(), "categoria");
-		mensagemValidacao += validarCampoBoolean(ocorrencia.isStatus(), "status");
+		mensagemValidacao += validarCampoBoolean(ocorrencia.getStatus(), "status");
 		mensagemValidacao += validarCampoData(ocorrencia.getDataOcorrencia(), "dataOcorrencia");
 
 		if (!mensagemValidacao.isEmpty()) {

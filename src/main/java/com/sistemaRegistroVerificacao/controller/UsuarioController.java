@@ -50,10 +50,10 @@ public class UsuarioController {
 		return usuarioService.listarComSeletor(seletor);
 	}
 
-	@GetMapping(path = "/cargos")
-	public List<String> listarCargos() {
-		return this.usuarioService.listarCargos();
-	}
+	// @GetMapping(path = "/cargos")
+	// public List<String> listarCargos() {
+	// 	return this.usuarioService.listarCargos();
+	// }
 
 	@GetMapping(path = "/niveisAcesso")
 	public List<String> listarNiveis() {
