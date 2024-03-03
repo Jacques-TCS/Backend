@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Cargo;
+import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
 import com.sistemaRegistroVerificacao.model.repository.CargoRepository;
 
 import jakarta.validation.Valid;
@@ -44,6 +45,10 @@ public class CargoController {
 	public void atualizar(@Valid @RequestBody Cargo cargoParaAtualizar) throws CampoInvalidoException {
 		if(cargoParaAtualizar.getId() == null){
         	throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+		}
+		Optional<Cargo> cargo = cargoRepository.findById(cargoParaAtualizar.getId());
+		if(!cargo.isPresent()) {
+			throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
 		}
 		cargoRepository.save(cargoParaAtualizar);
 	}
