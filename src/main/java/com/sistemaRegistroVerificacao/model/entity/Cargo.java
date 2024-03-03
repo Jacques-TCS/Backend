@@ -5,7 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +25,11 @@ public class Cargo {
 	private Integer id;
 
     @Column()
-    @NotNull(message = "É necessário informar o nome do cargo")
+    @NotEmpty(message = "É necessário informar o nome do cargo")
 	private String nome;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_nivel_acesso", referencedColumnName = "id", nullable = false)
+    @NotNull(message = "É necessário informar o nível de acesso")
+    private NivelAcesso nivelAcesso;
 }
