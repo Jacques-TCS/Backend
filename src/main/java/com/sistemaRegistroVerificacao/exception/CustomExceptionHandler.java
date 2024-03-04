@@ -6,6 +6,7 @@ import java.util.Map;
 import org.hibernate.TransientPropertyValueException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -72,7 +73,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(TransientPropertyValueException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-        public Map<String, String> onTransientPropertyValueException(TransientPropertyValueException e) {
+    public Map<String, String> onTransientPropertyValueException(TransientPropertyValueException e) {
         Map<String, String> error = new HashMap<>();
         error.put("campo inválido", e.getPropertyName());
         return error;
@@ -87,7 +88,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-        public Map<String, String> onDataIntegrityViolationException(DataIntegrityViolationException e) {
+    public Map<String, String> onDataIntegrityViolationException(DataIntegrityViolationException e) {
         Map<String, String> error = new HashMap<>();
         error.put("mensagem", "Verifique as relações entre as entidades e tente novamente");
         error.put("error", "Violação de integridade do banco de dados");
@@ -103,9 +104,26 @@ public class CustomExceptionHandler {
     @ExceptionHandler(CampoInvalidoException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-        public Map<String, String> onCampoInvalidoException(CampoInvalidoException e) {
+    public Map<String, String> onCampoInvalidoException(CampoInvalidoException e) {
         Map<String, String> error = new HashMap<>();
         error.put(e.getCampo(), e.getMensagemErro());
         return error;
     }
+
+    /*
+     * Esse exception handler funciona de maneira a pegar todas as exceções do tipo
+     * "HttpMessageNotReadableException". Essas exceções geralmente estão ligadas a 
+     * requisições inválidas a nível de criação de objetos, por exemplo, 
+     * foi enviado um valor de string onde o código esperava receber um objeto.
+     */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Map<String, String> onHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("mensagem", e.getMessage());
+        error.put("error", "Requisição não legível");
+        return error;
+    }
+
 }
