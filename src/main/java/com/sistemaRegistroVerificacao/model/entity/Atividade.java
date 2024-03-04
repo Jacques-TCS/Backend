@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,11 +26,12 @@ public class Atividade {
 	private Integer id;
 	
 	@Column()
-    @NotNull(message = "É necessário informar a descricao da atividade")
+    @NotEmpty(message = "É necessário informar a descrição")
 	private String descricao;
 
 	@ManyToOne
-	@JoinColumn(name = "id_cargo", referencedColumnName = "id")
+	@JoinColumn(name = "id_cargo", referencedColumnName = "id", nullable = false)
+    @NotNull(message = "É necessário informar o cargo")
 	private Cargo cargo;
 
 	@Transient
