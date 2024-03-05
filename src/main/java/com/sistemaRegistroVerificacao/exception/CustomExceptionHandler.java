@@ -7,6 +7,7 @@ import org.hibernate.TransientPropertyValueException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 
@@ -92,6 +94,7 @@ public class CustomExceptionHandler {
         Map<String, String> error = new HashMap<>();
         error.put("mensagem", "Verifique as relações entre as entidades e tente novamente");
         error.put("error", "Violação de integridade do banco de dados");
+        error.put("descrição", e.getCause().getMessage());
         return error;
     }
 
@@ -123,6 +126,34 @@ public class CustomExceptionHandler {
         Map<String, String> error = new HashMap<>();
         error.put("mensagem", e.getMessage());
         error.put("error", "Requisição não legível");
+        return error;
+    }
+
+    /*
+     * Esse exception handler funciona de maneira a pegar todas as exceções do tipo
+     * "JpaObjectRetrievalFailureException". Essas exceções geralmente estão ligadas a 
+     * atualizações de objetos, onde o objeto possui uma chave estrangeira, mas ao processar a requisição
+     * a chave estrangeira não representa nenhum registro no banco de dados.
+     * Ex:
+     *  {
+     *      nome: usuário,
+     *      perfil: {
+     *          id: 8778            <-- nesse caso, se essa chave estrangeira não representasse
+     *      }                           nenhum registro no banco, seria lançada uma 
+     *  }                               "JpaObjectRetrievalFailureException"
+     */
+    @ExceptionHandler(JpaObjectRetrievalFailureException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Map<String, String> onJpaObjectRetrievalFailureException(JpaObjectRetrievalFailureException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("mensagem", e.getCause().toString());
+        error.put("error", "Requisição não legível");
+        if (e.getCause() instanceof EntityNotFoundException) {
+            error.put("mensagem", "Verifique as relações entre as entidades e tente novamente");
+            error.put("error", "Entidade não encontrada");
+            error.put("descrição", e.getCause().getMessage());
+        }
         return error;
     }
 
