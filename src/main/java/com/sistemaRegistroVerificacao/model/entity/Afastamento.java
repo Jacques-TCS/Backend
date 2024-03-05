@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,13 +25,15 @@ public class Afastamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column()
-    @NotNull(message = "É necessário informar a natureza do afastamento")
-	private String natureza;
 
 	@ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    @JoinColumn(name = "id_natureza_afastamento", referencedColumnName = "id", nullable = false)
+	@NotNull(message = "É necessário informar a natureza do afastamento")
+	private NaturezaAfastamento natureza;
+
+	@ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
+	@NotNull(message = "É necessário informar o profissional")
     private Usuario usuario;
 
 
@@ -43,5 +46,6 @@ public class Afastamento {
 	private LocalDate dataFim;
 
 	@Column()
+	@NotEmpty(message = "É necessário informar a descrição do afastamento")
 	private String descricao;
 }
