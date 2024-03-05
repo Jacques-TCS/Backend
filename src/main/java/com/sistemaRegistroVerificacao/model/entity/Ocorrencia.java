@@ -3,6 +3,8 @@ package com.sistemaRegistroVerificacao.model.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +39,8 @@ public class Ocorrencia {
 	 */
 	@ManyToMany
 	@JoinTable(name = "ocorrencia_tem_categorias", joinColumns = @JoinColumn(name = "id_ocorrencia", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
-	Set<Categoria> categorias;
+	@NotNull(message = "É necessário informar a categoria")
+	private Set<Categoria> categorias;
 
 	/*
 	 * Status podem ser:
@@ -51,7 +54,9 @@ public class Ocorrencia {
     @NotNull(message = "É necessário informar a data da ocorrência")
 	private LocalDateTime dataOcorrencia;
 	
-	@OneToOne(optional=false)
-    @JoinColumn(name="servico_prestado_id", referencedColumnName = "id", unique=true, nullable=false, updatable=false)
+	@OneToOne()
+    @JoinColumn(name="servico_prestado_id", referencedColumnName = "id")
+	@NotNull(message = "É necessário informar o serviço")
+	@JsonIgnoreProperties("ocorrencia")
 	private ServicoPrestado servicoPrestado;
 }

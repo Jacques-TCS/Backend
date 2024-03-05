@@ -1,8 +1,10 @@
 package com.sistemaRegistroVerificacao.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
+import com.sistemaRegistroVerificacao.model.repository.OcorrenciaRepository;
 import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
 import com.sistemaRegistroVerificacao.service.OcorrenciaService;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/ocorrencia")
@@ -25,24 +31,41 @@ public class OcorrenciaController {
 	@Autowired
 	private OcorrenciaService ocorrenciaService;
 
-	@PostMapping
-	public Ocorrencia salvar(@RequestBody Ocorrencia novaOcorrencia) throws CampoInvalidoException {
-		return ocorrenciaService.inserir(novaOcorrencia);
-	}
+	@Autowired
+	private OcorrenciaRepository ocorrenciaRepository;
 
-	@PutMapping
-	public boolean atualizar(@RequestBody Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
-		return ocorrenciaService.atualizar(ocorrenciaParaAtualizar) != null;
+    @PostMapping
+	public void salvar(@Valid @RequestBody Ocorrencia novaOcorrencia) throws CampoInvalidoException {
+		if(novaOcorrencia.getId() != null){
+        	throw new CampoInvalidoException("id", "Para criar um novo registro, o ID não pode ser informado");
+		}
+        ocorrenciaRepository.save(novaOcorrencia);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Ocorrencia consultarPorId(@PathVariable Integer id) {
-		return ocorrenciaService.consultarPorId(id);
+	public Optional<Ocorrencia> consultarPorId(@PathVariable Integer id) {
+		return ocorrenciaRepository.findById(id);
+	}
+
+	@PutMapping
+	public void atualizar(@Valid @RequestBody Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
+		try {
+			if(ocorrenciaParaAtualizar.getId() == null){
+				throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+			}
+			Optional<Ocorrencia> ocorrencia = ocorrenciaRepository.findById(ocorrenciaParaAtualizar.getId());
+			if(!ocorrencia.isPresent()) {
+				throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
+			}
+			ocorrenciaRepository.save(ocorrenciaParaAtualizar);
+		} catch (EntityNotFoundException e) {
+			throw new DataIntegrityViolationException(null);
+		}
 	}
 
 	@GetMapping(path = "/todos")
 	public List<Ocorrencia> listarTodasOcorrencias() {
-		return ocorrenciaService.listarTodas();
+		return ocorrenciaRepository.findAll();
 	}
 
 	@PostMapping("/filtro")
