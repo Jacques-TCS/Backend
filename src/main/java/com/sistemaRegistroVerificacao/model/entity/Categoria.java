@@ -27,6 +27,6 @@ public class Categoria {
 	private String nome;
 
 	@Column()
-    @NotEmpty(message = "É necessário informar o status da categoria")
+    @NotNull(message = "É necessário informar o status da categoria")
 	private Boolean ativo;
 }
