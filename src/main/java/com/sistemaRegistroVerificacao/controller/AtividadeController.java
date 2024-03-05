@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Atividade;
 import com.sistemaRegistroVerificacao.model.repository.AtividadeRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,14 +44,18 @@ public class AtividadeController {
 
 	@PutMapping
 	public void atualizar(@Valid @RequestBody Atividade atividadeParaAtualizar) throws CampoInvalidoException {
-		if(atividadeParaAtualizar.getId() == null){
-        	throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+		try {
+			if(atividadeParaAtualizar.getId() == null){
+				throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+			}
+			Optional<Atividade> atividade = atividadeRepository.findById(atividadeParaAtualizar.getId());
+			if(!atividade.isPresent()) {
+				throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
+			}
+			atividadeRepository.save(atividadeParaAtualizar);	
+		} catch (EntityNotFoundException e) {
+			throw new DataIntegrityViolationException(null);
 		}
-		Optional<Atividade> atividade = atividadeRepository.findById(atividadeParaAtualizar.getId());
-		if(!atividade.isPresent()) {
-			throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
-		}
-		atividadeRepository.save(atividadeParaAtualizar);
 	}
 
 	@GetMapping(path = "/todos")
