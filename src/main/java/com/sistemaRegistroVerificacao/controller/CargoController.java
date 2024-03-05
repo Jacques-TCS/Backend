@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.sistemaRegistroVerificacao.model.entity.Cargo;
 import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
 import com.sistemaRegistroVerificacao.model.repository.CargoRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 @RestController
@@ -43,14 +45,18 @@ public class CargoController {
 
 	@PutMapping
 	public void atualizar(@Valid @RequestBody Cargo cargoParaAtualizar) throws CampoInvalidoException {
-		if(cargoParaAtualizar.getId() == null){
-        	throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+		try {
+			if(cargoParaAtualizar.getId() == null){
+				throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+			}
+			Optional<Cargo> cargo = cargoRepository.findById(cargoParaAtualizar.getId());
+			if(!cargo.isPresent()) {
+				throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
+			}
+			cargoRepository.save(cargoParaAtualizar);	
+		} catch (EntityNotFoundException e) {
+			throw new DataIntegrityViolationException(null);
 		}
-		Optional<Cargo> cargo = cargoRepository.findById(cargoParaAtualizar.getId());
-		if(!cargo.isPresent()) {
-			throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
-		}
-		cargoRepository.save(cargoParaAtualizar);
 	}
 
 	@GetMapping(path = "/todos")
