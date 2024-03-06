@@ -23,11 +23,11 @@ public class Sala {
 	private Integer id;
 	
 	@Column()
-    @NotNull(message = "É necessário informar o número da sala")
+    @NotEmpty(message = "É necessário informar o número da sala")
 	private String numero;
 
 	
 	@Column()
-    @NotEmpty(message = "É necessário informar o status da sala")
+    @NotNull(message = "É necessário informar o status da sala")
 	private Boolean disponivel;
 }
