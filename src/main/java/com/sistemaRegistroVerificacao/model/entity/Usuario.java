@@ -23,14 +23,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 @Entity
 @Table(name = "USUARIO")
 public class Usuario {
-	public static final String NIVEL_FUNCIONARIO = "Funcionário";
-	public static final String NIVEL_GERENTE = "Gerente";
-	public static final String NIVEL_RH = "Recursos Humanos";
-
 	public static final String STATUS_ATIVO = "Ativo";
 	public static final String STATUS_INATIVO = "Inativo";
 	public static final String STATUS_AFASTADO = "Afastado";
@@ -57,9 +52,6 @@ public class Usuario {
 
 	@Column()
 	private String ctps;
-
-	@Column(name = "nivel_acesso")
-	private String nivelAcesso;
 
 	@ManyToOne
 	@JoinColumn(name = "id_cargo", referencedColumnName = "id")

@@ -1,8 +1,10 @@
 package com.sistemaRegistroVerificacao.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Usuario;
+import com.sistemaRegistroVerificacao.model.entity.Usuario;
+import com.sistemaRegistroVerificacao.model.repository.UsuarioRepository;
+import com.sistemaRegistroVerificacao.model.repository.UsuarioRepository;
 import com.sistemaRegistroVerificacao.model.seletor.UsuarioSeletor;
 import com.sistemaRegistroVerificacao.service.UsuarioService;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/usuario")
@@ -25,43 +33,45 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	@PostMapping
-	public Usuario salvar(@RequestBody Usuario novoUsuario) throws CampoInvalidoException {
-		return usuarioService.inserir(novoUsuario);
-	}
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
-	@PutMapping
-	public boolean atualizar(@RequestBody Usuario usuarioParaAtualizar) throws CampoInvalidoException {
-		return usuarioService.atualizar(usuarioParaAtualizar) != null;
+    @PostMapping
+	public void salvar(@Valid @RequestBody Usuario novaUsuario) throws CampoInvalidoException {
+		if(novaUsuario.getId() != null){
+        	throw new CampoInvalidoException("id", "Para criar um novo registro, o ID não pode ser informado");
+		}
+        usuarioRepository.save(novaUsuario);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Usuario consultarPorId(@PathVariable Integer id) {
-		return usuarioService.consultarPorId(id);
+	public Optional<Usuario> consultarPorId(@PathVariable Integer id) {
+		return usuarioRepository.findById(id);
+	}
+
+	@PutMapping
+	public void atualizar(@Valid @RequestBody Usuario usuarioParaAtualizar) throws CampoInvalidoException {
+		try {
+			if(usuarioParaAtualizar.getId() == null){
+				throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+			}
+			Optional<Usuario> usuario = usuarioRepository.findById(usuarioParaAtualizar.getId());
+			if(!usuario.isPresent()) {
+				throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
+			}
+			usuarioRepository.save(usuarioParaAtualizar);	
+		} catch (EntityNotFoundException e) {
+			throw new DataIntegrityViolationException(null);
+		}
 	}
 
 	@GetMapping(path = "/todos")
 	public List<Usuario> listarTodosUsuarios() {
-		return usuarioService.listarTodos();
+		return usuarioRepository.findAll();
 	}
 
 	@PostMapping("/filtro")
 	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
-	}
-
-	// @GetMapping(path = "/cargos")
-	// public List<String> listarCargos() {
-	// 	return this.usuarioService.listarCargos();
-	// }
-
-	@GetMapping(path = "/niveisAcesso")
-	public List<String> listarNiveis() {
-		return this.usuarioService.listarNiveis();
-	}
-
-	@GetMapping(path = "/status")
-	public List<String> listarStatus() {
-		return this.usuarioService.listarStatus();
 	}
 }

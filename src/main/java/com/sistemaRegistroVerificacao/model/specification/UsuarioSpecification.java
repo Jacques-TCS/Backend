@@ -32,7 +32,7 @@ public class UsuarioSpecification {
 				predicates.add(cb.lessThanOrEqualTo(root.get("menorDataHoraFim"), seletor.getDataDesligamentoFim()));
 			}
 			if (seletor.getCargo() != null) {
-				predicates.add(cb.like(root.get("cargo"), "%" + seletor.getCargo() + "%"));
+				predicates.add(cb.like(root.join("cargo").get("nome"), "%" + seletor.getCargo() + "%"));
 			}
 
 			if (seletor.getStatusUsuario() != null) {
