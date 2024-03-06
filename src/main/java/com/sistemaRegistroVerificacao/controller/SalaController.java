@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 @CrossOrigin(origins = { "http://localhost:4200", "http://localhost:5500" }, maxAge = 3600)
 public class SalaController {
 
-	    @Autowired
+	@Autowired
     private SalaRepository salaRepository;
 
     @PostMapping
