@@ -39,8 +39,8 @@ public class ServicoPrestadoSpecification {
 				predicates.add(cb.lessThanOrEqualTo(root.get("maiorDataHoraFim"), seletor.getMaiorDataHoraFim()));
 			}
 
-			if (seletor.getIdTipoOcorrencia() != null) {
-				predicates.add(cb.equal(root.join("ocorrencias").get("id"), seletor.getIdTipoOcorrencia()));
+			if (seletor.getOcorrencia() != null) {
+				predicates.add(cb.equal(root.join("ocorrencia").get("id"), seletor.getOcorrencia()));
 			}
 
 			if (seletor.getCargo() != null) {
