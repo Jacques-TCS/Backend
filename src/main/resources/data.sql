@@ -1,27 +1,38 @@
-insert into cargo (nome) values
+insert into nivel_acesso (nome) values
     ("Gerente"),
-	("Faxina"),
-	("Recursos Humanos"),
-	("Zeladoria"),
-	("Técnico");
+    ("RH"),
+    ("Funcionário");
+    
+insert into cargo (nome, id_nivel_acesso) values
+    ("Gerente", 1),
+	("Faxina", 3),
+	("Recursos Humanos", 2),
+	("Zeladoria", 3),
+	("Técnico", 3);
 
-insert into usuario (nome, cpf, telefone, data_nascimento, ctps, nivel_acesso, id_cargo, matricula, senha, status, data_contratacao) values
-    ('João', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 1, '875421', 'senha', 'ativo', '2020-01-01'),
-    ('Pedro', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 2, '875421', 'senha', 'ativo', '2020-01-01'),
-    ('Maria', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 3, '875421', 'senha', 'ativo', '2020-01-01'),
-    ('José', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 4, '875421', 'senha', 'ativo', '2020-01-01'),
-    ('Carlos', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 5, '875421', 'senha', 'ativo', '2020-01-01'),
-    ('Joana', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 2, '875421', 'senha', 'ativo', '2020-01-01'),
-    ('Daniela', '32165498710', '4898653274', '2000-01-01', '32165498732', 'nivel de acesso', 2, '875421', 'senha', 'ativo', '2020-01-01');
+insert into usuario (nome, cpf, telefone, data_nascimento, ctps, id_cargo, matricula, senha, status, data_contratacao) values
+    ('João', '32165498710', '4898653274', '2000-01-01', '32165498732', 1, '875421', 'senha', 'ativo', '2020-01-01'),
+    ('Pedro', '32165498710', '4898653274', '2000-01-01', '32165498732', 2, '875421', 'senha', 'ativo', '2020-01-01'),
+    ('Maria', '32165498710', '4898653274', '2000-01-01', '32165498732', 3, '875421', 'senha', 'ativo', '2020-01-01'),
+    ('José', '32165498710', '4898653274', '2000-01-01', '32165498732', 3, '875421', 'senha', 'ativo', '2020-01-01'),
+    ('Carlos', '32165498710', '4898653274', '2000-01-01', '32165498732', 3, '875421', 'senha', 'ativo', '2020-01-01'),
+    ('Joana', '32165498710', '4898653274', '2000-01-01', '32165498732', 3, '875421', 'senha', 'ativo', '2020-01-01'),
+    ('Daniela', '32165498710', '4898653274', '2000-01-01', '32165498732', 3, '875421', 'senha', 'ativo', '2020-01-01');
 
-insert into afastamento (natureza, descricao, data_inicio, data_fim, id_usuario) values
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 1),
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 2),
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 3),
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 4),
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 5),
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 6),
-    ('Doença', 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 7);
+insert into natureza_afastamento (descricao) values 
+    ("Doença ou acidente"),
+    ("Saúde mental"),
+    ("Licença-maternidade"),
+    ("Licença-paternidade");
+
+insert into afastamento (id_natureza_afastamento, descricao, data_inicio, data_fim, id_usuario) values
+    (1, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 1),
+    (1, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 2),
+    (3, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 3),
+    (4, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 4),
+    (2, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 5),
+    (2, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 6),
+    (3, 'Doença', '2020-01-01 09:00:00', '2020-01-05 09:00:00', 7);
 
 insert into sala (numero, disponivel) values 
     ('101', true),
@@ -36,12 +47,19 @@ insert into atividade (descricao, id_cargo) values
     ('Limpeza de janela', 2),
     ('Manutenção de sala', 5);
 
-insert into servico_prestado (id_sala, id_usuario, data_hora_inicio, data_hora_fim) values 
-    (1, 2, '2020-01-01 09:00:00', '2020-01-01 10:00:00'),
-    (2, 6, '2020-01-01 09:00:00', '2020-01-01 10:00:00'),
-    (3, 7, '2020-01-01 09:00:00', '2020-01-01 10:00:00'),
-    (4, 2, '2020-01-01 09:00:00', '2020-01-01 10:00:00'),
-    (5, 6, '2020-01-01 09:00:00', '2020-01-01 10:00:00');
+insert into servico_prestado (id_sala, data_hora_inicio) values 
+    (1, '2020-01-01 09:00:00'),
+    (2, '2020-01-01 09:00:00'),
+    (3, '2020-01-01 09:00:00'),
+    (4, '2020-01-01 09:00:00'),
+    (5, '2020-01-01 09:00:00');
+
+insert into servico_prestado_historico (de, id_servico_prestado, id_usuario, para, data_hora_alteracao) values 
+    ('R', 1, 3, 'I', '2020-01-01 09:00:00'),
+    ('R', 2, 4, 'I', '2020-01-01 09:00:00'),
+    ('R', 3, 5, 'I', '2020-01-01 09:00:00'),
+    ('R', 4, 6, 'I', '2020-01-01 09:00:00'),
+    ('R', 5, 7, 'I', '2020-01-01 09:00:00');
 
 insert into servico_prestado_tem_atividades(id_servico_prestado, id_atividade) values
     (1, 1),
