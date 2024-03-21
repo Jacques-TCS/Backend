@@ -1,10 +1,18 @@
 package com.sistemaRegistroVerificacao.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,19 +24,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Usuario;
-import com.sistemaRegistroVerificacao.model.entity.Usuario;
-import com.sistemaRegistroVerificacao.model.repository.UsuarioRepository;
 import com.sistemaRegistroVerificacao.model.repository.UsuarioRepository;
 import com.sistemaRegistroVerificacao.model.seletor.UsuarioSeletor;
 import com.sistemaRegistroVerificacao.service.UsuarioService;
+import com.sistemaRegistroVerificacao.service.TokenService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/usuario")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:5500" }, maxAge = 3600)
+// @CrossOrigin(origins = { "http://localhost:4200", "http://localhost:5500" }, maxAge = 3600)
 public class UsuarioController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenService tokenService;
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -37,11 +50,19 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 
     @PostMapping
-	public void salvar(@Valid @RequestBody Usuario novaUsuario) throws CampoInvalidoException {
-		if(novaUsuario.getId() != null){
-        	throw new CampoInvalidoException("id", "Para criar um novo registro, o ID não pode ser informado");
-		}
-        usuarioRepository.save(novaUsuario);
+	public ResponseEntity salvar(@RequestBody Usuario novoUsuario) throws CampoInvalidoException {
+        try{
+            if(usuarioRepository.findByUsername(novoUsuario.getUsername()) != null){
+                return ResponseEntity.badRequest().build();
+            }
+
+            String passwordCriptografada = new BCryptPasswordEncoder().encode(novoUsuario.getPassword());
+            novoUsuario.setPassword(passwordCriptografada);
+            usuarioRepository.save(novoUsuario);
+            return ResponseEntity.ok().build();
+        } catch(Exception e){
+            return ResponseEntity.badRequest().body("Erro ao criar usuário: " + e.getMessage());
+        }
 	}
 
 	@GetMapping(path = "/{id}")
@@ -74,4 +95,24 @@ public class UsuarioController {
 	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
 	}
+
+	@PostMapping("/login")
+    public ResponseEntity login(@RequestBody Usuario usuario){
+        try {
+            var usernamePassword = new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword());
+            var auth = this.authenticationManager.authenticate(usernamePassword);
+
+            Usuario usuarioAutenticado = (Usuario) auth.getPrincipal();
+
+            var token = tokenService.generateToken(usuarioAutenticado);
+
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            response.put("usuario", usuarioAutenticado.getNome());
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
