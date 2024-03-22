@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class CorsFilter extends OncePerRequestFilter {
 
+    // futuramente adicionar apenas as origens: "http://localhost:4200" e "http://localhost:5500"
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         response.setHeader("Access-Control-Allow-Origin", "*");

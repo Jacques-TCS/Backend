@@ -34,7 +34,6 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/usuario")
-// @CrossOrigin(origins = { "http://localhost:4200", "http://localhost:5500" }, maxAge = 3600)
 public class UsuarioController {
 
     @Autowired
@@ -50,7 +49,7 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 
     @PostMapping
-	public ResponseEntity salvar(@RequestBody Usuario novoUsuario) throws CampoInvalidoException {
+	public ResponseEntity salvar(@Valid @RequestBody Usuario novoUsuario) throws CampoInvalidoException {
         try{
             if(usuarioRepository.findByUsername(novoUsuario.getUsername()) != null){
                 return ResponseEntity.badRequest().build();
@@ -65,11 +64,13 @@ public class UsuarioController {
         }
 	}
 
+	@Secured("ROLE_Gerente")
 	@GetMapping(path = "/{id}")
 	public Optional<Usuario> consultarPorId(@PathVariable Integer id) {
 		return usuarioRepository.findById(id);
 	}
 
+	@Secured("ROLE_Gerente")
 	@PutMapping
 	public void atualizar(@Valid @RequestBody Usuario usuarioParaAtualizar) throws CampoInvalidoException {
 		try {
@@ -86,11 +87,13 @@ public class UsuarioController {
 		}
 	}
 
+	@Secured("ROLE_Gerente")
 	@GetMapping(path = "/todos")
 	public List<Usuario> listarTodosUsuarios() {
 		return usuarioRepository.findAll();
 	}
 
+	@Secured("ROLE_Gerente")
 	@PostMapping("/filtro")
 	public List<Usuario> listarComSeletor(@RequestBody UsuarioSeletor seletor) {
 		return usuarioService.listarComSeletor(seletor);
