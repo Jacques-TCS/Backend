@@ -26,16 +26,16 @@ public class AfastamentoSpecification {
 						"%" + seletor.getNatureza().toLowerCase() + "%"));
 			}
 
-			if (seletor.getMenorDataInicio() != null && seletor.getmaiorDataInicio() != null) {
+			if (seletor.getMenorDataInicio() != null && seletor.getMaiorDataInicio() != null) {
 				// WHERE dataInicio BETWEEN min AND max
 				predicates.add(
-						cb.between(root.get("dataInicio"), seletor.getMenorDataInicio(), seletor.getmaiorDataInicio()));
+						cb.between(root.get("dataInicio"), seletor.getMenorDataInicio(), seletor.getMaiorDataInicio()));
 			} else if (seletor.getMenorDataInicio() != null) {
 				// WHERE dataInicio >= min
 				predicates.add(cb.greaterThanOrEqualTo(root.get("dataInicio"), seletor.getMenorDataInicio()));
-			} else if (seletor.getmaiorDataInicio() != null) {
+			} else if (seletor.getMaiorDataInicio() != null) {
 				// WHERE dataInicio <= max
-				predicates.add(cb.lessThanOrEqualTo(root.get("dataInicio"), seletor.getmaiorDataInicio()));
+				predicates.add(cb.lessThanOrEqualTo(root.get("dataInicio"), seletor.getMaiorDataInicio()));
 			}
 
 			if (seletor.getMenorDataFim() != null && seletor.getMaiorDataFim() != null) {

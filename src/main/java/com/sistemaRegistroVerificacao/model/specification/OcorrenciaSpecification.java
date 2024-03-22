@@ -26,7 +26,7 @@ public class OcorrenciaSpecification {
 			}
 
 			if (seletor.getCategoria() != null) {
-				predicates.add(cb.like(cb.lower(root.join("categoria").get("nome")),
+				predicates.add(cb.like(cb.lower(root.join("categorias").get("nome")),
 						"%" + seletor.getCategoria().toLowerCase() + "%"));
 			}
 

@@ -1,9 +1,12 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
-import org.apache.tomcat.util.bcel.Const;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -12,8 +15,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,21 +29,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 @Entity
 @Table(name = "USUARIO")
-public class Usuario {
-
-	public static final String CARGO_GERENTE = "Gerente";
-	public static final String CARGO_FAXINA = "Faxina";
-	public static final String CARGO_RH = "Recursos Humanos";
-	public static final String CARGO_ZELADORIA = "Zeladoria";
-	public static final String CARGO_TECNICO = "Técnico";
-
-	public static final String NIVEL_FUNCIONARIO = "Funcionário";
-	public static final String NIVEL_GERENTE = "Gerente";
-	public static final String NIVEL_RH = "Recursos Humanos";
-
+public class Usuario implements UserDetails {
 	public static final String STATUS_ATIVO = "Ativo";
 	public static final String STATUS_INATIVO = "Inativo";
 	public static final String STATUS_AFASTADO = "Afastado";
@@ -44,143 +39,103 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@Column()
+    @NotNull(message = "É necessário informar o nome")	
 	private String nome;
+	
+	@Column()
+    @NotNull(message = "É necessário informar o CPF")	
 	private String cpf;
+	
+	@Column()
+    @NotNull(message = "É necessário informar o telefone")
 	private String telefone;
 
-	@Column(name = "DATANASCIMENTO")
+	@Column(name = "data_nascimento")
+    @NotNull(message = "É necessário informar a data de nascimento")
 	private LocalDate dataNascimento;
-	private String ctps;
 
-	@Column(name = "NIVELACESSO")
-	private String nivelAcesso;
-	private String cargo;
+	@Column()
+    @NotEmpty(message = "É necessário informar o e-mail")
+	private String email;
 
-	private String matricula;
-	private String senha;
+	@ManyToOne
+	@JoinColumn(name = "id_cargo", referencedColumnName = "id")
+	private Cargo cargo;
 
-	@Column(name = "STATUSUSUARIO")
+	@Column(name = "status")
+    @NotNull(message = "É necessário informar o status")
 	private String statusUsuario;
 
 	@JsonBackReference
 	@OneToMany(mappedBy = "usuario")
 	private List<Afastamento> afastamentos;
 
-	@Column(name = "DATADESLIGAMENTO")
+	@Column(name = "data_desligamento")
 	private LocalDate dataDesligamento;
 
-	@Column(name = "DATACONTRATACAO")
+	@Column(name = "data_contratacao")
+    @NotNull(message = "É necessário informar a data de contratação")
 	private LocalDate dataContratacao;
 
-	public Integer getId() {
-		return id;
-	}
+	@Column(length = 50)
+    @NotNull(message = "É necessário informar o login")
+    private String username;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	@Column()
+    @NotNull(message = "É necessário informar a senha")
+    private String password;
 
-	public String getNome() {
-		return nome;
-	}
+    @Override
+    /*
+     * Esse método retorna os perfis que o usuário possui.
+     * Idealmente, a classe Usuario deveria ter um atributo do tipo Perfil (ENUM), 
+	 * onde seriam descritos os possíveis perfis que um usuário pode possuir.
+     */
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.cargo.getNome()));
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    @Override
+    /*
+     * Esse método retorna apenas true porque não existe validação de usuário
+     */
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    @Override
+    /*
+     * Esse método retorna apenas true porque não existe validação de usuário
+     */
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    @Override
+    /*
+     * Esse método retorna apenas true porque não existe validação de usuário
+     */
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public String getCtps() {
-		return ctps;
-	}
-
-	public void setCtps(String ctps) {
-		this.ctps = ctps;
-	}
-
-	public String getNivelAcesso() {
-		return nivelAcesso;
-	}
-
-	public void setNivelAcesso(String nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getStatusUsuario() {
-		return statusUsuario;
-	}
-
-	public void setStatusUsuario(String statusUsuario) {
-		this.statusUsuario = statusUsuario;
-	}
-
-	// public Afastamento getUltimoAfastamento() {
-	// return ultimoAfastamento;
-	// }
-
-	// public void setUltimoAfastamento(Afastamento ultimoAfastamento) {
-	// this.ultimoAfastamento = ultimoAfastamento;
-	// }
-
-	public LocalDate getDataDesligamento() {
-		return dataDesligamento;
-	}
-
-	public void setDataDesligamento(LocalDate dataDesligamento) {
-		this.dataDesligamento = dataDesligamento;
-	}
-
-	public LocalDate getDataContratacao() {
-		return dataContratacao;
-	}
-
-	public void setDataContratacao(LocalDate dataContratacao) {
-		this.dataContratacao = dataContratacao;
-	}
+    @Override
+    /*
+     * Esse método retorna apenas true porque não existe validação de usuário ativo ou inativo
+     */
+    public boolean isEnabled() {
+        return true;
+    }
 }

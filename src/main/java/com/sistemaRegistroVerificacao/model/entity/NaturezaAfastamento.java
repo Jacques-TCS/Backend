@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -13,20 +15,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "categoria")
+@Table(name = "natureza_afastamento")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Categoria {
-	@Id
+public class NaturezaAfastamento {
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	@Column()
-    @NotNull(message = "É necessário informar o nome da categoria")
-	private String nome;
-
-	@Column()
-    @NotNull(message = "É necessário informar o status da categoria")
-	private Boolean ativo;
+    @NotEmpty(message = "É necessário informar a descrição")
+	private String descricao;
 }

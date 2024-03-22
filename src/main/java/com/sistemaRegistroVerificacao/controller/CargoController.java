@@ -15,61 +15,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
-import com.sistemaRegistroVerificacao.model.entity.Ocorrencia;
-import com.sistemaRegistroVerificacao.model.repository.OcorrenciaRepository;
-import com.sistemaRegistroVerificacao.model.seletor.OcorrenciaSeletor;
-import com.sistemaRegistroVerificacao.service.OcorrenciaService;
+import com.sistemaRegistroVerificacao.model.entity.Cargo;
+import com.sistemaRegistroVerificacao.model.entity.NivelAcesso;
+import com.sistemaRegistroVerificacao.model.repository.CargoRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/api/ocorrencia")
+@RequestMapping(path = "/api/cargo")
 @CrossOrigin(origins = { "http://localhost:4200", "http://localhost:5500" }, maxAge = 3600)
-public class OcorrenciaController {
-
-	@Autowired
-	private OcorrenciaService ocorrenciaService;
-
-	@Autowired
-	private OcorrenciaRepository ocorrenciaRepository;
+public class CargoController {
+    
+    @Autowired
+    private CargoRepository cargoRepository;
 
     @PostMapping
-	public void salvar(@Valid @RequestBody Ocorrencia novaOcorrencia) throws CampoInvalidoException {
-		if(novaOcorrencia.getId() != null){
+	public void salvar(@Valid @RequestBody Cargo novoCargo) throws CampoInvalidoException {
+		if(novoCargo.getId() != null){
         	throw new CampoInvalidoException("id", "Para criar um novo registro, o ID não pode ser informado");
 		}
-        ocorrenciaRepository.save(novaOcorrencia);
+        cargoRepository.save(novoCargo);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<Ocorrencia> consultarPorId(@PathVariable Integer id) {
-		return ocorrenciaRepository.findById(id);
+	public Optional<Cargo> consultarPorId(@PathVariable Integer id) {
+		return cargoRepository.findById(id);
 	}
 
 	@PutMapping
-	public void atualizar(@Valid @RequestBody Ocorrencia ocorrenciaParaAtualizar) throws CampoInvalidoException {
+	public void atualizar(@Valid @RequestBody Cargo cargoParaAtualizar) throws CampoInvalidoException {
 		try {
-			if(ocorrenciaParaAtualizar.getId() == null){
+			if(cargoParaAtualizar.getId() == null){
 				throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
 			}
-			Optional<Ocorrencia> ocorrencia = ocorrenciaRepository.findById(ocorrenciaParaAtualizar.getId());
-			if(!ocorrencia.isPresent()) {
+			Optional<Cargo> cargo = cargoRepository.findById(cargoParaAtualizar.getId());
+			if(!cargo.isPresent()) {
 				throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
 			}
-			ocorrenciaRepository.save(ocorrenciaParaAtualizar);
+			cargoRepository.save(cargoParaAtualizar);	
 		} catch (EntityNotFoundException e) {
 			throw new DataIntegrityViolationException(null);
 		}
 	}
 
 	@GetMapping(path = "/todos")
-	public List<Ocorrencia> listarTodasOcorrencias() {
-		return ocorrenciaRepository.findAll();
-	}
-
-	@PostMapping("/filtro")
-	public List<Ocorrencia> listarComSeletor(@RequestBody OcorrenciaSeletor seletor) {
-		return ocorrenciaService.listarComSeletor(seletor);
+	public List<Cargo> listarTodosCargos() {
+		return cargoRepository.findAll();
 	}
 }

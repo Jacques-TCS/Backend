@@ -1,48 +1,33 @@
 package com.sistemaRegistroVerificacao.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "sala")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
-@Entity
-@Table(name = "SALA")
 public class Sala {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column()
+    @NotEmpty(message = "É necessário informar o número da sala")
 	private String numero;
+
+	
+	@Column()
+    @NotNull(message = "É necessário informar o status da sala")
 	private Boolean disponivel;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public Boolean getDisponivel() {
-		return disponivel;
-	}
-
-	public void setDisponivel(Boolean disponivel) {
-		this.disponivel = disponivel;
-	}
 }

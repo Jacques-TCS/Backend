@@ -1,10 +1,11 @@
 package com.sistemaRegistroVerificacao.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sistemaRegistroVerificacao.exception.CampoInvalidoException;
 import com.sistemaRegistroVerificacao.model.entity.Categoria;
+import com.sistemaRegistroVerificacao.model.entity.Categoria;
+import com.sistemaRegistroVerificacao.model.repository.CategoriaRepository;
 import com.sistemaRegistroVerificacao.model.seletor.CategoriaSeletor;
 import com.sistemaRegistroVerificacao.service.CategoriaService;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/categoria")
@@ -25,24 +31,37 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaService categoriaService;
 
-	@PostMapping
-	public Categoria salvar(@RequestBody Categoria novoCategoria) throws CampoInvalidoException {
-		return categoriaService.inserir(novoCategoria);
-	}
+	    @Autowired
+    private CategoriaRepository categoriaRepository;
 
-	@PutMapping
-	public boolean atualizar(@RequestBody Categoria categoriaParaAtualizar) throws CampoInvalidoException {
-		return categoriaService.atualizar(categoriaParaAtualizar) != null;
+    @PostMapping
+	public void salvar(@Valid @RequestBody Categoria novaCategoria) throws CampoInvalidoException {
+		if(novaCategoria.getId() != null){
+        	throw new CampoInvalidoException("id", "Para criar um novo registro, o ID não pode ser informado");
+		}
+        categoriaRepository.save(novaCategoria);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Categoria consultarPorId(@PathVariable Integer id) {
-		return categoriaService.consultarPorId(id);
+	public Optional<Categoria> consultarPorId(@PathVariable Integer id) {
+		return categoriaRepository.findById(id);
+	}
+
+	@PutMapping
+	public void atualizar(@Valid @RequestBody Categoria categoriaParaAtualizar) throws CampoInvalidoException {
+		if(categoriaParaAtualizar.getId() == null){
+			throw new CampoInvalidoException("id", "É necessário informar o ID do registro");
+		}
+		Optional<Categoria> categoria = categoriaRepository.findById(categoriaParaAtualizar.getId());
+		if(!categoria.isPresent()) {
+			throw new CampoInvalidoException("id", "O ID informado não corresponde a nenhum registro");
+		}
+		categoriaRepository.save(categoriaParaAtualizar);	
 	}
 
 	@GetMapping(path = "/todos")
-	public List<Categoria> listarTodosCategoria() {
-		return categoriaService.listarTodas();
+	public List<Categoria> listarTodosCategorias() {
+		return categoriaRepository.findAll();
 	}
 
 	@PostMapping("/filtro")
